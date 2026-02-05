@@ -1,20 +1,110 @@
 import { ArrowRight, ChevronDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { motion } from 'framer-motion';
 import portfolioData from '@/data/portfolio.json';
 
 export function HeroSection() {
   const { hero, personal } = portfolioData;
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15,
+        delayChildren: 0.2,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut" as const,
+      },
+    },
+  };
+
+  const terminalVariants = {
+    hidden: { opacity: 0, scale: 0.95, y: 20 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      y: 0,
+      transition: {
+        duration: 0.8,
+        ease: "easeOut" as const,
+        delay: 0.6,
+      },
+    },
+  };
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background Elements */}
+      {/* Animated Background Elements */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,hsl(var(--primary)/0.1),transparent_50%)]" />
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl animate-pulse-slow" />
-      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-accent/5 rounded-full blur-3xl animate-pulse-slow" style={{ animationDelay: '1s' }} />
+      
+      <motion.div
+        animate={{ 
+          y: [-10, 10, -10],
+        }}
+        transition={{ 
+          duration: 6, 
+          repeat: Infinity, 
+          ease: "easeInOut" 
+        }}
+        className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl"
+      />
+      <motion.div
+        animate={{ 
+          y: [10, -10, 10],
+        }}
+        transition={{ 
+          duration: 6, 
+          repeat: Infinity, 
+          ease: "easeInOut",
+          delay: 2,
+        }}
+        className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-accent/5 rounded-full blur-3xl"
+      />
+      
+      {/* Animated Pulse Orbs */}
+      <motion.div
+        animate={{ 
+          scale: [1, 1.2, 1],
+          opacity: [0.5, 0.8, 0.5],
+        }}
+        transition={{ 
+          duration: 3, 
+          repeat: Infinity, 
+          ease: "easeInOut" 
+        }}
+        className="absolute top-1/3 right-1/3 w-4 h-4 bg-primary rounded-full"
+      />
+      <motion.div
+        animate={{ 
+          scale: [1, 1.2, 1],
+          opacity: [0.5, 0.8, 0.5],
+        }}
+        transition={{ 
+          duration: 3, 
+          repeat: Infinity, 
+          ease: "easeInOut",
+          delay: 1,
+        }}
+        className="absolute bottom-1/3 left-1/3 w-3 h-3 bg-primary rounded-full"
+      />
       
       {/* Grid Pattern */}
-      <div 
-        className="absolute inset-0 opacity-[0.02]"
+      <motion.div 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 0.02 }}
+        transition={{ duration: 2 }}
+        className="absolute inset-0"
         style={{
           backgroundImage: `linear-gradient(hsl(var(--foreground)) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--foreground)) 1px, transparent 1px)`,
           backgroundSize: '60px 60px',
@@ -22,64 +112,164 @@ export function HeroSection() {
       />
 
       <div className="container-wide relative z-10 pt-20">
-        <div className="max-w-4xl mx-auto text-center">
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+          className="max-w-4xl mx-auto text-center"
+        >
           {/* Status Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-8 animate-fade-in-down">
-            <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+          <motion.div
+            variants={itemVariants}
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-8"
+          >
+            <motion.span
+              animate={{ scale: [1, 1.2, 1] }}
+              transition={{ duration: 2, repeat: Infinity }}
+              className="w-2 h-2 rounded-full bg-primary"
+            />
             <span className="text-sm text-primary font-medium">{portfolioData.contact.availability}</span>
-          </div>
+          </motion.div>
 
           {/* Main Headline */}
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-foreground leading-tight mb-6 animate-fade-in-up opacity-0 stagger-1">
+          <motion.h1
+            variants={itemVariants}
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-foreground leading-tight mb-6"
+          >
             {hero.headline}
             <br />
-            <span className="gradient-text">{hero.highlightedText}</span>
-          </h1>
+            <motion.span
+              animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
+              transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
+              className="gradient-text inline-block"
+              style={{
+                backgroundSize: "200% auto",
+              }}
+            >
+              {hero.highlightedText}
+            </motion.span>
+          </motion.h1>
 
           {/* Subheadline */}
-          <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto mb-10 text-balance animate-fade-in-up opacity-0 stagger-2">
+          <motion.p
+            variants={itemVariants}
+            className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto mb-10 text-balance"
+          >
             {hero.subheadline}
-          </p>
+          </motion.p>
 
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up opacity-0 stagger-3">
+          <motion.div
+            variants={itemVariants}
+            className="flex flex-col sm:flex-row gap-4 justify-center"
+          >
             <Button size="lg" className="group" asChild>
-              <a href="#contact">
+              <motion.a
+                href="#contact"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
                 {hero.primaryCta}
-                <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-              </a>
+                <motion.span
+                  className="ml-2 inline-block"
+                >
+                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                </motion.span>
+              </motion.a>
             </Button>
             <Button size="lg" variant="outline" asChild>
-              <a href="#projects">{hero.secondaryCta}</a>
+              <motion.a
+                href="#projects"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                {hero.secondaryCta}
+              </motion.a>
             </Button>
-          </div>
+          </motion.div>
 
           {/* Terminal Preview */}
-          <div className="mt-16 md:mt-24 animate-fade-in-up opacity-0 stagger-4">
-            <div className="terminal max-w-lg mx-auto text-left">
+          <motion.div
+            variants={terminalVariants}
+            initial="hidden"
+            animate="visible"
+            className="mt-16 md:mt-24"
+          >
+            <motion.div
+              whileHover={{ scale: 1.02, y: -5 }}
+              transition={{ type: "spring", stiffness: 300 }}
+              className="terminal max-w-lg mx-auto text-left"
+            >
               <div className="terminal-header">
-                <span className="terminal-dot bg-destructive/60" />
-                <span className="terminal-dot bg-amber-500/60" />
-                <span className="terminal-dot bg-primary/60" />
+                <motion.span
+                  whileHover={{ scale: 1.2 }}
+                  className="terminal-dot bg-destructive/60"
+                />
+                <motion.span
+                  whileHover={{ scale: 1.2 }}
+                  className="terminal-dot bg-primary/60"
+                />
+                <motion.span
+                  whileHover={{ scale: 1.2 }}
+                  className="terminal-dot bg-primary/60"
+                />
               </div>
               <div className="space-y-2">
                 <p>
                   <span className="text-muted-foreground">$</span>
-                  <span className="text-primary ml-2">whoami</span>
+                  <motion.span
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 1, duration: 0.3 }}
+                    className="text-primary ml-2"
+                  >
+                    whoami
+                  </motion.span>
+                  <motion.span
+                    animate={{ opacity: [1, 0] }}
+                    transition={{ duration: 0.8, repeat: Infinity }}
+                    className="text-primary ml-1"
+                  >
+                    |
+                  </motion.span>
                 </p>
-                <p className="text-foreground">{personal.name}</p>
-                <p className="text-muted-foreground text-xs mt-2"># {personal.tagline}</p>
+                <motion.p
+                  initial={{ opacity: 0, x: -10 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 1.5, duration: 0.4 }}
+                  className="text-foreground"
+                >
+                  {personal.name}
+                </motion.p>
+                <motion.p
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 2, duration: 0.4 }}
+                  className="text-muted-foreground text-xs mt-2"
+                >
+                  # {personal.tagline}
+                </motion.p>
               </div>
-            </div>
-          </div>
-        </div>
+            </motion.div>
+          </motion.div>
+        </motion.div>
 
         {/* Scroll Indicator */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-          <a href="#about" className="text-muted-foreground hover:text-primary transition-colors">
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 2.5, duration: 0.6 }}
+          className="absolute bottom-8 left-1/2 -translate-x-1/2"
+        >
+          <motion.a
+            href="#about"
+            animate={{ y: [0, 8, 0] }}
+            transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+            className="text-muted-foreground hover:text-primary transition-colors block"
+          >
             <ChevronDown size={32} />
-          </a>
-        </div>
+          </motion.a>
+        </motion.div>
       </div>
     </section>
   );

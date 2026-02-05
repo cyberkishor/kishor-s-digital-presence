@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { ThemeToggle } from '@/components/ThemeToggle';
 import portfolioData from '@/data/portfolio.json';
 
 const navLinks = [
@@ -56,8 +57,9 @@ export function Header() {
             ))}
           </ul>
 
-          {/* CTA Button */}
-          <div className="hidden md:block">
+          {/* Theme Toggle & CTA Button */}
+          <div className="hidden md:flex items-center gap-2">
+            <ThemeToggle />
             <Button asChild>
               <a href="#contact">Let's Talk</a>
             </Button>
