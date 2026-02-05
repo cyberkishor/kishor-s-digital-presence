@@ -113,7 +113,8 @@
         "tags": ["Shopify", "React", "Node.js", "PostgreSQL"],
         "metrics": "500+ active stores",
         "slug": "shopify-inventory-manager",
-        "year": "2024"
+        "year": "2024",
+        "cover": "/projects/images/inventory-manager-cover.jpg"
       },
       {
         "title": "SaaS Analytics Dashboard",
@@ -121,7 +122,8 @@
         "tags": ["Next.js", "Django", "Redis", "AWS"],
         "metrics": "10M+ events/month",
         "slug": "saas-analytics-dashboard",
-        "year": "2023"
+        "year": "2023",
+        "cover": "/projects/images/analytics-cover.jpg"
       },
       {
         "title": "E-commerce Platform",
@@ -129,7 +131,8 @@
         "tags": ["Laravel", "Vue.js", "MySQL", "Stripe"],
         "metrics": "$2M+ processed",
         "slug": "ecommerce-platform",
-        "year": "2023"
+        "year": "2023",
+        "cover": "/projects/images/ecommerce-cover.jpg"
       },
       {
         "title": "API Integration Hub",
@@ -137,7 +140,8 @@
         "tags": ["Python", "FastAPI", "MongoDB", "Docker"],
         "metrics": "50+ integrations",
         "slug": "api-integration-hub",
-        "year": "2022"
+        "year": "2022",
+        "cover": "/projects/images/api-hub-cover.jpg"
       }
     ]
   },
@@ -186,21 +190,24 @@
         "excerpt": "Lessons learned from building apps that serve thousands of stores.",
         "date": "2024-12-15",
         "readTime": "8 min read",
-        "slug": "building-scalable-shopify-apps"
+        "slug": "building-scalable-shopify-apps",
+        "cover": "/blog/images/shopify-apps-cover.jpg"
       },
       {
         "title": "Why I Prefer Django Over Node.js",
         "excerpt": "A practical comparison for building production-grade APIs.",
         "date": "2024-11-20",
         "readTime": "6 min read",
-        "slug": "django-vs-nodejs"
+        "slug": "django-vs-nodejs",
+        "cover": "/blog/images/django-vs-node-cover.jpg"
       },
       {
         "title": "The Art of Client Communication",
         "excerpt": "How clear communication leads to successful project outcomes.",
         "date": "2024-10-05",
         "readTime": "5 min read",
-        "slug": "client-communication"
+        "slug": "client-communication",
+        "cover": "/blog/images/communication-cover.jpg"
       }
     ]
   },

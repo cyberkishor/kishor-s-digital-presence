@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight, ExternalLink } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
+import { SEO } from '@/components/SEO';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import portfolioData from '@/data/portfolio.json';
@@ -9,6 +10,11 @@ export default function Projects() {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEO
+        title="Projects"
+        description="Featured projects and case studies showcasing my work in Shopify development, SaaS applications, and custom web solutions."
+        url="/projects"
+      />
       <Header />
 
       {/* Content */}

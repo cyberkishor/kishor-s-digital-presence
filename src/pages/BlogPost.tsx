@@ -5,6 +5,7 @@ import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
 import { ArrowLeft, Clock, Calendar } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { SEO } from '@/components/SEO';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import portfolioData from '@/data/portfolio.json';
@@ -38,6 +39,7 @@ export default function BlogPost() {
   if (!post) {
     return (
       <div className="min-h-screen bg-background">
+        <SEO title="Post Not Found" url={`/blog/${slug}`} />
         <Header />
         <main className="pt-32 pb-20">
           <div className="container-wide text-center">
@@ -57,6 +59,14 @@ export default function BlogPost() {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEO
+        title={post.title}
+        description={post.excerpt}
+        image={post.cover}
+        url={`/blog/${post.slug}`}
+        type="article"
+        publishedTime={post.date}
+      />
       <Header />
 
       {/* Content */}

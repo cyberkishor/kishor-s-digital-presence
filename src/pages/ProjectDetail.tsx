@@ -3,8 +3,9 @@ import { useEffect, useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
-import { ArrowLeft, Calendar, ExternalLink } from 'lucide-react';
+import { ArrowLeft, Calendar } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { SEO } from '@/components/SEO';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import portfolioData from '@/data/portfolio.json';
@@ -38,6 +39,7 @@ export default function ProjectDetail() {
   if (!project) {
     return (
       <div className="min-h-screen bg-background">
+        <SEO title="Project Not Found" url={`/projects/${slug}`} />
         <Header />
         <main className="pt-32 pb-20">
           <div className="container-wide text-center">
@@ -57,6 +59,12 @@ export default function ProjectDetail() {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEO
+        title={project.title}
+        description={project.description}
+        image={project.cover}
+        url={`/projects/${project.slug}`}
+      />
       <Header />
 
       {/* Content */}
