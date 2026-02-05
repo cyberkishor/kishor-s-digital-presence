@@ -1,0 +1,228 @@
+{
+  "personal": {
+    "name": "Kishor Kumar Mahato",
+    "title": "Senior Full-Stack Developer",
+    "tagline": "Building products that solve real problems",
+    "location": "Kathmandu, Nepal",
+    "email": "cyberkishor@gmail.com",
+    "phone": "+977-9802075711",
+    "website": "https://kishorkumarmahato.com.np",
+    "avatar": "/avatar.jpg",
+    "social": {
+      "linkedin": "https://www.linkedin.com/in/kishrorkumar/",
+      "github": "https://github.com/kishorkumar",
+      "twitter": ""
+    }
+  },
+  "hero": {
+    "headline": "I build software that",
+    "highlightedText": "actually works.",
+    "subheadline": "Senior Full-Stack Developer specializing in Shopify, SaaS, and custom web applications. I turn complex problems into elegant solutions.",
+    "primaryCta": "Work With Me",
+    "secondaryCta": "View Projects"
+  },
+  "about": {
+    "title": "About Me",
+    "subtitle": "Passionate about building products that matter",
+    "paragraphs": [
+      "I'm a passionate web developer with over 10 years of experience building web applications that function. Located in Kathmandu, Nepal, I've worked with startups, agencies, and enterprises across the globe.",
+      "As an experienced developer, I believe every system being created should solve the problem that aroused before. I prefer communication as much as possible to make sure what I'm building suits your requirements.",
+      "Your satisfaction goes on the top of my priority list. I take pride in writing clean, maintainable code and delivering projects that exceed expectations."
+    ],
+    "stats": [
+      { "value": "10+", "label": "Years Experience" },
+      { "value": "100+", "label": "Projects Delivered" },
+      { "value": "50+", "label": "Happy Clients" },
+      { "value": "15+", "label": "Countries Served" }
+    ]
+  },
+  "skills": {
+    "title": "Tech Stack",
+    "subtitle": "Technologies I work with daily",
+    "categories": [
+      {
+        "name": "Frontend",
+        "icon": "Monitor",
+        "items": ["React", "Next.js", "TypeScript", "Tailwind CSS", "Shopify Polaris", "Vue.js"]
+      },
+      {
+        "name": "Backend",
+        "icon": "Server",
+        "items": ["Laravel", "Django", "Node.js", "Python", "PHP", "REST APIs"]
+      },
+      {
+        "name": "Database",
+        "icon": "Database",
+        "items": ["PostgreSQL", "MySQL", "MongoDB", "Redis", "Supabase"]
+      },
+      {
+        "name": "Platforms & Tools",
+        "icon": "Cloud",
+        "items": ["Shopify", "AWS", "Vercel", "Docker", "Git", "CI/CD"]
+      }
+    ]
+  },
+  "workProcess": {
+    "title": "My Way of Working",
+    "subtitle": "A structured approach to deliver quality",
+    "steps": [
+      {
+        "number": "01",
+        "title": "Feasibility Study",
+        "description": "Understanding your requirements, analyzing technical feasibility, and identifying potential challenges."
+      },
+      {
+        "number": "02",
+        "title": "Planning",
+        "description": "Creating a detailed roadmap, defining milestones, and establishing clear communication channels."
+      },
+      {
+        "number": "03",
+        "title": "Development",
+        "description": "Iterative development with regular check-ins, ensuring the solution evolves with your feedback."
+      },
+      {
+        "number": "04",
+        "title": "Testing & QA",
+        "description": "Rigorous testing to ensure reliability, performance, and security across all scenarios."
+      },
+      {
+        "number": "05",
+        "title": "Deployment",
+        "description": "Smooth deployment with zero downtime, proper documentation, and knowledge transfer."
+      },
+      {
+        "number": "06",
+        "title": "Support",
+        "description": "Ongoing maintenance, updates, and support to keep your application running smoothly."
+      }
+    ]
+  },
+  "projects": {
+    "title": "Featured Projects",
+    "subtitle": "Real products solving real problems",
+    "items": [
+      {
+        "title": "Shopify Inventory Manager",
+        "description": "A powerful Shopify app for managing inventory across multiple locations with real-time sync and analytics.",
+        "tags": ["Shopify", "React", "Node.js", "PostgreSQL"],
+        "metrics": "500+ active stores",
+        "link": "#"
+      },
+      {
+        "title": "SaaS Analytics Dashboard",
+        "description": "Custom analytics platform for tracking user behavior, conversion funnels, and revenue metrics.",
+        "tags": ["Next.js", "Django", "Redis", "AWS"],
+        "metrics": "10M+ events/month",
+        "link": "#"
+      },
+      {
+        "title": "E-commerce Platform",
+        "description": "Full-featured e-commerce solution with multi-vendor support, payment integration, and inventory management.",
+        "tags": ["Laravel", "Vue.js", "MySQL", "Stripe"],
+        "metrics": "$2M+ processed",
+        "link": "#"
+      },
+      {
+        "title": "API Integration Hub",
+        "description": "Centralized platform for managing third-party API integrations with monitoring and error handling.",
+        "tags": ["Python", "FastAPI", "MongoDB", "Docker"],
+        "metrics": "50+ integrations",
+        "link": "#"
+      }
+    ]
+  },
+  "services": {
+    "title": "Services",
+    "subtitle": "How I can help you",
+    "items": [
+      {
+        "icon": "ShoppingBag",
+        "title": "Shopify Development",
+        "description": "Custom Shopify apps, theme development, and store optimization for maximum conversions."
+      },
+      {
+        "icon": "Code",
+        "title": "Custom Web Applications",
+        "description": "Full-stack development of scalable web applications tailored to your business needs."
+      },
+      {
+        "icon": "Plug",
+        "title": "API Integrations",
+        "description": "Seamless integration with third-party services, payment gateways, and enterprise systems."
+      },
+      {
+        "icon": "Zap",
+        "title": "Performance Optimization",
+        "description": "Speed up your existing applications with caching, code optimization, and infrastructure tuning."
+      },
+      {
+        "icon": "Wrench",
+        "title": "Technical Consulting",
+        "description": "Architecture reviews, code audits, and strategic technical guidance for your projects."
+      },
+      {
+        "icon": "Headphones",
+        "title": "Long-term Support",
+        "description": "Ongoing maintenance, updates, security patches, and feature development."
+      }
+    ]
+  },
+  "blog": {
+    "title": "Writing",
+    "subtitle": "Thoughts on engineering and building products",
+    "posts": [
+      {
+        "title": "Building Scalable Shopify Apps",
+        "excerpt": "Lessons learned from building apps that serve thousands of stores.",
+        "date": "2024-12-15",
+        "readTime": "8 min read",
+        "slug": "building-scalable-shopify-apps"
+      },
+      {
+        "title": "Why I Prefer Django Over Node.js",
+        "excerpt": "A practical comparison for building production-grade APIs.",
+        "date": "2024-11-20",
+        "readTime": "6 min read",
+        "slug": "django-vs-nodejs"
+      },
+      {
+        "title": "The Art of Client Communication",
+        "excerpt": "How clear communication leads to successful project outcomes.",
+        "date": "2024-10-05",
+        "readTime": "5 min read",
+        "slug": "client-communication"
+      }
+    ]
+  },
+  "testimonials": {
+    "title": "What Clients Say",
+    "subtitle": "Feedback from people I've worked with",
+    "items": [
+      {
+        "quote": "Kishor delivered our Shopify app ahead of schedule and exceeded all expectations. His communication was excellent throughout the project.",
+        "author": "Sarah Chen",
+        "role": "Founder, TechStyle",
+        "avatar": ""
+      },
+      {
+        "quote": "We've been working with Kishor for over 2 years now. His technical expertise and reliability make him an invaluable partner.",
+        "author": "Michael Roberts",
+        "role": "CTO, DataFlow Inc",
+        "avatar": ""
+      },
+      {
+        "quote": "The quality of code and attention to detail is remarkable. Kishor truly cares about delivering the best possible solution.",
+        "author": "Emily Watson",
+        "role": "Product Manager, ScaleUp",
+        "avatar": ""
+      }
+    ]
+  },
+  "contact": {
+    "title": "Let's Work Together",
+    "subtitle": "Have a project in mind? Let's discuss how I can help.",
+    "cta": "Send Message",
+    "availability": "Currently available for new projects"
+  }
+}
