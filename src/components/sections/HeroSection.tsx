@@ -1,6 +1,7 @@
 import { ArrowRight, ChevronDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { motion } from 'framer-motion';
+import { ParticlesBackground } from '@/components/ui/ParticlesBackground';
 import portfolioData from '@/data/portfolio.json';
 
 export function HeroSection() {
@@ -47,69 +48,71 @@ export function HeroSection() {
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Animated Background Elements */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,hsl(var(--primary)/0.1),transparent_50%)]" />
-      
+
       <motion.div
-        animate={{ 
+        animate={{
           y: [-10, 10, -10],
         }}
-        transition={{ 
-          duration: 6, 
-          repeat: Infinity, 
-          ease: "easeInOut" 
+        transition={{
+          duration: 6,
+          repeat: Infinity,
+          ease: "easeInOut"
         }}
         className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl"
       />
       <motion.div
-        animate={{ 
+        animate={{
           y: [10, -10, 10],
         }}
-        transition={{ 
-          duration: 6, 
-          repeat: Infinity, 
+        transition={{
+          duration: 6,
+          repeat: Infinity,
           ease: "easeInOut",
           delay: 2,
         }}
         className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-accent/5 rounded-full blur-3xl"
       />
-      
+
       {/* Animated Pulse Orbs */}
       <motion.div
-        animate={{ 
+        animate={{
           scale: [1, 1.2, 1],
           opacity: [0.5, 0.8, 0.5],
         }}
-        transition={{ 
-          duration: 3, 
-          repeat: Infinity, 
-          ease: "easeInOut" 
+        transition={{
+          duration: 3,
+          repeat: Infinity,
+          ease: "easeInOut"
         }}
         className="absolute top-1/3 right-1/3 w-4 h-4 bg-primary rounded-full"
       />
       <motion.div
-        animate={{ 
+        animate={{
           scale: [1, 1.2, 1],
           opacity: [0.5, 0.8, 0.5],
         }}
-        transition={{ 
-          duration: 3, 
-          repeat: Infinity, 
+        transition={{
+          duration: 3,
+          repeat: Infinity,
           ease: "easeInOut",
           delay: 1,
         }}
         className="absolute bottom-1/3 left-1/3 w-3 h-3 bg-primary rounded-full"
       />
-      
+
       {/* Grid Pattern */}
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 0.02 }}
         transition={{ duration: 2 }}
-        className="absolute inset-0"
+        className="absolute inset-0 z-0"
         style={{
           backgroundImage: `linear-gradient(hsl(var(--foreground)) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--foreground)) 1px, transparent 1px)`,
           backgroundSize: '60px 60px',
         }}
       />
+
+      <ParticlesBackground />
 
       <div className="container-wide relative z-10 pt-20">
         <motion.div
