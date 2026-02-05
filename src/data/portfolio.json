@@ -210,12 +210,196 @@
         "cover": "/blog/images/communication-cover.jpg"
       },
       {
+        "title": "Upload Image with Resize in PHP",
+        "excerpt": "Handle image uploads with automatic resizing using PHP's GD library.",
+        "date": "2015-11-24",
+        "readTime": "5 min read",
+        "slug": "upload-image-with-resize-php",
+        "cover": "/blog/images/php-image-cover.jpg"
+      },
+      {
+        "title": "Custom Upload Image in WordPress",
+        "excerpt": "Implement custom image uploads in WordPress with user authentication and file validation.",
+        "date": "2015-11-24",
+        "readTime": "6 min read",
+        "slug": "custom-upload-image-wordpress",
+        "cover": "/blog/images/wordpress-cover.jpg"
+      },
+      {
         "title": "Django Real-Time Notifications with SwampDragon",
         "excerpt": "Implementing real-time notifications in Django applications using SwampDragon and WebSockets.",
         "date": "2015-09-06",
         "readTime": "10 min read",
         "slug": "django-realtime-notifications-swampdragon",
         "cover": "/blog/images/django-swampdragon-cover.jpg"
+      },
+      {
+        "title": "Django dumpdata and loaddata",
+        "excerpt": "Master Django's database backup and restoration commands for data migration.",
+        "date": "2015-08-06",
+        "readTime": "5 min read",
+        "slug": "django-dumpdata-loaddata",
+        "cover": "/blog/images/django-cover.jpg"
+      },
+      {
+        "title": "Django Custom Validation for FileField",
+        "excerpt": "Restrict file uploads to specific formats using custom validators.",
+        "date": "2015-07-09",
+        "readTime": "4 min read",
+        "slug": "django-custom-validation-filefield",
+        "cover": "/blog/images/django-cover.jpg"
+      },
+      {
+        "title": "Django Get Current User Globally",
+        "excerpt": "Access the authenticated user from anywhere in your Django project using middleware.",
+        "date": "2015-07-07",
+        "readTime": "5 min read",
+        "slug": "django-get-current-user-globally",
+        "cover": "/blog/images/django-cover.jpg"
+      },
+      {
+        "title": "Install mod_wsgi on Mac",
+        "excerpt": "Quick guide to installing mod_wsgi on macOS for running Django with Apache.",
+        "date": "2015-07-04",
+        "readTime": "3 min read",
+        "slug": "install-mod-wsgi-mac",
+        "cover": "/blog/images/deployment-cover.jpg"
+      },
+      {
+        "title": "Django Admin get_list_display_links",
+        "excerpt": "Dynamically control clickable columns in Django admin based on user permissions.",
+        "date": "2015-06-05",
+        "readTime": "4 min read",
+        "slug": "django-admin-list-display-links",
+        "cover": "/blog/images/django-cover.jpg"
+      },
+      {
+        "title": "Check User Group in Django Templates",
+        "excerpt": "Create a template filter to check if a user belongs to a specific group.",
+        "date": "2015-06-05",
+        "readTime": "4 min read",
+        "slug": "django-check-user-group-templatetags",
+        "cover": "/blog/images/django-cover.jpg"
+      },
+      {
+        "title": "Django ImageField Show Image in Admin",
+        "excerpt": "Display ImageField as actual image thumbnails in Django admin.",
+        "date": "2015-03-30",
+        "readTime": "5 min read",
+        "slug": "django-imagefield-show-image-admin",
+        "cover": "/blog/images/django-cover.jpg"
+      },
+      {
+        "title": "Django Translation URLs with Locale Switching",
+        "excerpt": "Implement internationalized URLs with language switching in Django applications.",
+        "date": "2015-01-18",
+        "readTime": "6 min read",
+        "slug": "django-translation-urls-locale-switching",
+        "cover": "/blog/images/django-cover.jpg"
+      },
+      {
+        "title": "Hiding Action Bar in Titanium",
+        "excerpt": "Hide the Action Bar in Titanium mobile applications using JavaScript and theme modifications.",
+        "date": "2015-01-10",
+        "readTime": "4 min read",
+        "slug": "titanium-hiding-action-bar",
+        "cover": "/blog/images/mobile-cover.jpg"
+      },
+      {
+        "title": "WordPress ThickBox Implementation",
+        "excerpt": "Implement WordPress's native ThickBox modal functionality without additional plugins.",
+        "date": "2014-12-15",
+        "readTime": "5 min read",
+        "slug": "wordpress-thickbox-implementation",
+        "cover": "/blog/images/wordpress-cover.jpg"
+      },
+      {
+        "title": "Dynamic Form Fields with PHP and jQuery",
+        "excerpt": "Create repeatable form fields that users can add and remove dynamically.",
+        "date": "2014-11-20",
+        "readTime": "6 min read",
+        "slug": "php-jquery-dynamic-fields",
+        "cover": "/blog/images/php-cover.jpg"
+      },
+      {
+        "title": "Open Browser Tabs in Background with JavaScript",
+        "excerpt": "Open new browser tabs without switching focus using JavaScript event simulation.",
+        "date": "2014-08-10",
+        "readTime": "4 min read",
+        "slug": "javascript-open-background-tab",
+        "cover": "/blog/images/javascript-cover.jpg"
+      },
+      {
+        "title": "Get Image Dimensions with JavaScript",
+        "excerpt": "Multiple methods to get image width and height dynamically using JavaScript.",
+        "date": "2014-06-05",
+        "readTime": "6 min read",
+        "slug": "javascript-image-dimensions",
+        "cover": "/blog/images/javascript-cover.jpg"
+      },
+      {
+        "title": "JavaScript Email Validation",
+        "excerpt": "Validate email addresses using JavaScript with regular expressions.",
+        "date": "2014-02-07",
+        "readTime": "4 min read",
+        "slug": "javascript-email-validation",
+        "cover": "/blog/images/javascript-cover.jpg"
+      },
+      {
+        "title": "Mouse Hover Message Display with JavaScript",
+        "excerpt": "Display custom tooltips when users hover over links using vanilla JavaScript.",
+        "date": "2013-12-04",
+        "readTime": "4 min read",
+        "slug": "javascript-mouse-hover-message",
+        "cover": "/blog/images/javascript-cover.jpg"
+      },
+      {
+        "title": "jQuery Text Separator Plugin",
+        "excerpt": "Create a custom jQuery plugin to format text with separators for voucher codes and numbers.",
+        "date": "2013-09-14",
+        "readTime": "5 min read",
+        "slug": "jquery-text-separator-plugin",
+        "cover": "/blog/images/javascript-cover.jpg"
+      },
+      {
+        "title": "Validate Email Format with PHP",
+        "excerpt": "Use PHP's built-in filter_var function for simple and reliable email validation.",
+        "date": "2013-06-06",
+        "readTime": "3 min read",
+        "slug": "php-email-validation",
+        "cover": "/blog/images/php-cover.jpg"
+      },
+      {
+        "title": "TinyMCE Image Upload with Ajax File Manager",
+        "excerpt": "Add image upload functionality to TinyMCE editor using Ajax File Manager plugin.",
+        "date": "2013-06-05",
+        "readTime": "5 min read",
+        "slug": "tinymce-image-upload-ajax-filemanager",
+        "cover": "/blog/images/javascript-cover.jpg"
+      },
+      {
+        "title": "Assigning PHP Variables to JavaScript",
+        "excerpt": "Properly pass PHP data to JavaScript using json_encode for safe data transfer.",
+        "date": "2013-05-22",
+        "readTime": "3 min read",
+        "slug": "php-variable-in-javascript",
+        "cover": "/blog/images/php-cover.jpg"
+      },
+      {
+        "title": "Install .sh Files on Linux",
+        "excerpt": "Quick guide to installing shell script files on Linux systems.",
+        "date": "2013-05-22",
+        "readTime": "2 min read",
+        "slug": "install-sh-files-linux",
+        "cover": "/blog/images/deployment-cover.jpg"
+      },
+      {
+        "title": "jQuery Autocomplete with PHP and MySQL",
+        "excerpt": "Build an autocomplete search feature using jQuery, AJAX, PHP, and MySQL.",
+        "date": "2013-04-12",
+        "readTime": "6 min read",
+        "slug": "jquery-autocomplete-php-mysql",
+        "cover": "/blog/images/javascript-cover.jpg"
       }
     ]
   },
