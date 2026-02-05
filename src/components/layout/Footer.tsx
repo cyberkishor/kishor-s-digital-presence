@@ -1,8 +1,18 @@
+import { Link, useLocation } from 'react-router-dom';
 import { Github, Linkedin, Mail, MapPin } from 'lucide-react';
 import portfolioData from '@/data/portfolio.json';
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
+  const location = useLocation();
+  const isHomePage = location.pathname === '/';
+
+  const getHref = (href: string) => {
+    if (href.startsWith('#') && isHomePage) {
+      return href;
+    }
+    return href.startsWith('#') ? `/${href}` : href;
+  };
 
   return (
     <footer className="border-t border-border bg-card">
@@ -10,14 +20,16 @@ export function Footer() {
         <div className="grid md:grid-cols-3 gap-8">
           {/* Brand */}
           <div className="space-y-4">
-            <a href="#" className="flex items-center gap-2">
-              <span className="w-10 h-10 rounded-lg bg-primary flex items-center justify-center text-primary-foreground font-bold text-lg">
-                K
-              </span>
+            <Link to="/" className="flex items-center gap-2">
+              <img
+                src="/logo.jpg"
+                alt={portfolioData.personal.name}
+                className="w-10 h-10 rounded-full object-cover"
+              />
               <span className="font-semibold text-foreground">
                 {portfolioData.personal.name}
               </span>
-            </a>
+            </Link>
             <p className="text-muted-foreground text-sm max-w-xs">
               {portfolioData.personal.tagline}
             </p>
@@ -28,22 +40,27 @@ export function Footer() {
             <h4 className="font-semibold text-foreground">Quick Links</h4>
             <ul className="space-y-2 text-sm">
               <li>
-                <a href="#about" className="text-muted-foreground hover:text-primary transition-colors">
+                <a href={getHref('#about')} className="text-muted-foreground hover:text-primary transition-colors">
                   About
                 </a>
               </li>
               <li>
-                <a href="#projects" className="text-muted-foreground hover:text-primary transition-colors">
+                <Link to="/projects" className="text-muted-foreground hover:text-primary transition-colors">
                   Projects
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#services" className="text-muted-foreground hover:text-primary transition-colors">
+                <a href={getHref('#services')} className="text-muted-foreground hover:text-primary transition-colors">
                   Services
                 </a>
               </li>
               <li>
-                <a href="#contact" className="text-muted-foreground hover:text-primary transition-colors">
+                <Link to="/blog" className="text-muted-foreground hover:text-primary transition-colors">
+                  Blog
+                </Link>
+              </li>
+              <li>
+                <a href={getHref('#contact')} className="text-muted-foreground hover:text-primary transition-colors">
                   Contact
                 </a>
               </li>

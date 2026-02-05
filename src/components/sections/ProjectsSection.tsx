@@ -1,5 +1,5 @@
-import { ArrowUpRight } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { Link } from 'react-router-dom';
+import { ArrowUpRight, ArrowRight } from 'lucide-react';
 import portfolioData from '@/data/portfolio.json';
 
 export function ProjectsSection() {
@@ -19,9 +19,10 @@ export function ProjectsSection() {
         </div>
 
         <div className="grid md:grid-cols-2 gap-6">
-          {projects.items.map((project, index) => (
-            <article
+          {projects.items.slice(0, 4).map((project, index) => (
+            <Link
               key={index}
+              to={`/projects/${project.slug}`}
               className="group p-6 md:p-8 rounded-2xl bg-background border border-border card-shadow hover:border-primary/50 transition-all"
             >
               {/* Project Header */}
@@ -36,11 +37,9 @@ export function ProjectsSection() {
                     </span>
                   )}
                 </div>
-                <Button variant="ghost" size="icon" className="opacity-0 group-hover:opacity-100 transition-opacity" asChild>
-                  <a href={project.link} aria-label={`View ${project.title}`}>
-                    <ArrowUpRight className="h-5 w-5" />
-                  </a>
-                </Button>
+                <span className="p-2 rounded-lg bg-muted opacity-0 group-hover:opacity-100 transition-opacity">
+                  <ArrowUpRight className="h-5 w-5 text-primary" />
+                </span>
               </div>
 
               {/* Description */}
@@ -59,8 +58,19 @@ export function ProjectsSection() {
                   </span>
                 ))}
               </div>
-            </article>
+            </Link>
           ))}
+        </div>
+
+        {/* See More Link */}
+        <div className="text-center mt-10">
+          <Link
+            to="/projects"
+            className="inline-flex items-center gap-2 text-primary hover:text-primary/80 font-medium transition-colors group"
+          >
+            See all projects
+            <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+          </Link>
         </div>
       </div>
     </section>

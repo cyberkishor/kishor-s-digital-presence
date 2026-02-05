@@ -1,21 +1,24 @@
 import { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { ThemeToggle } from '@/components/ThemeToggle';
 import portfolioData from '@/data/portfolio.json';
 
 const navLinks = [
-  { label: 'About', href: '#about' },
-  { label: 'Skills', href: '#skills' },
-  { label: 'Projects', href: '#projects' },
-  { label: 'Services', href: '#services' },
-  { label: 'Blog', href: '#blog' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'About', href: '/#about' },
+  { label: 'Skills', href: '/#skills' },
+  { label: 'Projects', href: '/projects' },
+  { label: 'Services', href: '/#services' },
+  { label: 'Blog', href: '/blog' },
+  { label: 'Contact', href: '/#contact' },
 ];
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const location = useLocation();
+  const isHomePage = location.pathname === '/';
 
   useEffect(() => {
     const handleScroll = () => {
@@ -24,6 +27,13 @@ export function Header() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const getHref = (href: string) => {
+    if (href.startsWith('/#') && isHomePage) {
+      return href.substring(1);
+    }
+    return href;
+  };
 
   return (
     <header
@@ -34,21 +44,23 @@ export function Header() {
       <div className="container-wide">
         <nav className="flex items-center justify-between h-20">
           {/* Logo */}
-          <a href="#" className="flex items-center gap-2 group">
-            <span className="w-10 h-10 rounded-lg bg-primary flex items-center justify-center text-primary-foreground font-bold text-lg">
-              K
-            </span>
+          <Link to="/" className="flex items-center gap-2 group">
+            <img
+              src="/logo.jpg"
+              alt={portfolioData.personal.name}
+              className="w-10 h-10 rounded-full object-cover"
+            />
             <span className="font-semibold text-foreground hidden sm:block group-hover:text-primary transition-colors">
               {portfolioData.personal.name.split(' ')[0]}
             </span>
-          </a>
+          </Link>
 
           {/* Desktop Navigation */}
           <ul className="hidden md:flex items-center gap-8">
             {navLinks.map((link) => (
               <li key={link.href}>
                 <a
-                  href={link.href}
+                  href={getHref(link.href)}
                   className="text-muted-foreground hover:text-foreground transition-colors link-underline py-1"
                 >
                   {link.label}
@@ -61,7 +73,7 @@ export function Header() {
           <div className="hidden md:flex items-center gap-2">
             <ThemeToggle />
             <Button asChild>
-              <a href="#contact">Let's Talk</a>
+              <a href={getHref('/#contact')}>Let's Talk</a>
             </Button>
           </div>
 
@@ -84,7 +96,7 @@ export function Header() {
               {navLinks.map((link) => (
                 <li key={link.href}>
                   <a
-                    href={link.href}
+                    href={getHref(link.href)}
                     className="block py-2 text-foreground hover:text-primary transition-colors"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
@@ -94,7 +106,7 @@ export function Header() {
               ))}
               <li className="pt-4">
                 <Button asChild className="w-full">
-                  <a href="#contact" onClick={() => setIsMobileMenuOpen(false)}>
+                  <a href={getHref('/#contact')} onClick={() => setIsMobileMenuOpen(false)}>
                     Let's Talk
                   </a>
                 </Button>

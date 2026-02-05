@@ -1,9 +1,10 @@
-import { Monitor, Server, Database, Cloud } from 'lucide-react';
+import { Code, Layers, ShoppingBag, Database, Cloud } from 'lucide-react';
 import portfolioData from '@/data/portfolio.json';
 
 const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
-  Monitor,
-  Server,
+  Code,
+  Layers,
+  ShoppingBag,
   Database,
   Cloud,
 };
@@ -24,13 +25,13 @@ export function SkillsSection() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="flex flex-wrap justify-center gap-6">
           {skills.categories.map((category, index) => {
-            const Icon = iconMap[category.icon] || Monitor;
+            const Icon = iconMap[category.icon] || Code;
             return (
               <div
                 key={index}
-                className="p-6 rounded-xl bg-card border border-border card-shadow group hover:border-primary/50 transition-all"
+                className="w-full md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] p-6 rounded-xl bg-card border border-border card-shadow group hover:border-primary/50 transition-all"
               >
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">

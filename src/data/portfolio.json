@@ -41,24 +41,29 @@
     "subtitle": "Technologies I work with daily",
     "categories": [
       {
-        "name": "Frontend",
-        "icon": "Monitor",
-        "items": ["React", "Next.js", "TypeScript", "Tailwind CSS", "Shopify Polaris", "Vue.js"]
+        "name": "Languages",
+        "icon": "Code",
+        "items": ["JavaScript", "TypeScript", "Python", "PHP"]
       },
       {
-        "name": "Backend",
-        "icon": "Server",
-        "items": ["Laravel", "Django", "Node.js", "Python", "PHP", "REST APIs"]
+        "name": "Frameworks",
+        "icon": "Layers",
+        "items": ["React", "Next.js", "Vue.js", "Laravel", "Django", "Express", "FastAPI"]
+      },
+      {
+        "name": "CMS & E-commerce",
+        "icon": "ShoppingBag",
+        "items": ["Shopify", "WordPress", "Strapi", "Contentful"]
       },
       {
         "name": "Database",
         "icon": "Database",
-        "items": ["PostgreSQL", "MySQL", "MongoDB", "Redis", "Supabase"]
+        "items": ["PostgreSQL", "MySQL", "MongoDB", "Redis"]
       },
       {
-        "name": "Platforms & Tools",
+        "name": "DevOps & Tools",
         "icon": "Cloud",
-        "items": ["Shopify", "AWS", "Vercel", "Docker", "Git", "CI/CD"]
+        "items": ["AWS", "Google Cloud", "Vercel", "Docker", "Git", "CI/CD"]
       }
     ]
   },
@@ -107,28 +112,32 @@
         "description": "A powerful Shopify app for managing inventory across multiple locations with real-time sync and analytics.",
         "tags": ["Shopify", "React", "Node.js", "PostgreSQL"],
         "metrics": "500+ active stores",
-        "link": "#"
+        "slug": "shopify-inventory-manager",
+        "year": "2024"
       },
       {
         "title": "SaaS Analytics Dashboard",
         "description": "Custom analytics platform for tracking user behavior, conversion funnels, and revenue metrics.",
         "tags": ["Next.js", "Django", "Redis", "AWS"],
         "metrics": "10M+ events/month",
-        "link": "#"
+        "slug": "saas-analytics-dashboard",
+        "year": "2023"
       },
       {
         "title": "E-commerce Platform",
         "description": "Full-featured e-commerce solution with multi-vendor support, payment integration, and inventory management.",
         "tags": ["Laravel", "Vue.js", "MySQL", "Stripe"],
         "metrics": "$2M+ processed",
-        "link": "#"
+        "slug": "ecommerce-platform",
+        "year": "2023"
       },
       {
         "title": "API Integration Hub",
         "description": "Centralized platform for managing third-party API integrations with monitoring and error handling.",
         "tags": ["Python", "FastAPI", "MongoDB", "Docker"],
         "metrics": "50+ integrations",
-        "link": "#"
+        "slug": "api-integration-hub",
+        "year": "2022"
       }
     ]
   },

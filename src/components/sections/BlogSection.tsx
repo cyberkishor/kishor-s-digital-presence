@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { ArrowRight, Clock } from 'lucide-react';
 import portfolioData from '@/data/portfolio.json';
 
@@ -18,10 +19,11 @@ export function BlogSection() {
         </div>
 
         <div className="grid md:grid-cols-3 gap-6">
-          {blog.posts.map((post, index) => (
-            <article
+          {blog.posts.slice(0, 3).map((post, index) => (
+            <Link
               key={index}
-              className="group p-6 rounded-xl bg-background border border-border card-shadow hover:border-primary/50 transition-all cursor-pointer"
+              to={`/blog/${post.slug}`}
+              className="group p-6 rounded-xl bg-background border border-border card-shadow hover:border-primary/50 transition-all"
             >
               {/* Date & Read Time */}
               <div className="flex items-center gap-4 text-xs text-muted-foreground mb-4">
@@ -53,8 +55,19 @@ export function BlogSection() {
                 Read more
                 <ArrowRight className="ml-1 w-4 h-4 transition-transform group-hover:translate-x-1" />
               </span>
-            </article>
+            </Link>
           ))}
+        </div>
+
+        {/* See More Link */}
+        <div className="text-center mt-10">
+          <Link
+            to="/blog"
+            className="inline-flex items-center gap-2 text-primary hover:text-primary/80 font-medium transition-colors group"
+          >
+            See all posts
+            <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+          </Link>
         </div>
       </div>
     </section>
