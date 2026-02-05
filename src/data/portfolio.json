@@ -208,6 +208,14 @@
         "readTime": "5 min read",
         "slug": "client-communication",
         "cover": "/blog/images/communication-cover.jpg"
+      },
+      {
+        "title": "Django Real-Time Notifications with SwampDragon",
+        "excerpt": "Implementing real-time notifications in Django applications using SwampDragon and WebSockets.",
+        "date": "2015-09-06",
+        "readTime": "10 min read",
+        "slug": "django-realtime-notifications-swampdragon",
+        "cover": "/blog/images/django-swampdragon-cover.jpg"
       }
     ]
   },
