@@ -39,11 +39,18 @@ export default function Projects() {
                 to={`/projects/${project.slug}`}
                 className="group p-6 rounded-xl bg-card border border-border card-shadow hover:border-primary/50 transition-all"
               >
-                {/* Year & Metrics */}
+                {/* Year, Category & Metrics */}
                 <div className="flex items-center justify-between mb-4">
-                  <span className="text-xs text-muted-foreground font-mono">
-                    {project.year}
-                  </span>
+                  <div className="flex items-center gap-2">
+                    <span className="text-xs text-muted-foreground font-mono">
+                      {project.year}
+                    </span>
+                    {'category' in project && (project as any).category && (
+                      <span className="px-2 py-0.5 text-xs rounded-full bg-primary/10 text-primary font-medium">
+                        {(project as any).category}
+                      </span>
+                    )}
+                  </div>
                   <span className="text-xs text-primary font-medium">
                     {project.metrics}
                   </span>

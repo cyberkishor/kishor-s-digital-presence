@@ -17,7 +17,7 @@ export function TestimonialsSection() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {testimonials.items.map((testimonial, index) => (
             <div
               key={index}
@@ -27,7 +27,7 @@ export function TestimonialsSection() {
               <Quote className="w-8 h-8 text-primary/20 absolute top-6 right-6" />
 
               {/* Quote */}
-              <p className="text-foreground mb-6 italic">
+              <p className="text-foreground mb-6 italic leading-relaxed">
                 "{testimonial.quote}"
               </p>
 

@@ -10,14 +10,14 @@
     "avatar": "/avatar.jpg",
     "social": {
       "linkedin": "https://www.linkedin.com/in/kishrorkumar/",
-      "github": "https://github.com/kishorkumar",
+      "github": "https://github.com/cyberkishor",
       "twitter": ""
     }
   },
   "hero": {
     "headline": "I build software that",
     "highlightedText": "actually works.",
-    "subheadline": "Senior Full-Stack Developer specializing in Shopify, SaaS, and custom web applications. I turn complex problems into elegant solutions.",
+    "subheadline": "Senior Full-Stack Developer specializing in Shopify, SaaS, and custom web applications. 10+ years shipping code that clients keep coming back for.",
     "primaryCta": "Work With Me",
     "secondaryCta": "View Projects"
   },
@@ -25,9 +25,9 @@
     "title": "About Me",
     "subtitle": "Passionate about building products that matter",
     "paragraphs": [
-      "I'm a passionate web developer with over 10 years of experience building web applications that function. Located in Kathmandu, Nepal, I've worked with startups, agencies, and enterprises across the globe.",
-      "As an experienced developer, I believe every system being created should solve the problem that aroused before. I prefer communication as much as possible to make sure what I'm building suits your requirements.",
-      "Your satisfaction goes on the top of my priority list. I take pride in writing clean, maintainable code and delivering projects that exceed expectations."
+      "I've been building web applications for over 10 years. Based in Kathmandu, Nepal, I've worked with startups, agencies, and enterprises across 15+ countries, mostly on Shopify stores, Django-based SaaS platforms, and WordPress sites.",
+      "I care a lot about understanding what you actually need before writing a single line of code. Clear communication upfront saves everyone time and money down the line.",
+      "Most of my clients are repeat clients. That's probably the best proof I can offer that the work speaks for itself."
     ],
     "stats": [
       { "value": "10+", "label": "Years Experience" },
@@ -84,12 +84,12 @@
       {
         "number": "03",
         "title": "Development",
-        "description": "Iterative development with regular check-ins, ensuring the solution evolves with your feedback."
+        "description": "Iterative development with regular check-ins, so the solution evolves with your feedback."
       },
       {
         "number": "04",
         "title": "Testing & QA",
-        "description": "Rigorous testing to ensure reliability, performance, and security across all scenarios."
+        "description": "Thorough testing for reliability, performance, and security before anything goes live."
       },
       {
         "number": "05",
@@ -108,40 +108,140 @@
     "subtitle": "Real products solving real problems",
     "items": [
       {
-        "title": "Shopify Inventory Manager",
-        "description": "A powerful Shopify app for managing inventory across multiple locations with real-time sync and analytics.",
-        "tags": ["Shopify", "React", "Node.js", "PostgreSQL"],
-        "metrics": "500+ active stores",
-        "slug": "shopify-inventory-manager",
-        "year": "2024",
-        "cover": "/projects/images/inventory-manager-cover.jpg"
+        "title": "Clonify – UI Library Platform",
+        "description": "SaaS platform with 1,000+ UI components for Framer and Figma. I built the whole thing: Next.js frontend, PayloadCMS backend, Paddle billing, and a browsing experience that stays fast with thousands of assets.",
+        "tags": ["Next.js", "PayloadCMS", "MongoDB", "Paddle"],
+        "metrics": "1,000+ UI components",
+        "slug": "clonify-ui-library-platform",
+        "year": "2025",
+        "category": "SaaS Platform",
+        "liveUrl": "https://library.clonify.io/"
       },
       {
-        "title": "SaaS Analytics Dashboard",
-        "description": "Custom analytics platform for tracking user behavior, conversion funnels, and revenue metrics.",
-        "tags": ["Next.js", "Django", "Redis", "AWS"],
-        "metrics": "10M+ events/month",
-        "slug": "saas-analytics-dashboard",
-        "year": "2023",
-        "cover": "/projects/images/analytics-cover.jpg"
+        "title": "Powrbot – SaaS Data Automation",
+        "description": "SaaS platform that automates company data lookup and enrichment. Upload a list of companies, get structured data back. I led the full-stack build: Django backend, Stripe billing, bulk processing with Celery, and role-based permissions.",
+        "tags": ["Django", "Python", "Stripe", "REST API"],
+        "metrics": "Production SaaS",
+        "slug": "powrbot-saas-data-automation",
+        "year": "2018",
+        "category": "SaaS Platform",
+        "liveUrl": "https://powrbot.com/"
       },
       {
-        "title": "E-commerce Platform",
-        "description": "Full-featured e-commerce solution with multi-vendor support, payment integration, and inventory management.",
-        "tags": ["Laravel", "Vue.js", "MySQL", "Stripe"],
-        "metrics": "$2M+ processed",
-        "slug": "ecommerce-platform",
-        "year": "2023",
-        "cover": "/projects/images/ecommerce-cover.jpg"
+        "title": "Pollarise – Interactive Polling & Survey Platform",
+        "description": "Polling and survey platform I built from scratch. Create polls, collect votes in real-time, and see results update live. Next.js on the frontend, FastAPI on the backend, PostgreSQL for storage, all deployed with CI/CD.",
+        "tags": ["Next.js", "FastAPI", "PostgreSQL", "CI/CD"],
+        "metrics": "Full-Stack SaaS",
+        "slug": "pollarise-polling-platform",
+        "year": "2026",
+        "category": "Web Application"
       },
       {
-        "title": "API Integration Hub",
-        "description": "Centralized platform for managing third-party API integrations with monitoring and error handling.",
-        "tags": ["Python", "FastAPI", "MongoDB", "Docker"],
-        "metrics": "50+ integrations",
-        "slug": "api-integration-hub",
-        "year": "2022",
-        "cover": "/projects/images/api-hub-cover.jpg"
+        "title": "Ontreat – Restaurant Booking & Gifting Platform",
+        "description": "Think Airbnb, but for restaurants. Customers browse menus, pick items, and book a treat for friends or family back in Nepal, even from abroad. Built with Django REST Framework with Stripe, E-Sewa, and NIBL payment gateways.",
+        "tags": ["Django", "Django REST", "MySQL", "Stripe", "Bootstrap"],
+        "metrics": "Full-Stack Platform",
+        "slug": "ontreat-restaurant-platform",
+        "year": "2019",
+        "category": "Web Application"
+      },
+      {
+        "title": "Clonify Figma Plugin",
+        "description": "Figma plugin that lets designers browse the Clonify library and drop components straight into their canvas. One click to import, layouts stay intact, and premium content is gated by subscription tier.",
+        "tags": ["TypeScript", "Figma API", "JavaScript"],
+        "metrics": "Figma Community",
+        "slug": "clonify-figma-plugin",
+        "year": "2025",
+        "category": "Plugin Development",
+        "liveUrl": "https://www.figma.com/community/plugin/1282271698729766959/clonify-library"
+      },
+      {
+        "title": "Clonify Framer Plugin",
+        "description": "Framer plugin that connects to the Clonify library. Designers can browse 1,000+ templates, preview them, and import sections directly into their Framer projects. Subscription tiers control what's accessible.",
+        "tags": ["TypeScript", "Framer API", "JavaScript"],
+        "metrics": "1,000+ assets",
+        "slug": "clonify-framer-plugin",
+        "year": "2025",
+        "category": "Plugin Development",
+        "liveUrl": "https://www.framer.com/marketplace/plugins/clonify/"
+      },
+      {
+        "title": "Prezlock – Custom Shopify Theme for Smart Padlock Brand",
+        "description": "Custom Shopify theme for a smart fingerprint padlock brand. Modified Dawn theme with interactive product pages, multi-currency support (5 currencies), custom slideshow sections, and custom Liquid for the checkout flow.",
+        "tags": ["Shopify", "Liquid", "Theme Customization", "Ecommerce"],
+        "metrics": "Multi-Currency Store",
+        "slug": "prezlock-shopify-store",
+        "year": "2019",
+        "category": "E-Commerce",
+        "liveUrl": "https://www.prezlock.com/"
+      },
+      {
+        "title": "Gamer Gear Direct – Shopify Customization & Support",
+        "description": "Long-term Shopify developer for Australia's biggest racing simulator hardware store. I handle theme updates, custom features, performance work, bug fixes, and app integrations. The store serves 20,000+ customers.",
+        "tags": ["Shopify", "Liquid", "JavaScript", "Theme Customization"],
+        "metrics": "20,000+ customers",
+        "slug": "gamer-gear-direct",
+        "year": "2020",
+        "category": "E-Commerce",
+        "liveUrl": "https://gamergeardirect.com.au/"
+      },
+      {
+        "title": "Vital Origin – Premium Shopify Store",
+        "description": "Set up the entire Shopify store for an Australian wellness brand. Premium theme customization to match their clean, natural branding, full product/collection setup, mobile optimization, and SEO.",
+        "tags": ["Shopify", "Liquid", "JavaScript", "SEO"],
+        "metrics": "Premium Store",
+        "slug": "vital-origin-shopify-store",
+        "year": "2025",
+        "category": "E-Commerce",
+        "liveUrl": "https://vitalorigin.com.au/"
+      },
+      {
+        "title": "Optimal For Life – Shopify Store",
+        "description": "Took a default Shopify theme and customized it to match the client's health and wellness branding. Built out the homepage, collections, product pages, and made everything work well on mobile.",
+        "tags": ["Shopify", "Liquid", "JavaScript"],
+        "metrics": "Optimized Store",
+        "slug": "optimal-for-life-shopify",
+        "year": "2025",
+        "category": "E-Commerce",
+        "liveUrl": "https://optimalforlife.com/"
+      },
+      {
+        "title": "Yeti Pet – Shopify Store",
+        "description": "Built a custom Shopify theme from the client's designs for a premium pet products store. Every page matches the mockups exactly, works on all screen sizes, and the store owner can update content without a developer.",
+        "tags": ["Shopify", "Liquid", "JavaScript"],
+        "metrics": "Custom Theme",
+        "slug": "yeti-pet-shopify-store",
+        "year": "2025",
+        "category": "E-Commerce",
+        "liveUrl": "https://yeti.pet/"
+      },
+      {
+        "title": "Himalayan Travels – WordPress Platform",
+        "description": "Custom WordPress site for a travel company. Built the whole thing: custom theme, booking system with search/filtering, payment integration, and a blog. Optimized for speed and SEO.",
+        "tags": ["WordPress", "PHP", "Custom Theme", "SEO"],
+        "metrics": "Booking Platform",
+        "slug": "himalayan-travels-wordpress",
+        "year": "2025",
+        "category": "Travel & Tourism",
+        "liveUrl": "https://himalayantravels.com/"
+      },
+      {
+        "title": "Spin2Win – WooCommerce Wheel of Fortune Plugin",
+        "description": "WordPress plugin that adds a spin-the-wheel popup to WooCommerce stores. Store owners set the prizes and probabilities, customize the look with CSS, preview it live in the admin, and capture emails through MailChimp.",
+        "tags": ["WordPress", "WooCommerce", "PHP", "JavaScript"],
+        "metrics": "WordPress Plugin",
+        "slug": "spin2win-wordpress-plugin",
+        "year": "2018",
+        "category": "Plugin Development"
+      },
+      {
+        "title": "EDD Paddle Integration – WordPress Payment Plugin",
+        "description": "WordPress plugin that adds Paddle as a payment option for Easy Digital Downloads. Customers get one-click checkout with card or PayPal, and Paddle handles VAT/tax automatically.",
+        "tags": ["WordPress", "PHP", "Paddle", "Bootstrap"],
+        "metrics": "Payment Plugin",
+        "slug": "edd-paddle-integration",
+        "year": "2018",
+        "category": "Plugin Development"
       }
     ]
   },
@@ -157,12 +257,12 @@
       {
         "icon": "Code",
         "title": "Custom Web Applications",
-        "description": "Full-stack development of scalable web applications tailored to your business needs."
+        "description": "Full-stack web applications built to handle your specific business requirements, from SaaS platforms to internal tools."
       },
       {
         "icon": "Plug",
         "title": "API Integrations",
-        "description": "Seamless integration with third-party services, payment gateways, and enterprise systems."
+        "description": "Connect your app to third-party services, payment gateways (Stripe, Paddle, PayPal), and other systems through clean API integrations."
       },
       {
         "icon": "Zap",
@@ -405,24 +505,42 @@
   },
   "testimonials": {
     "title": "What Clients Say",
-    "subtitle": "Feedback from people I've worked with",
+    "subtitle": "Endorsements from past clients",
     "items": [
       {
-        "quote": "Kishor delivered our Shopify app ahead of schedule and exceeded all expectations. His communication was excellent throughout the project.",
-        "author": "Sarah Chen",
-        "role": "Founder, TechStyle",
+        "quote": "Working with Kishor has been an absolute pleasure. His expertise as a developer is evident in every project he takes on, demonstrating not only technical proficiency but also creativity in finding effective solutions. Kishor is professional, detail-oriented, and always ensures that the work meets the highest standards. His ability to quickly grasp project requirements and deliver beyond expectations sets him apart. I highly recommend Kishor for any development project—his dedication, skill, and professionalism are truly unmatched!",
+        "author": "Omar E.",
+        "role": "CEO/Founder, Design Platform",
         "avatar": ""
       },
       {
-        "quote": "We've been working with Kishor for over 2 years now. His technical expertise and reliability make him an invaluable partner.",
-        "author": "Michael Roberts",
-        "role": "CTO, DataFlow Inc",
+        "quote": "I had the pleasure of working with Kishor, and I can't recommend him highly enough. He is not only a talented and skilled developer but also incredibly professional in his approach. Kishor consistently delivers high-quality work, meeting deadlines with ease and always going the extra mile to ensure everything runs smoothly. His ability to solve complex problems, coupled with his clear communication and collaborative mindset, makes him a standout in his field. If you're looking for a developer who is reliable, innovative, and dedicated to delivering excellent results, Kishor is the one!",
+        "author": "Framer Plugin Client",
+        "role": "Design Platform, Upwork",
         "avatar": ""
       },
       {
-        "quote": "The quality of code and attention to detail is remarkable. Kishor truly cares about delivering the best possible solution.",
-        "author": "Emily Watson",
-        "role": "Product Manager, ScaleUp",
+        "quote": "I have hired Kishor multiple times over the years to handle some pretty complex coding tasks and every time he manages to find a solution no matter how difficult the task. He has to be one of the most talented skilled freelancers we have ever come across as a company and will certainly continue hiring him for future projects.",
+        "author": "Paul K.",
+        "role": "Founder, eCommerce",
+        "avatar": ""
+      },
+      {
+        "quote": "Kishor is a delight to work with, very professional and skilled with a deep understanding of business objectives and goals. His final results top-notch, very organized and professional. Highly recommended.",
+        "author": "Clonify Plugin Client",
+        "role": "SaaS Platform, Upwork",
+        "avatar": ""
+      },
+      {
+        "quote": "I hired Kishor to help with a heap of complex code changes to my Shopify store and his work has always been first-class. Not only is Kishor super-quick with answers to my questions and feedback on next steps, his work is always spot on. If you need a web developer to fix, alter or update your website...hire Kishor NOW.",
+        "author": "Blake S.",
+        "role": "Director",
+        "avatar": ""
+      },
+      {
+        "quote": "An absolutely fantastic hire! We had numerous requirements for this project and they were able to address each and every one of them, plus they did some additional work that was not included in the original project documentation.",
+        "author": "Stripe Payment Client",
+        "role": "eCommerce, Upwork",
         "avatar": ""
       }
     ]

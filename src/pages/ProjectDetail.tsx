@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
-import { ArrowLeft, Calendar } from 'lucide-react';
+import { ArrowLeft, Calendar, ExternalLink } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { SEO } from '@/components/SEO';
 import { Header } from '@/components/layout/Header';
@@ -110,6 +110,19 @@ export default function ProjectDetail() {
                 </span>
               ))}
             </div>
+
+            {/* Live Site Link */}
+            {'liveUrl' in project && (project as any).liveUrl && (
+              <a
+                href={(project as any).liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 mt-6 px-5 py-2.5 rounded-lg bg-primary text-primary-foreground font-medium hover:bg-primary/90 transition-colors"
+              >
+                <ExternalLink className="w-4 h-4" />
+                Visit Live Site
+              </a>
+            )}
           </header>
 
           {/* Project Content */}
