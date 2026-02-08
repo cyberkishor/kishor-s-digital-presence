@@ -1,6 +1,8 @@
 # Clonify Framer Plugin
 
-![Clonify Framer Plugin](/projects/images/clonify-framer.jpg)
+![Clonify Framer Plugin](images/clonify-framer.png)
+![Clonify Framer Plugin](images/clonify-framer-2.png)
+![Clonify Framer Plugin](images/clonify-framer-3.png)
 
 ## What It Does
 

@@ -1,6 +1,6 @@
 # Himalayan Travels: WordPress Booking Platform
 
-![Himalayan Travels](/projects/images/himalayan-travels-home.jpg)
+![Himalayan Travels](images/himalayan.avif)
 
 ## The Project
 
@@ -18,7 +18,7 @@ Himalayan Travels is a premium travel company. They needed more than a brochure 
 - Tour listing pages, destination guides, and blog templates
 - SEO setup and performance optimization
 
-![Himalayan Travels Tours](/projects/images/himalayan-travels-tours.jpg)
+<!-- ![Himalayan Travels Tours](images/himalayan-travels-tours.jpg) -->
 
 ---
 

@@ -1,6 +1,6 @@
 # Clonify Figma Plugin
 
-![Clonify Figma Plugin](/projects/images/clonify-figma.jpg)
+![Clonify Figma Plugin](images/clonify-figma.png)
 
 ## What It Does
 
@@ -18,7 +18,7 @@ Designers can browse the entire Clonify component library without leaving Figma.
 - Subscription-based access: free users get a subset, premium gets everything
 - Caching and lazy loading so the plugin stays responsive
 
-![Clonify Plugin Interface](/projects/images/clonify-figma-ui.jpg)
+![Clonify Plugin Interface](images/clonify-framer.png)
 
 ---
 

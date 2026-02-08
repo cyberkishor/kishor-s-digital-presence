@@ -1,6 +1,6 @@
 # Gamer Gear Direct: Ongoing Shopify Development
 
-![Gamer Gear Direct Store](/projects/images/gamer-gear-store.jpg)
+![Gamer Gear Direct Store](images/ggd.png)
 
 ## The Project
 
@@ -20,7 +20,7 @@ The store serves **20,000+ customers**.
 - Bug fixes and troubleshooting
 - Third-party app integrations (shipping, reviews, analytics, marketing tools)
 
-![Gamer Gear Products](/projects/images/gamer-gear-products.jpg)
+![Gamer Gear Products](images/ggd2.png)
 
 ---
 

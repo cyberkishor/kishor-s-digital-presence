@@ -1,6 +1,6 @@
 # EDD Paddle Integration: WordPress Payment Plugin
 
-![EDD Paddle Integration](/projects/images/edd-paddle-checkout.jpg)
+![EDD Paddle Integration](images/paddle.png)
 
 ## What It Does
 
@@ -16,7 +16,7 @@ A WordPress plugin that adds Paddle as a payment gateway for Easy Digital Downlo
 - Automatic VAT/tax handling for international customers
 - No changes needed to the store owner's existing EDD workflow
 
-![Paddle Checkout Flow](/projects/images/edd-paddle-flow.jpg)
+![Paddle Checkout Flow](images/paddle-2.png)
 
 ---
 

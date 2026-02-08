@@ -1,6 +1,6 @@
 # Vital Origin: Premium Shopify Store for a Wellness Brand
 
-![Vital Origin Store](/projects/images/vital-origin-store.jpg)
+![Vital Origin Store](images/vital-home.png)
 
 ## The Project
 
@@ -18,7 +18,7 @@ Vital Origin is an Australian wellness brand selling natural health supplements.
 - Implemented SEO fundamentals: clean URLs, proper heading structure, meta tags
 - Responsive image handling to keep page speed fast without sacrificing image quality
 
-![Vital Origin Product Page](/projects/images/vital-origin-product.jpg)
+![Vital Origin Product Page](images/vital-product.png)
 
 ---
 

@@ -1,6 +1,6 @@
 # Yeti Pet: Custom Shopify Theme for Premium Pet Products
 
-![Yeti Pet Store](/projects/images/yeti-pet-store.jpg)
+![Yeti Pet Store](images/yeti.avif)
 
 ## The Project
 
@@ -18,7 +18,6 @@ Yeti Pet sells premium pet products. The client provided detailed design mockups
 - Optimized assets and code for fast page loads
 - Tested across devices and browsers
 
-![Yeti Pet Product Page](/projects/images/yeti-pet-product.jpg)
 
 ---
 

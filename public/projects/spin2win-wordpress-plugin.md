@@ -1,6 +1,6 @@
 # Spin2Win: WooCommerce Wheel of Fortune Plugin
 
-![Spin2Win Plugin](/projects/images/spin2win-wheel.jpg)
+![Spin2Win Plugin](images/spin2win.png)
 
 ## What It Does
 
@@ -16,7 +16,9 @@ A WordPress plugin that adds a spin-the-wheel popup to WooCommerce stores. Visit
 - **Live admin preview:** See changes in real-time on the backend before publishing
 - **MailChimp integration:** Collect email addresses before the spin
 
-![Spin2Win Admin](/projects/images/spin2win-admin.jpg)
+![Spin2Win Admin](images/spin2win2.png)
+![Spin2Win Admin](images/spin-2-win.png)
+![Spin2Win Admin](images/spin2win2.png)
 
 ---
 

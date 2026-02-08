@@ -1,6 +1,8 @@
 # Prezlock: Custom Shopify Theme for a Smart Padlock Brand
 
-![Prezlock Store](/projects/images/prezlock-store.jpg)
+![Prezlock Store](images/prezlock.webp)
+![Prezlock Store](images/prezlock-love.webp)
+![Prezlock Store](images/prezlock-gu.webp)
 
 ## The Project
 
@@ -18,7 +20,8 @@ Prezlock sells smart fingerprint padlocks. They needed a Shopify store that look
 - Created custom slideshow sections for the homepage
 - Wrote custom Liquid code for product displays and checkout flow
 
-![Prezlock Product Page](/projects/images/prezlock-product.jpg)
+![Prezlock Store](images/prezlock.png)
+![Prezlock Store](images/prezlock-product.webp)
 
 ---
 

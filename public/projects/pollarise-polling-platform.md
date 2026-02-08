@@ -96,7 +96,7 @@ When someone votes, results need to update for everyone viewing the poll. Rather
 - Loading states, error handling, and empty states
 - Clean URL structure for sharing polls
 
-![Pollarise Results View](/projects/images/pollarise-results.jpg)
+![Pollarise Results View](images/pollarise-final.png)
 
 ### 7. Deployment & CI/CD
 - Set up CI/CD pipeline for automated testing and deployment

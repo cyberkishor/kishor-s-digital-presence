@@ -1,6 +1,6 @@
 # Optimal For Life: Shopify Store Customization
 
-![Optimal For Life Store](/projects/images/optimal-for-life-store.jpg)
+![Optimal For Life Store](images/optimal.avif)
 
 ## The Project
 
@@ -18,7 +18,7 @@ Optimal For Life is a health and wellness e-commerce brand. They had a default S
 - Set up modular sections the client can edit themselves in Shopify admin
 - Optimized images and cleaned up JavaScript to improve load times
 
-![Optimal For Life Products](/projects/images/optimal-for-life-products.jpg)
+
 
 ---
 
