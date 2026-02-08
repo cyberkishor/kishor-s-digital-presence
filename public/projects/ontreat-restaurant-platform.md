@@ -13,7 +13,15 @@ Think Airbnb, but for restaurants. The idea: you're living abroad and want to tr
 
 ---
 
-## What I Built
+## The Team
+
+This was my second Django project, and I built it alongside my mentor, Krishna Sunuwar. Krishna guided me through architecture decisions and production-level best practices while I handled the bulk of the development. The design came from a separate design team — we focused entirely on the backend, APIs, and frontend implementation.
+
+My first Django project taught me the basics, but Ontreat is where I really learned how to structure a production application: proper API design, payment integration patterns, and managing complexity as a codebase grows. Having a mentor who'd been through this before made a huge difference — I picked up patterns and practices that would have taken much longer to learn on my own.
+
+---
+
+## What We Built
 
 - Full Django/DRF backend with REST APIs
 - Restaurant dashboard for managing menus and bookings
@@ -27,7 +35,7 @@ Think Airbnb, but for restaurants. The idea: you're living abroad and want to tr
 
 ## The Hard Parts
 
-**Three different payment APIs.** Stripe, E-Sewa, and NIBL all have completely different APIs, response formats, and flows. I built an abstraction layer so the booking system treats all three uniformly, while each gateway handles its own quirks underneath.
+**Three different payment APIs.** Stripe, E-Sewa, and NIBL all have completely different APIs, response formats, and flows. We built an abstraction layer so the booking system treats all three uniformly, while each gateway handles its own quirks underneath.
 
 **The booking state machine.** A treat goes through multiple stages: paid, confirmed by restaurant, scheduled, completed, photos sent. Tracking this lifecycle with proper error handling (what if the restaurant declines?) required careful state management.
 

@@ -17,7 +17,7 @@
   "hero": {
     "headline": "I build software that",
     "highlightedText": "actually works.",
-    "subheadline": "Senior Full-Stack Developer specializing in Shopify, SaaS, and custom web applications. 10+ years shipping code that clients keep coming back for.",
+    "subheadline": "Senior Full-Stack Developer specializing in Shopify, SaaS, and custom web applications. 15+ years shipping code that clients keep coming back for.",
     "primaryCta": "Work With Me",
     "secondaryCta": "View Projects"
   },
@@ -25,12 +25,12 @@
     "title": "About Me",
     "subtitle": "Passionate about building products that matter",
     "paragraphs": [
-      "I've been building web applications for over 10 years. Based in Kathmandu, Nepal, I've worked with startups, agencies, and enterprises across 15+ countries, mostly on Shopify stores, Django-based SaaS platforms, and WordPress sites.",
+      "I've been building web applications for over 15 years. Based in Kathmandu, Nepal, I've worked with startups, agencies, and enterprises across 15+ countries, mostly on Shopify stores, Django-based SaaS platforms, and WordPress sites.",
       "I care a lot about understanding what you actually need before writing a single line of code. Clear communication upfront saves everyone time and money down the line.",
       "Most of my clients are repeat clients. That's probably the best proof I can offer that the work speaks for itself."
     ],
     "stats": [
-      { "value": "10+", "label": "Years Experience" },
+      { "value": "15+", "label": "Years Experience" },
       { "value": "100+", "label": "Projects Delivered" },
       { "value": "50+", "label": "Happy Clients" },
       { "value": "15+", "label": "Countries Served" }

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { ThemeToggle } from '@/components/ThemeToggle';
@@ -18,6 +18,7 @@ export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
   const isHomePage = location.pathname === '/';
 
   useEffect(() => {
@@ -28,7 +29,25 @@ export function Header() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const getHref = (href: string) => {
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (href.startsWith('/#')) {
+      const hash = href.substring(1); // e.g. '#about'
+      if (isHomePage) {
+        // On homepage, just scroll to the section
+        e.preventDefault();
+        const element = document.querySelector(hash);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      } else {
+        // On other pages, navigate to homepage with hash
+        e.preventDefault();
+        navigate('/' + hash);
+      }
+    }
+  };
+
+  const getDisplayHref = (href: string) => {
     if (href.startsWith('/#') && isHomePage) {
       return href.substring(1);
     }
@@ -60,7 +79,8 @@ export function Header() {
             {navLinks.map((link) => (
               <li key={link.href}>
                 <a
-                  href={getHref(link.href)}
+                  href={getDisplayHref(link.href)}
+                  onClick={(e) => handleNavClick(e, link.href)}
                   className="text-muted-foreground hover:text-foreground transition-colors link-underline py-1"
                 >
                   {link.label}
@@ -73,7 +93,12 @@ export function Header() {
           <div className="hidden md:flex items-center gap-2">
             <ThemeToggle />
             <Button asChild>
-              <a href={getHref('/#contact')}>Let's Talk</a>
+              <a
+                href={getDisplayHref('/#contact')}
+                onClick={(e) => handleNavClick(e, '/#contact')}
+              >
+                Let's Talk
+              </a>
             </Button>
           </div>
 
@@ -96,9 +121,12 @@ export function Header() {
               {navLinks.map((link) => (
                 <li key={link.href}>
                   <a
-                    href={getHref(link.href)}
+                    href={getDisplayHref(link.href)}
                     className="block py-2 text-foreground hover:text-primary transition-colors"
-                    onClick={() => setIsMobileMenuOpen(false)}
+                    onClick={(e) => {
+                      handleNavClick(e, link.href);
+                      setIsMobileMenuOpen(false);
+                    }}
                   >
                     {link.label}
                   </a>
@@ -106,7 +134,13 @@ export function Header() {
               ))}
               <li className="pt-4">
                 <Button asChild className="w-full">
-                  <a href={getHref('/#contact')} onClick={() => setIsMobileMenuOpen(false)}>
+                  <a
+                    href={getDisplayHref('/#contact')}
+                    onClick={(e) => {
+                      handleNavClick(e, '/#contact');
+                      setIsMobileMenuOpen(false);
+                    }}
+                  >
                     Let's Talk
                   </a>
                 </Button>

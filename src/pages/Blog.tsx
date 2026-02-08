@@ -6,7 +6,7 @@ import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import portfolioData from '@/data/portfolio.json';
 
-const POSTS_PER_PAGE = 10;
+const POSTS_PER_PAGE = 9;
 
 export default function Blog() {
   const { blog } = portfolioData;

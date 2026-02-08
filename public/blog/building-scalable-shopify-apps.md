@@ -8,7 +8,6 @@ When you're building for scale, your architecture choices matter more than anyth
 - **Queue-based processing**: Handle webhooks and heavy tasks asynchronously
 - **Caching strategies**: Redis is your friend for session and data caching
 
-![Architecture Diagram](shopify-architecture.png)
 
 ## Handle Rate Limits Gracefully
 
