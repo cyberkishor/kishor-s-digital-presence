@@ -19,7 +19,7 @@ export function BlogSection() {
         </div>
 
         <div className="grid md:grid-cols-3 gap-6">
-          {blog.posts.slice(0, 3).map((post, index) => (
+          {blog.posts.filter((p) => (p as { featured?: boolean }).featured).map((post, index) => (
             <Link
               key={index}
               to={`/blog/${post.slug}`}

@@ -125,6 +125,18 @@ export default function BlogPost() {
                 remarkPlugins={[remarkGfm]}
                 rehypePlugins={[rehypeRaw]}
                 components={{
+                  a: ({ href, children, ...props }) => {
+                    const isExternal = href && (href.startsWith('http://') || href.startsWith('https://'));
+                    return (
+                      <a
+                        href={href}
+                        {...(isExternal ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                        {...props}
+                      >
+                        {children}
+                      </a>
+                    );
+                  },
                   img: ({ src, alt }) => {
                     let imageSrc = src || '';
                     if (!imageSrc.startsWith('http')) {

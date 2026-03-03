@@ -19,7 +19,7 @@ export function ProjectsSection() {
         </div>
 
         <div className="grid md:grid-cols-2 gap-6">
-          {projects.items.slice(0, 4).map((project, index) => (
+          {projects.items.filter((p) => (p as { featured?: boolean }).featured).map((project, index) => (
             <Link
               key={index}
               to={`/projects/${project.slug}`}

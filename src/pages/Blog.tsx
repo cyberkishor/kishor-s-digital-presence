@@ -13,16 +13,22 @@ export default function Blog() {
   const [searchQuery, setSearchQuery] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
 
+  // Only show published posts (treat missing status as published for backward compatibility)
+  const publishedPosts = useMemo(
+    () => blog.posts.filter((post) => (post as { status?: string }).status !== 'draft'),
+    [blog.posts]
+  );
+
   // Filter posts based on search query
   const filteredPosts = useMemo(() => {
-    if (!searchQuery.trim()) return blog.posts;
+    if (!searchQuery.trim()) return publishedPosts;
     const query = searchQuery.toLowerCase();
-    return blog.posts.filter(
+    return publishedPosts.filter(
       (post) =>
         post.title.toLowerCase().includes(query) ||
         post.excerpt.toLowerCase().includes(query)
     );
-  }, [blog.posts, searchQuery]);
+  }, [publishedPosts, searchQuery]);
 
   // Calculate pagination
   const totalPages = Math.ceil(filteredPosts.length / POSTS_PER_PAGE);
