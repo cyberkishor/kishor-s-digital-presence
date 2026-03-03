@@ -194,7 +194,8 @@
         "metrics": "Full-Stack SaaS",
         "slug": "pollarise-polling-platform",
         "year": "2026",
-        "category": "Web Application"
+        "category": "Web Application",
+        "featured": true
       },
       {
         "title": "Ontreat – Restaurant Booking & Gifting Platform",
@@ -209,7 +210,8 @@
         "metrics": "Full-Stack Platform",
         "slug": "ontreat-restaurant-platform",
         "year": "2019",
-        "category": "Web Application"
+        "category": "Web Application",
+        "featured": true
       },
       {
         "title": "Clonify Figma Plugin",
@@ -403,7 +405,9 @@
         "date": "2025-02-11",
         "readTime": "7 min read",
         "slug": "my-journey-from-nepal-to-global-tech",
-        "cover": "/blog/images/journey-cover.svg"
+        "cover": "/blog/images/journey-cover.svg",
+        "status": "draft",
+        "featured": true
       },
       {
         "title": "Building Scalable Shopify Apps",
@@ -420,7 +424,8 @@
         "date": "2024-11-20",
         "readTime": "6 min read",
         "slug": "django-vs-nodejs",
-        "cover": "/blog/images/django-vs-node-cover.jpg"
+        "cover": "/blog/images/django-vs-node-cover.jpg",
+        "featured": true
       },
       {
         "title": "The Art of Client Communication",
@@ -428,7 +433,8 @@
         "date": "2024-10-05",
         "readTime": "5 min read",
         "slug": "client-communication",
-        "cover": "/blog/images/communication-cover.jpg"
+        "cover": "/blog/images/communication-cover.jpg",
+        "featured": true
       },
       {
         "title": "Upload Image with Resize in PHP",

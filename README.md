@@ -30,23 +30,32 @@ npm run preview
 
 ## Environment Variables
 
-Create a `.env.local` file in the project root (never commit this file):
+### How it works
 
-```env
-# Admin panel password
-VITE_ADMIN_PASSWORD=your_password_here
+| File | Committed? | Purpose |
+|------|-----------|---------|
+| `.env` | Yes | Template with placeholders — safe to commit, no real secrets |
+| `.env.local` | No (`*.local` is gitignored) | Your actual secrets — never committed |
 
-# GitHub API — for saving content from the admin panel
-VITE_GITHUB_TOKEN=ghp_xxxxxxxxxxxxxxxxxxxx
-VITE_GITHUB_OWNER=cyberkishor
-VITE_GITHUB_REPO=kishor-s-digital-presence
-VITE_GITHUB_BRANCH=main
-
-# Vercel deploy hook — for the Deploy button in the admin sidebar
-VITE_DEPLOY_HOOK_URL=https://api.vercel.com/v1/integrations/deploy/prj_xxx/yyy
-```
+Copy `.env` to `.env.local` and fill in the real values. Vite automatically merges both files, with `.env.local` taking priority.
 
 > After editing `.env.local`, restart the dev server (`Ctrl+C` then `npm run dev`) for changes to take effect.
+
+### All variables
+
+| Variable | Required | Description |
+|----------|----------|-------------|
+| `VITE_ADMIN_PASSWORD` | Yes | Password for `/admin/login` |
+| `VITE_GITHUB_TOKEN` | Yes | GitHub personal access token (classic, `repo` scope) |
+| `VITE_GITHUB_OWNER` | Yes | GitHub username — `cyberkishor` |
+| `VITE_GITHUB_REPO` | Yes | Repo name — `kishor-s-digital-presence` |
+| `VITE_GITHUB_BRANCH` | Yes | Branch to commit to — `main` |
+| `VITE_DEPLOY_HOOK_URL` | Optional | Vercel deploy hook URL for the Deploy button |
+| `VITE_USE_LOCAL_FILES` | Optional | `true` = save to local disk, `false` = commit to GitHub |
+
+### Vercel dashboard
+
+The same variables must also be added to **Vercel project → Settings → Environment Variables** so production builds can commit to GitHub. `.env.local` is never deployed.
 
 ---
 
@@ -61,7 +70,7 @@ The admin panel writes directly to GitHub via the API to save blog posts, projec
 5. Click **Generate token** and copy it (starts with `ghp_`)
 6. Paste it as `VITE_GITHUB_TOKEN` in `.env.local`
 
-> Tokens expire — if saves start failing with "Bad credentials", generate a new token and update `.env.local`.
+> Tokens expire — if saves start failing with "Bad credentials", generate a new token and update it in **both** `.env.local` and the Vercel dashboard.
 
 ---
 
@@ -81,14 +90,11 @@ When you click Deploy in the sidebar, it POSTs to this URL and Vercel starts a n
 
 ### Disable Auto-Deploy on Git Push
 
-By default, Vercel deploys on every commit. To disable that while keeping the Deploy button working:
+If your Vercel plan has it: **Settings → General → Ignored Build Step** → enter `exit 1`.
 
-1. Vercel project → **Settings** → **Git**
-2. Find **"Ignored Build Step"**
-3. Enter: `exit 1`
-4. Save
+`exit 1` skips git-triggered builds. Deploy hooks (the Deploy button) bypass this check and still work.
 
-`exit 1` skips all git-triggered builds. Deploy hooks (the Deploy button) bypass this check, so manual deploys still work.
+> Do NOT add `"github": { "enabled": false }` to `vercel.json` — it also cancels deploy hook builds.
 
 ---
 

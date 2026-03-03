@@ -1,3 +1,15 @@
+---
+title: "My Journey: From Nepal to Global Tech"
+slug: "my-journey-from-nepal-to-global-tech"
+date: "2025-02-11"
+excerpt: "From tinkering with Python in 2009 to founding OctSpace, contributing WordPress plugins, speaking at WordCamps, and serving clients across 15+ countries — a look back at my journey."
+cover: "/blog/images/journey-cover.svg"
+readTime: "7 min read"
+category: "Engineering"
+status: "draft"
+featured: "true"
+---
+
 More than fifteen years have passed since I initially wrote a line of code; what began in 2009 as simply being curious – playing around with Python and making bespoke CMSs – has become a career which has covered more than fifteen nations, over a hundred projects, and a path I never would have anticipated. Here’s a recall of how everything came about.
 
 ![My Journey - From Nepal to Global Tech](images/journey-cover.svg)

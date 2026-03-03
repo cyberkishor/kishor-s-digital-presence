@@ -1,7 +1,8 @@
-const GITHUB_TOKEN = import.meta.env.VITE_GITHUB_TOKEN;
-const GITHUB_OWNER = import.meta.env.VITE_GITHUB_OWNER;
-const GITHUB_REPO = import.meta.env.VITE_GITHUB_REPO;
+const GITHUB_TOKEN  = import.meta.env.VITE_GITHUB_TOKEN;
+const GITHUB_OWNER  = import.meta.env.VITE_GITHUB_OWNER;
+const GITHUB_REPO   = import.meta.env.VITE_GITHUB_REPO;
 const GITHUB_BRANCH = import.meta.env.VITE_GITHUB_BRANCH || 'main';
+const USE_LOCAL     = import.meta.env.VITE_USE_LOCAL_FILES === 'true';
 
 const BASE_URL = `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}`;
 
@@ -23,7 +24,49 @@ export interface GitHubFile {
   encoding?: string;
 }
 
+// ---------------------------------------------------------------------------
+// Local file API — reads/writes directly to disk via Vite dev server plugin.
+// Active when VITE_USE_LOCAL_FILES=true in .env.local
+// ---------------------------------------------------------------------------
+
+async function localGetFile(filePath: string): Promise<{ content: string; sha: string }> {
+  const res = await fetch(`/__local?path=${encodeURIComponent(filePath)}`);
+  if (!res.ok) {
+    const err = await res.json().catch(() => ({}));
+    throw new Error(`File not found: ${filePath} — ${err.error ?? ''}`);
+  }
+  const { content } = await res.json();
+  return { content, sha: 'local' };
+}
+
+async function localWriteFile(filePath: string, content: string): Promise<void> {
+  const res = await fetch(`/__local?path=${encodeURIComponent(filePath)}`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ content }),
+  });
+  if (!res.ok) {
+    const err = await res.json().catch(() => ({}));
+    throw new Error(`Failed to write ${filePath}: ${err.error ?? res.status}`);
+  }
+}
+
+async function localDeleteFile(filePath: string): Promise<void> {
+  const res = await fetch(`/__local?path=${encodeURIComponent(filePath)}`, {
+    method: 'DELETE',
+  });
+  if (!res.ok && res.status !== 404) {
+    throw new Error(`Failed to delete ${filePath}`);
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Public API — routes to local or GitHub depending on VITE_USE_LOCAL_FILES
+// ---------------------------------------------------------------------------
+
 export async function getFile(path: string): Promise<{ content: string; sha: string }> {
+  if (USE_LOCAL) return localGetFile(path);
+
   const res = await fetch(`${BASE_URL}/contents/${path}?ref=${GITHUB_BRANCH}`, {
     headers: headers(),
   });
@@ -38,6 +81,8 @@ export async function getFile(path: string): Promise<{ content: string; sha: str
 }
 
 export async function listDir(path: string): Promise<GitHubFile[]> {
+  if (USE_LOCAL) return [];
+
   const res = await fetch(`${BASE_URL}/contents/${path}?ref=${GITHUB_BRANCH}`, {
     headers: headers(),
   });
@@ -52,15 +97,13 @@ export async function createFile(
   content: string,
   message: string
 ): Promise<void> {
+  if (USE_LOCAL) return localWriteFile(path, content);
+
   const encoded = btoa(unescape(encodeURIComponent(content)));
   const res = await fetch(`${BASE_URL}/contents/${path}`, {
     method: 'PUT',
     headers: headers(),
-    body: JSON.stringify({
-      message,
-      content: encoded,
-      branch: GITHUB_BRANCH,
-    }),
+    body: JSON.stringify({ message, content: encoded, branch: GITHUB_BRANCH }),
   });
   if (!res.ok) {
     const err = await res.json().catch(() => ({}));
@@ -74,16 +117,13 @@ export async function updateFile(
   sha: string,
   message: string
 ): Promise<void> {
+  if (USE_LOCAL) return localWriteFile(path, content);
+
   const encoded = btoa(unescape(encodeURIComponent(content)));
   const res = await fetch(`${BASE_URL}/contents/${path}`, {
     method: 'PUT',
     headers: headers(),
-    body: JSON.stringify({
-      message,
-      content: encoded,
-      sha,
-      branch: GITHUB_BRANCH,
-    }),
+    body: JSON.stringify({ message, content: encoded, sha, branch: GITHUB_BRANCH }),
   });
   if (!res.ok) {
     const err = await res.json().catch(() => ({}));
@@ -96,14 +136,12 @@ export async function deleteFile(
   sha: string,
   message: string
 ): Promise<void> {
+  if (USE_LOCAL) return localDeleteFile(path);
+
   const res = await fetch(`${BASE_URL}/contents/${path}`, {
     method: 'DELETE',
     headers: headers(),
-    body: JSON.stringify({
-      message,
-      sha,
-      branch: GITHUB_BRANCH,
-    }),
+    body: JSON.stringify({ message, sha, branch: GITHUB_BRANCH }),
   });
   if (!res.ok) {
     const err = await res.json().catch(() => ({}));
@@ -112,10 +150,11 @@ export async function deleteFile(
 }
 
 export function isGitHubConfigured(): boolean {
+  if (USE_LOCAL) return true; // local file API always available
   return !!(GITHUB_TOKEN && GITHUB_OWNER && GITHUB_REPO);
 }
 
-// Fetch and parse portfolio.json from GitHub (always up-to-date)
+// Fetch and parse portfolio.json — always up-to-date
 export async function getPortfolioJson(): Promise<Record<string, unknown>> {
   const { content } = await getFile('src/data/portfolio.json');
   return JSON.parse(content);
