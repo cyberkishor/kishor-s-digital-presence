@@ -403,7 +403,8 @@
         "date": "2024-12-15",
         "readTime": "8 min read",
         "slug": "building-scalable-shopify-apps",
-        "cover": "/blog/images/shopify-apps-cover.jpg"
+        "cover": "/blog/images/shopify-apps-cover.jpg",
+        "featured": true
       },
       {
         "title": "Why I Prefer Django Over Node.js",
