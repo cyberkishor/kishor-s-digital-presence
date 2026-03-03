@@ -30,10 +30,22 @@
       "Most of my clients are repeat clients. That's probably the best proof I can offer that the work speaks for itself."
     ],
     "stats": [
-      { "value": "15+", "label": "Years Experience" },
-      { "value": "100+", "label": "Projects Delivered" },
-      { "value": "50+", "label": "Happy Clients" },
-      { "value": "15+", "label": "Countries Served" }
+      {
+        "value": "15+",
+        "label": "Years Experience"
+      },
+      {
+        "value": "100+",
+        "label": "Projects Delivered"
+      },
+      {
+        "value": "50+",
+        "label": "Happy Clients"
+      },
+      {
+        "value": "15+",
+        "label": "Countries Served"
+      }
     ]
   },
   "skills": {
@@ -43,27 +55,57 @@
       {
         "name": "Languages",
         "icon": "Code",
-        "items": ["JavaScript", "TypeScript", "Python", "PHP"]
+        "items": [
+          "JavaScript",
+          "TypeScript",
+          "Python",
+          "PHP"
+        ]
       },
       {
         "name": "Frameworks",
         "icon": "Layers",
-        "items": ["React", "Next.js", "Vue.js", "Laravel", "Django", "Express", "FastAPI"]
+        "items": [
+          "React",
+          "Next.js",
+          "Vue.js",
+          "Laravel",
+          "Django",
+          "Express",
+          "FastAPI"
+        ]
       },
       {
         "name": "CMS & E-commerce",
         "icon": "ShoppingBag",
-        "items": ["Shopify", "WordPress", "Strapi", "Contentful"]
+        "items": [
+          "Shopify",
+          "WordPress",
+          "Strapi",
+          "Contentful"
+        ]
       },
       {
         "name": "Database",
         "icon": "Database",
-        "items": ["PostgreSQL", "MySQL", "MongoDB", "Redis"]
+        "items": [
+          "PostgreSQL",
+          "MySQL",
+          "MongoDB",
+          "Redis"
+        ]
       },
       {
         "name": "DevOps & Tools",
         "icon": "Cloud",
-        "items": ["AWS", "Google Cloud", "Vercel", "Docker", "Git", "CI/CD"]
+        "items": [
+          "AWS",
+          "Google Cloud",
+          "Vercel",
+          "Docker",
+          "Git",
+          "CI/CD"
+        ]
       }
     ]
   },
@@ -109,28 +151,46 @@
     "items": [
       {
         "title": "Clonify – UI Library Platform",
-        "description": "SaaS platform with 1,000+ UI components for Framer and Figma. I built the whole thing: Next.js frontend, PayloadCMS backend, Paddle billing, and a browsing experience that stays fast with thousands of assets.",
-        "tags": ["Next.js", "PayloadCMS", "MongoDB", "Paddle"],
-        "metrics": "1,000+ UI components",
         "slug": "clonify-ui-library-platform",
+        "description": "SaaS platform with 1,000+ UI components for Framer and Figma. I built the whole thing: Next.js frontend, PayloadCMS backend, Paddle billing, and a browsing experience that stays fast with thousands of assets.",
+        "tags": [
+          "Next.js",
+          "PayloadCMS",
+          "MongoDB",
+          "Paddle"
+        ],
+        "metrics": "1,000+ UI components",
         "year": "2025",
         "category": "SaaS Platform",
-        "liveUrl": "https://library.clonify.io/"
+        "liveUrl": "https://library.clonify.io/",
+        "featured": true,
+        "status": "published"
       },
       {
         "title": "Powrbot – SaaS Data Automation",
         "description": "SaaS platform that automates company data lookup and enrichment. Upload a list of companies, get structured data back. I led the full-stack build: Django backend, Stripe billing, bulk processing with Celery, and role-based permissions.",
-        "tags": ["Django", "Python", "Stripe", "REST API"],
+        "tags": [
+          "Django",
+          "Python",
+          "Stripe",
+          "REST API"
+        ],
         "metrics": "Production SaaS",
         "slug": "powrbot-saas-data-automation",
         "year": "2018",
         "category": "SaaS Platform",
-        "liveUrl": "https://powrbot.com/"
+        "liveUrl": "https://powrbot.com/",
+        "featured": true
       },
       {
         "title": "Pollarise – Interactive Polling & Survey Platform",
         "description": "Polling and survey platform I built from scratch. Create polls, collect votes in real-time, and see results update live. Next.js on the frontend, FastAPI on the backend, PostgreSQL for storage, all deployed with CI/CD.",
-        "tags": ["Next.js", "FastAPI", "PostgreSQL", "CI/CD"],
+        "tags": [
+          "Next.js",
+          "FastAPI",
+          "PostgreSQL",
+          "CI/CD"
+        ],
         "metrics": "Full-Stack SaaS",
         "slug": "pollarise-polling-platform",
         "year": "2026",
@@ -139,7 +199,13 @@
       {
         "title": "Ontreat – Restaurant Booking & Gifting Platform",
         "description": "Think Airbnb, but for restaurants. Customers browse menus, pick items, and book a treat for friends or family back in Nepal, even from abroad. Built with Django REST Framework with Stripe, E-Sewa, and NIBL payment gateways.",
-        "tags": ["Django", "Django REST", "MySQL", "Stripe", "Bootstrap"],
+        "tags": [
+          "Django",
+          "Django REST",
+          "MySQL",
+          "Stripe",
+          "Bootstrap"
+        ],
         "metrics": "Full-Stack Platform",
         "slug": "ontreat-restaurant-platform",
         "year": "2019",
@@ -148,7 +214,11 @@
       {
         "title": "Clonify Figma Plugin",
         "description": "Figma plugin that lets designers browse the Clonify library and drop components straight into their canvas. One click to import, layouts stay intact, and premium content is gated by subscription tier.",
-        "tags": ["TypeScript", "Figma API", "JavaScript"],
+        "tags": [
+          "TypeScript",
+          "Figma API",
+          "JavaScript"
+        ],
         "metrics": "Figma Community",
         "slug": "clonify-figma-plugin",
         "year": "2025",
@@ -158,7 +228,11 @@
       {
         "title": "Clonify Framer Plugin",
         "description": "Framer plugin that connects to the Clonify library. Designers can browse 1,000+ templates, preview them, and import sections directly into their Framer projects. Subscription tiers control what's accessible.",
-        "tags": ["TypeScript", "Framer API", "JavaScript"],
+        "tags": [
+          "TypeScript",
+          "Framer API",
+          "JavaScript"
+        ],
         "metrics": "1,000+ assets",
         "slug": "clonify-framer-plugin",
         "year": "2025",
@@ -168,7 +242,12 @@
       {
         "title": "Prezlock – Custom Shopify Theme for Smart Padlock Brand",
         "description": "Custom Shopify theme for a smart fingerprint padlock brand. Modified Dawn theme with interactive product pages, multi-currency support (5 currencies), custom slideshow sections, and custom Liquid for the checkout flow.",
-        "tags": ["Shopify", "Liquid", "Theme Customization", "Ecommerce"],
+        "tags": [
+          "Shopify",
+          "Liquid",
+          "Theme Customization",
+          "Ecommerce"
+        ],
         "metrics": "Multi-Currency Store",
         "slug": "prezlock-shopify-store",
         "year": "2019",
@@ -178,7 +257,12 @@
       {
         "title": "Gamer Gear Direct – Shopify Customization & Support",
         "description": "Long-term Shopify developer for Australia's biggest racing simulator hardware store. I handle theme updates, custom features, performance work, bug fixes, and app integrations. The store serves 20,000+ customers.",
-        "tags": ["Shopify", "Liquid", "JavaScript", "Theme Customization"],
+        "tags": [
+          "Shopify",
+          "Liquid",
+          "JavaScript",
+          "Theme Customization"
+        ],
         "metrics": "20,000+ customers",
         "slug": "gamer-gear-direct",
         "year": "2020",
@@ -188,7 +272,12 @@
       {
         "title": "Vital Origin – Premium Shopify Store",
         "description": "Set up the entire Shopify store for an Australian wellness brand. Premium theme customization to match their clean, natural branding, full product/collection setup, mobile optimization, and SEO.",
-        "tags": ["Shopify", "Liquid", "JavaScript", "SEO"],
+        "tags": [
+          "Shopify",
+          "Liquid",
+          "JavaScript",
+          "SEO"
+        ],
         "metrics": "Premium Store",
         "slug": "vital-origin-shopify-store",
         "year": "2025",
@@ -198,7 +287,11 @@
       {
         "title": "Optimal For Life – Shopify Store",
         "description": "Took a default Shopify theme and customized it to match the client's health and wellness branding. Built out the homepage, collections, product pages, and made everything work well on mobile.",
-        "tags": ["Shopify", "Liquid", "JavaScript"],
+        "tags": [
+          "Shopify",
+          "Liquid",
+          "JavaScript"
+        ],
         "metrics": "Optimized Store",
         "slug": "optimal-for-life-shopify",
         "year": "2025",
@@ -208,7 +301,11 @@
       {
         "title": "Yeti Pet – Shopify Store",
         "description": "Built a custom Shopify theme from the client's designs for a premium pet products store. Every page matches the mockups exactly, works on all screen sizes, and the store owner can update content without a developer.",
-        "tags": ["Shopify", "Liquid", "JavaScript"],
+        "tags": [
+          "Shopify",
+          "Liquid",
+          "JavaScript"
+        ],
         "metrics": "Custom Theme",
         "slug": "yeti-pet-shopify-store",
         "year": "2025",
@@ -218,7 +315,12 @@
       {
         "title": "Himalayan Travels – WordPress Platform",
         "description": "Custom WordPress site for a travel company. Built the whole thing: custom theme, booking system with search/filtering, payment integration, and a blog. Optimized for speed and SEO.",
-        "tags": ["WordPress", "PHP", "Custom Theme", "SEO"],
+        "tags": [
+          "WordPress",
+          "PHP",
+          "Custom Theme",
+          "SEO"
+        ],
         "metrics": "Booking Platform",
         "slug": "himalayan-travels-wordpress",
         "year": "2025",
@@ -228,7 +330,12 @@
       {
         "title": "Spin2Win – WooCommerce Wheel of Fortune Plugin",
         "description": "WordPress plugin that adds a spin-the-wheel popup to WooCommerce stores. Store owners set the prizes and probabilities, customize the look with CSS, preview it live in the admin, and capture emails through MailChimp.",
-        "tags": ["WordPress", "WooCommerce", "PHP", "JavaScript"],
+        "tags": [
+          "WordPress",
+          "WooCommerce",
+          "PHP",
+          "JavaScript"
+        ],
         "metrics": "WordPress Plugin",
         "slug": "spin2win-wordpress-plugin",
         "year": "2018",
@@ -237,7 +344,12 @@
       {
         "title": "EDD Paddle Integration – WordPress Payment Plugin",
         "description": "WordPress plugin that adds Paddle as a payment option for Easy Digital Downloads. Customers get one-click checkout with card or PayPal, and Paddle handles VAT/tax automatically.",
-        "tags": ["WordPress", "PHP", "Paddle", "Bootstrap"],
+        "tags": [
+          "WordPress",
+          "PHP",
+          "Paddle",
+          "Bootstrap"
+        ],
         "metrics": "Payment Plugin",
         "slug": "edd-paddle-integration",
         "year": "2018",
@@ -299,7 +411,8 @@
         "date": "2024-12-15",
         "readTime": "8 min read",
         "slug": "building-scalable-shopify-apps",
-        "cover": "/blog/images/shopify-apps-cover.jpg"
+        "cover": "/blog/images/shopify-apps-cover.jpg",
+        "featured": true
       },
       {
         "title": "Why I Prefer Django Over Node.js",
