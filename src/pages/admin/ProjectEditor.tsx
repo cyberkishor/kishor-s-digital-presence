@@ -182,9 +182,6 @@ export default function ProjectEditor() {
         await createFile(mdPath, mdContent, `admin: create project "${data.meta.slug}"`);
       }
 
-      // Update portfolio.json metadata
-      const { content: rawJson, sha: jsonSha } = await getFile('src/data/portfolio.json');
-      const full = JSON.parse(rawJson);
       const projectMeta: ProjectMeta = {
         title: data.meta.title,
         slug: data.meta.slug,
@@ -197,11 +194,34 @@ export default function ProjectEditor() {
         featured: data.meta.featured,
         status: data.meta.status,
       };
-      const existingIdx = full.projects.items.findIndex((p: ProjectMeta) => p.slug === data.meta.slug);
-      if (existingIdx >= 0) {
-        full.projects.items[existingIdx] = projectMeta;
+
+      // Always update projects-index.json (full index)
+      const { content: idxRaw, sha: idxSha } = await getFile('public/projects-index.json');
+      const idx = JSON.parse(idxRaw);
+      const idxPos = idx.findIndex((p: { slug: string }) => p.slug === data.meta.slug);
+      if (idxPos >= 0) {
+        idx[idxPos] = projectMeta;
       } else {
-        full.projects.items.unshift(projectMeta);
+        idx.unshift(projectMeta);
+      }
+      await updateFile('public/projects-index.json', JSON.stringify(idx, null, 2) + '\n', idxSha,
+        `admin: update projects index "${data.meta.slug}"`);
+
+      // Update portfolio.json — only keep featured projects there
+      const { content: rawJson, sha: jsonSha } = await getFile('src/data/portfolio.json');
+      const full = JSON.parse(rawJson);
+      if (data.meta.featured) {
+        const existingIdx = full.projects.items.findIndex((p: ProjectMeta) => p.slug === data.meta.slug);
+        if (existingIdx >= 0) {
+          full.projects.items[existingIdx] = projectMeta;
+        } else {
+          full.projects.items.unshift(projectMeta);
+        }
+      } else {
+        // Remove from featured list if it was there before
+        full.projects.items = full.projects.items.filter(
+          (p: { slug: string }) => p.slug !== data.meta.slug
+        );
       }
       await updateFile('src/data/portfolio.json', JSON.stringify(full, null, 2) + '\n', jsonSha,
         `admin: ${isNew ? 'add' : 'update'} project "${data.meta.slug}"`);

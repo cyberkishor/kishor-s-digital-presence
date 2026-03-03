@@ -159,3 +159,25 @@ export async function getPortfolioJson(): Promise<Record<string, unknown>> {
   const { content } = await getFile('src/data/portfolio.json');
   return JSON.parse(content);
 }
+
+// Fetch full blog post index (all posts, used by admin + blog listing page)
+export async function getBlogIndex(): Promise<Record<string, unknown>[]> {
+  if (USE_LOCAL) {
+    const { content } = await localGetFile('public/blog-index.json');
+    return JSON.parse(content);
+  }
+  const res = await fetch('/blog-index.json');
+  if (!res.ok) throw new Error('Failed to load blog index');
+  return res.json();
+}
+
+// Fetch full projects index (all projects, used by admin + projects listing)
+export async function getProjectsIndex(): Promise<Record<string, unknown>[]> {
+  if (USE_LOCAL) {
+    const { content } = await localGetFile('public/projects-index.json');
+    return JSON.parse(content);
+  }
+  const res = await fetch('/projects-index.json');
+  if (!res.ok) throw new Error('Failed to load projects index');
+  return res.json();
+}

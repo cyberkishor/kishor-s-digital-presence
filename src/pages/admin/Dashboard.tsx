@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { AdminLayout } from '@/components/admin/AdminLayout';
-import { getPortfolioJson, isGitHubConfigured } from '@/lib/github';
+import { getBlogIndex, getProjectsIndex, isGitHubConfigured } from '@/lib/github';
 import {
   FileText, FolderKanban, Star, AlertTriangle, CheckCircle2,
   Plus, ArrowRight, Clock, ExternalLink, Loader2, User,
@@ -65,8 +65,14 @@ export default function Dashboard() {
 
   useEffect(() => {
     if (!githubOk) { setLoading(false); return; }
-    getPortfolioJson()
-      .then((d) => setData(d as unknown as PortfolioData))
+    Promise.all([getBlogIndex(), getProjectsIndex()])
+      .then(([blogData, projectsData]) => {
+        setData((prev) => ({
+          ...prev,
+          blog: { posts: blogData as Post[] },
+          projects: { items: projectsData as Project[] },
+        }));
+      })
       .catch(() => {})
       .finally(() => setLoading(false));
   }, [githubOk]);

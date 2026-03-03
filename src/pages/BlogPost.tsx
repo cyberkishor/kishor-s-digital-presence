@@ -10,16 +10,43 @@ import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import portfolioData from '@/data/portfolio.json';
 
+interface BlogPostMeta {
+  title: string;
+  slug: string;
+  date: string;
+  readTime: string;
+  excerpt: string;
+  cover: string;
+  status?: string;
+  featured?: boolean;
+}
+
+function stripFrontmatter(text: string): string {
+  return text.replace(/^---[\s\S]*?---\s*\n?/, '');
+}
+
 export default function BlogPost() {
   const { slug } = useParams<{ slug: string }>();
   const [content, setContent] = useState<string>('');
+  const [post, setPost] = useState<BlogPostMeta | null>(
+    (portfolioData.blog.posts.find((p) => p.slug === slug) as BlogPostMeta) ?? null
+  );
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
-  const post = portfolioData.blog.posts.find((p) => p.slug === slug);
-
   useEffect(() => {
     if (!slug) return;
+
+    // Fetch post metadata from index if not found in portfolio.json (non-featured posts)
+    if (!post) {
+      fetch('/blog-index.json')
+        .then((r) => r.ok ? r.json() : [])
+        .then((data: BlogPostMeta[]) => {
+          const found = data.find((p) => p.slug === slug);
+          if (found) setPost(found);
+        })
+        .catch(() => {});
+    }
 
     fetch(`/blog/${slug}.md`)
       .then((res) => {
@@ -27,7 +54,7 @@ export default function BlogPost() {
         return res.text();
       })
       .then((text) => {
-        setContent(text);
+        setContent(stripFrontmatter(text));
         setLoading(false);
       })
       .catch(() => {
@@ -36,7 +63,26 @@ export default function BlogPost() {
       });
   }, [slug]);
 
-  if (!post) {
+  // Still fetching metadata for non-featured posts
+  if (!post && loading) {
+    return (
+      <div className="min-h-screen bg-background">
+        <Header />
+        <main className="pt-32 pb-20">
+          <div className="container-wide max-w-3xl mx-auto px-4 animate-pulse space-y-4">
+            <div className="h-6 bg-muted rounded w-32" />
+            <div className="h-10 bg-muted rounded w-3/4" />
+            <div className="h-4 bg-muted rounded w-full" />
+            <div className="h-4 bg-muted rounded w-5/6" />
+          </div>
+        </main>
+        <Footer />
+      </div>
+    );
+  }
+
+  // Show "not found" only after content fetch is done and post is still null
+  if (!post && !loading) {
     return (
       <div className="min-h-screen bg-background">
         <SEO title="Post Not Found" url={`/blog/${slug}`} />

@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Clock, Search, ChevronLeft, ChevronRight } from 'lucide-react';
 import { SEO } from '@/components/SEO';
@@ -6,17 +6,41 @@ import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import portfolioData from '@/data/portfolio.json';
 
+interface BlogPost {
+  title: string;
+  slug: string;
+  date: string;
+  readTime: string;
+  excerpt: string;
+  cover?: string;
+  status?: string;
+  featured?: boolean;
+}
+
 const POSTS_PER_PAGE = 9;
 
 export default function Blog() {
   const { blog } = portfolioData;
+  const [allPosts, setAllPosts] = useState<BlogPost[]>([]);
+  const [loadingPosts, setLoadingPosts] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
 
+  useEffect(() => {
+    fetch('/blog-index.json')
+      .then((res) => {
+        if (!res.ok) throw new Error('Failed to load blog index');
+        return res.json();
+      })
+      .then((data: BlogPost[]) => setAllPosts(data))
+      .catch(() => {})
+      .finally(() => setLoadingPosts(false));
+  }, []);
+
   // Only show published posts (treat missing status as published for backward compatibility)
   const publishedPosts = useMemo(
-    () => blog.posts.filter((post) => (post as { status?: string }).status !== 'draft'),
-    [blog.posts]
+    () => allPosts.filter((post) => post.status !== 'draft'),
+    [allPosts]
   );
 
   // Filter posts based on search query
@@ -84,6 +108,11 @@ export default function Blog() {
             </p>
           )}
 
+          {/* Loading state */}
+          {loadingPosts && (
+            <div className="text-center py-12 text-muted-foreground">Loading posts...</div>
+          )}
+
           {/* Blog Grid */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {paginatedPosts.map((post, index) => (
@@ -127,7 +156,7 @@ export default function Blog() {
           </div>
 
           {/* No Results */}
-          {filteredPosts.length === 0 && (
+          {!loadingPosts && filteredPosts.length === 0 && (
             <div className="text-center py-12">
               <p className="text-muted-foreground text-lg">No posts found matching your search.</p>
               <button

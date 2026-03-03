@@ -1,7 +1,7 @@
 import { useState, useEffect, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { AdminLayout } from '@/components/admin/AdminLayout';
-import { getFile, updateFile, getPortfolioJson, isGitHubConfigured } from '@/lib/github';
+import { getFile, updateFile, getProjectsIndex, isGitHubConfigured } from '@/lib/github';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { toast } from 'sonner';
@@ -31,10 +31,9 @@ export default function ProjectList() {
   const [page, setPage] = useState(1);
 
   useEffect(() => {
-    getPortfolioJson()
+    getProjectsIndex()
       .then((data) => {
-        const live = (data as { projects: { items: Project[] } }).projects.items;
-        if (live) setProjects(live);
+        if (data) setProjects(data as Project[]);
       })
       .catch(() => {})
       .finally(() => setLoadingList(false));
@@ -74,14 +73,37 @@ export default function ProjectList() {
     }
     setTogglingSlug(slug);
     try {
+      const newFeatured = !current;
+
+      // Update projects-index.json
+      const { content: idxRaw, sha: idxSha } = await getFile('public/projects-index.json');
+      const idx = JSON.parse(idxRaw);
+      const idxPos = idx.findIndex((p: Project) => p.slug === slug);
+      if (idxPos >= 0) idx[idxPos].featured = newFeatured;
+      await updateFile('public/projects-index.json', JSON.stringify(idx, null, 2) + '\n', idxSha,
+        `admin: ${newFeatured ? 'feature' : 'unfeature'} project "${slug}"`);
+
+      // Update portfolio.json — add or remove from featured list
       const { content: rawJson, sha } = await getFile('src/data/portfolio.json');
       const full = JSON.parse(rawJson);
-      const idx = full.projects.items.findIndex((p: Project) => p.slug === slug);
-      if (idx >= 0) full.projects.items[idx].featured = !current;
+      if (newFeatured) {
+        // Add to featured list if not already there
+        const exists = full.projects.items.find((p: Project) => p.slug === slug);
+        if (!exists) {
+          const project = projects.find((p) => p.slug === slug);
+          if (project) full.projects.items.unshift({ ...project, featured: true });
+        } else {
+          exists.featured = true;
+        }
+      } else {
+        // Remove from featured list
+        full.projects.items = full.projects.items.filter((p: Project) => p.slug !== slug);
+      }
       await updateFile('src/data/portfolio.json', JSON.stringify(full, null, 2) + '\n', sha,
-        `admin: ${!current ? 'feature' : 'unfeature'} project "${slug}"`);
-      setProjects((prev) => prev.map((p) => p.slug === slug ? { ...p, featured: !current } : p));
-      toast.success(!current ? 'Project featured on home page' : 'Removed from home page');
+        `admin: ${newFeatured ? 'feature' : 'unfeature'} project "${slug}"`);
+
+      setProjects((prev) => prev.map((p) => p.slug === slug ? { ...p, featured: newFeatured } : p));
+      toast.success(newFeatured ? 'Project featured on home page' : 'Removed from home page');
     } catch (err) {
       toast.error(`Failed: ${err instanceof Error ? err.message : String(err)}`);
     } finally {
@@ -98,16 +120,27 @@ export default function ProjectList() {
     setDeletingSlug(slug);
     setConfirmDelete(null);
     try {
-      const { content: rawJson, sha } = await getFile('src/data/portfolio.json');
+      // Remove from projects-index.json
+      const { content: idxRaw, sha: idxSha } = await getFile('public/projects-index.json');
+      const idx = JSON.parse(idxRaw);
+      const newIdx = idx.filter((p: Project) => p.slug !== slug);
+      await updateFile('public/projects-index.json', JSON.stringify(newIdx, null, 2) + '\n', idxSha,
+        `admin: delete project "${slug}"`);
+
+      // Remove from portfolio.json (if featured)
+      const { content: rawJson, sha: jsonSha } = await getFile('src/data/portfolio.json');
       const full = JSON.parse(rawJson);
       full.projects.items = full.projects.items.filter((p: Project) => p.slug !== slug);
-      await updateFile('src/data/portfolio.json', JSON.stringify(full, null, 2) + '\n', sha,
+      await updateFile('src/data/portfolio.json', JSON.stringify(full, null, 2) + '\n', jsonSha,
         `admin: delete project "${slug}"`);
+
+      // Delete .md file
       try {
         const { sha: mdSha } = await getFile(`public/projects/${slug}.md`);
         const { deleteFile } = await import('@/lib/github');
         await deleteFile(`public/projects/${slug}.md`, mdSha, `admin: delete project "${slug}"`);
       } catch { /* md may not exist */ }
+
       setProjects((prev) => prev.filter((p) => p.slug !== slug));
       toast.success('Project deleted');
     } catch (err) {

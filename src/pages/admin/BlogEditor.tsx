@@ -163,8 +163,6 @@ export default function BlogEditor() {
         await createFile(mdPath, mdContent, `admin: create blog post "${postData.frontmatter.slug}"`);
       }
 
-      const { content: rawJson, sha: jsonSha } = await getFile('src/data/portfolio.json');
-      const portfolioJson = JSON.parse(rawJson);
       const postMeta = {
         title: postData.frontmatter.title,
         excerpt: postData.frontmatter.excerpt,
@@ -176,20 +174,41 @@ export default function BlogEditor() {
         featured: postData.frontmatter.featured,
       };
 
-      const existingIdx = portfolioJson.blog.posts.findIndex(
-        (p: { slug: string }) => p.slug === postData.frontmatter.slug
-      );
-      if (existingIdx >= 0) {
-        portfolioJson.blog.posts[existingIdx] = postMeta;
+      // Always update blog-index.json (full index)
+      const { content: idxRaw, sha: idxSha } = await getFile('public/blog-index.json');
+      const idx = JSON.parse(idxRaw);
+      const idxPos = idx.findIndex((p: { slug: string }) => p.slug === postData.frontmatter.slug);
+      if (idxPos >= 0) {
+        idx[idxPos] = postMeta;
       } else {
-        portfolioJson.blog.posts.unshift(postMeta);
+        idx.unshift(postMeta);
       }
+      await updateFile('public/blog-index.json', JSON.stringify(idx, null, 2) + '\n', idxSha,
+        `admin: update blog index "${postData.frontmatter.slug}"`);
 
+      // Update portfolio.json — only keep featured posts there
+      const { content: rawJson, sha: jsonSha } = await getFile('src/data/portfolio.json');
+      const portfolioJson = JSON.parse(rawJson);
+      if (postData.frontmatter.featured) {
+        const existingIdx = portfolioJson.blog.posts.findIndex(
+          (p: { slug: string }) => p.slug === postData.frontmatter.slug
+        );
+        if (existingIdx >= 0) {
+          portfolioJson.blog.posts[existingIdx] = postMeta;
+        } else {
+          portfolioJson.blog.posts.unshift(postMeta);
+        }
+      } else {
+        // Remove from featured list if it was there before
+        portfolioJson.blog.posts = portfolioJson.blog.posts.filter(
+          (p: { slug: string }) => p.slug !== postData.frontmatter.slug
+        );
+      }
       await updateFile(
         'src/data/portfolio.json',
         JSON.stringify(portfolioJson, null, 2) + '\n',
         jsonSha,
-        `admin: update blog post metadata "${postData.frontmatter.slug}"`
+        `admin: update featured posts "${postData.frontmatter.slug}"`
       );
 
       toast.success('Post saved to GitHub');

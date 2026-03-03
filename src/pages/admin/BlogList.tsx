@@ -1,7 +1,7 @@
 import { useState, useEffect, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { AdminLayout } from '@/components/admin/AdminLayout';
-import { getFile, updateFile, getPortfolioJson, isGitHubConfigured } from '@/lib/github';
+import { getFile, updateFile, getBlogIndex, isGitHubConfigured } from '@/lib/github';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { toast } from 'sonner';
@@ -36,10 +36,9 @@ export default function BlogList() {
   const [page, setPage] = useState(1);
 
   useEffect(() => {
-    getPortfolioJson()
+    getBlogIndex()
       .then((data) => {
-        const live = (data as { blog: { posts: BlogPost[] } }).blog.posts;
-        if (live) setPosts(live);
+        if (data) setPosts(data as BlogPost[]);
       })
       .catch(() => {})
       .finally(() => setLoadingList(false));
@@ -79,14 +78,37 @@ export default function BlogList() {
     }
     setTogglingSlug(slug);
     try {
+      const newFeatured = !current;
+
+      // Update blog-index.json
+      const { content: idxRaw, sha: idxSha } = await getFile('public/blog-index.json');
+      const idx = JSON.parse(idxRaw);
+      const idxPos = idx.findIndex((p: BlogPost) => p.slug === slug);
+      if (idxPos >= 0) idx[idxPos].featured = newFeatured;
+      await updateFile('public/blog-index.json', JSON.stringify(idx, null, 2) + '\n', idxSha,
+        `admin: ${newFeatured ? 'feature' : 'unfeature'} post "${slug}"`);
+
+      // Update portfolio.json — add or remove from featured list
       const { content: rawJson, sha } = await getFile('src/data/portfolio.json');
       const full = JSON.parse(rawJson);
-      const idx = full.blog.posts.findIndex((p: BlogPost) => p.slug === slug);
-      if (idx >= 0) full.blog.posts[idx].featured = !current;
+      if (newFeatured) {
+        // Add to featured list if not already there
+        const exists = full.blog.posts.find((p: BlogPost) => p.slug === slug);
+        if (!exists) {
+          const post = posts.find((p) => p.slug === slug);
+          if (post) full.blog.posts.unshift({ ...post, featured: true });
+        } else {
+          exists.featured = true;
+        }
+      } else {
+        // Remove from featured list
+        full.blog.posts = full.blog.posts.filter((p: BlogPost) => p.slug !== slug);
+      }
       await updateFile('src/data/portfolio.json', JSON.stringify(full, null, 2) + '\n', sha,
-        `admin: ${!current ? 'feature' : 'unfeature'} post "${slug}"`);
-      setPosts((prev) => prev.map((p) => p.slug === slug ? { ...p, featured: !current } : p));
-      toast.success(!current ? 'Featured on home page' : 'Removed from home page');
+        `admin: ${newFeatured ? 'feature' : 'unfeature'} post "${slug}"`);
+
+      setPosts((prev) => prev.map((p) => p.slug === slug ? { ...p, featured: newFeatured } : p));
+      toast.success(newFeatured ? 'Featured on home page' : 'Removed from home page');
     } catch (err) {
       toast.error(`Failed: ${err instanceof Error ? err.message : String(err)}`);
     } finally {
@@ -103,16 +125,27 @@ export default function BlogList() {
     setDeletingSlug(slug);
     setConfirmDelete(null);
     try {
+      // Remove from blog-index.json
+      const { content: idxRaw, sha: idxSha } = await getFile('public/blog-index.json');
+      const idx = JSON.parse(idxRaw);
+      const newIdx = idx.filter((p: BlogPost) => p.slug !== slug);
+      await updateFile('public/blog-index.json', JSON.stringify(newIdx, null, 2) + '\n', idxSha,
+        `admin: delete post "${slug}"`);
+
+      // Remove from portfolio.json (if featured)
       const { content: rawJson, sha: jsonSha } = await getFile('src/data/portfolio.json');
       const full = JSON.parse(rawJson);
       full.blog.posts = full.blog.posts.filter((p: BlogPost) => p.slug !== slug);
       await updateFile('src/data/portfolio.json', JSON.stringify(full, null, 2) + '\n', jsonSha,
         `admin: delete post "${slug}"`);
+
+      // Delete .md file
       try {
         const { sha: mdSha } = await getFile(`public/blog/${slug}.md`);
         const { deleteFile } = await import('@/lib/github');
         await deleteFile(`public/blog/${slug}.md`, mdSha, `admin: delete post "${slug}"`);
       } catch { /* md may not exist */ }
+
       setPosts((prev) => prev.filter((p) => p.slug !== slug));
       toast.success('Post deleted');
     } catch (err) {

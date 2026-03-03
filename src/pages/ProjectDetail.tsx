@@ -10,16 +10,46 @@ import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import portfolioData from '@/data/portfolio.json';
 
+interface ProjectMeta {
+  title: string;
+  slug: string;
+  description: string;
+  tags: string[];
+  metrics: string;
+  year: string;
+  category: string;
+  liveUrl?: string;
+  cover?: string;
+  featured?: boolean;
+  status?: string;
+}
+
+function stripFrontmatter(text: string): string {
+  return text.replace(/^---[\s\S]*?---\s*\n?/, '');
+}
+
 export default function ProjectDetail() {
   const { slug } = useParams<{ slug: string }>();
   const [content, setContent] = useState<string>('');
+  const [project, setProject] = useState<ProjectMeta | null>(
+    (portfolioData.projects.items.find((p) => p.slug === slug) as ProjectMeta) ?? null
+  );
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
-  const project = portfolioData.projects.items.find((p) => p.slug === slug);
-
   useEffect(() => {
     if (!slug) return;
+
+    // Fetch project metadata from index if not already found in portfolio.json
+    if (!project) {
+      fetch('/projects-index.json')
+        .then((r) => r.ok ? r.json() : [])
+        .then((data: ProjectMeta[]) => {
+          const found = data.find((p) => p.slug === slug);
+          if (found) setProject(found);
+        })
+        .catch(() => {});
+    }
 
     fetch(`/projects/${slug}.md`)
       .then((res) => {
@@ -27,7 +57,7 @@ export default function ProjectDetail() {
         return res.text();
       })
       .then((text) => {
-        setContent(text);
+        setContent(stripFrontmatter(text));
         setLoading(false);
       })
       .catch(() => {
@@ -36,7 +66,26 @@ export default function ProjectDetail() {
       });
   }, [slug]);
 
-  if (!project) {
+  // Still fetching metadata for non-featured projects
+  if (!project && loading) {
+    return (
+      <div className="min-h-screen bg-background">
+        <Header />
+        <main className="pt-32 pb-20">
+          <div className="container-wide max-w-4xl mx-auto px-4 animate-pulse space-y-4">
+            <div className="h-6 bg-muted rounded w-32" />
+            <div className="h-10 bg-muted rounded w-3/4" />
+            <div className="h-4 bg-muted rounded w-full" />
+            <div className="h-4 bg-muted rounded w-5/6" />
+          </div>
+        </main>
+        <Footer />
+      </div>
+    );
+  }
+
+  // Show "not found" only after content fetch is done and project is still null
+  if (!project && !loading) {
     return (
       <div className="min-h-screen bg-background">
         <SEO title="Project Not Found" url={`/projects/${slug}`} />
@@ -112,9 +161,9 @@ export default function ProjectDetail() {
             </div>
 
             {/* Live Site Link */}
-            {'liveUrl' in project && (project as any).liveUrl && (
+            {project.liveUrl && (
               <a
-                href={(project as any).liveUrl}
+                href={project.liveUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 mt-6 px-5 py-2.5 rounded-lg bg-primary text-primary-foreground font-medium hover:bg-primary/90 transition-colors"

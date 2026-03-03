@@ -19,7 +19,7 @@ export function ProjectsSection() {
         </div>
 
         <div className="grid md:grid-cols-2 gap-6">
-          {projects.items.filter((p) => (p as { featured?: boolean }).featured).map((project, index) => (
+          {projects.items.map((project, index) => (
             <Link
               key={index}
               to={`/projects/${project.slug}`}
