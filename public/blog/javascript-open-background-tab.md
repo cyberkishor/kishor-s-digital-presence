@@ -1,3 +1,16 @@
+---
+title: "Open Browser Tabs in Background with JavaScript"
+slug: "javascript-open-background-tab"
+date: "2014-08-10"
+excerpt: "Open new browser tabs without switching focus using JavaScript event simulation."
+cover: "/blog/images/javascript-cover.jpg"
+readTime: "4 min read"
+category: "JavaScript"
+author: "Kishor Kumar Mahato"
+status: "published"
+featured: "false"
+---
+
 Learn how to open new browser tabs in the background using JavaScript, with different approaches for Chrome and Firefox.
 
 ## Overview

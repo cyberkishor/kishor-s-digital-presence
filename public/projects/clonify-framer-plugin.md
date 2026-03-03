@@ -1,3 +1,17 @@
+---
+title: "Clonify Framer Plugin"
+slug: "clonify-framer-plugin"
+description: "Framer plugin that connects to the Clonify library. Designers can browse 1,000+ templates, preview them, and import sections directly into their Framer projects. Subscription tiers control what's accessible."
+tags: "TypeScript, Framer API, JavaScript"
+metrics: "1,000+ assets"
+year: "2025"
+category: "Plugin Development"
+liveUrl: "https://www.framer.com/marketplace/plugins/clonify/"
+author: "Kishor Kumar Mahato"
+featured: "false"
+status: "published"
+---
+
 # Clonify Framer Plugin
 
 ![Clonify Framer Plugin](images/clonify-framer.png)

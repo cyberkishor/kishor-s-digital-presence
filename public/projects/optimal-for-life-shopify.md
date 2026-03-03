@@ -1,3 +1,17 @@
+---
+title: "Optimal For Life – Shopify Store"
+slug: "optimal-for-life-shopify"
+description: "Took a default Shopify theme and customized it to match the client's health and wellness branding. Built out the homepage, collections, product pages, and made everything work well on mobile."
+tags: "Shopify, Liquid, JavaScript"
+metrics: "Optimized Store"
+year: "2025"
+category: "E-Commerce"
+liveUrl: "https://optimalforlife.com/"
+author: "Kishor Kumar Mahato"
+featured: "false"
+status: "published"
+---
+
 # Optimal For Life: Shopify Store Customization
 
 ![Optimal For Life Store](images/optimal.avif)

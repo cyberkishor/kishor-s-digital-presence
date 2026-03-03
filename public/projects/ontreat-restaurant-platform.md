@@ -1,3 +1,17 @@
+---
+title: "Ontreat – Restaurant Booking & Gifting Platform"
+slug: "ontreat-restaurant-platform"
+description: "Think Airbnb, but for restaurants. Customers browse menus, pick items, and book a treat for friends or family back in Nepal, even from abroad. Built with Django REST Framework with Stripe, E-Sewa, and NIBL payment gateways."
+tags: "Django, Django REST, MySQL, Stripe, Bootstrap"
+metrics: "Full-Stack Platform"
+year: "2019"
+category: "Web Application"
+liveUrl: ""
+author: "Kishor Kumar Mahato"
+featured: "true"
+status: "published"
+---
+
 # Ontreat: Restaurant Booking & Gifting Platform
 
 ![Ontreat Homepage](images/ontreat.png)

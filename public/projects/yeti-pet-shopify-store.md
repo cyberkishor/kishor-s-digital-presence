@@ -1,3 +1,17 @@
+---
+title: "Yeti Pet – Shopify Store"
+slug: "yeti-pet-shopify-store"
+description: "Built a custom Shopify theme from the client's designs for a premium pet products store. Every page matches the mockups exactly, works on all screen sizes, and the store owner can update content without a developer."
+tags: "Shopify, Liquid, JavaScript"
+metrics: "Custom Theme"
+year: "2025"
+category: "E-Commerce"
+liveUrl: "https://yeti.pet/"
+author: "Kishor Kumar Mahato"
+featured: "false"
+status: "published"
+---
+
 # Yeti Pet: Custom Shopify Theme for Premium Pet Products
 
 ![Yeti Pet Store](images/yeti.avif)

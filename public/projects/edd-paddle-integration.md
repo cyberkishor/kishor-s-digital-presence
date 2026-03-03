@@ -1,3 +1,17 @@
+---
+title: "EDD Paddle Integration – WordPress Payment Plugin"
+slug: "edd-paddle-integration"
+description: "WordPress plugin that adds Paddle as a payment option for Easy Digital Downloads. Customers get one-click checkout with card or PayPal, and Paddle handles VAT/tax automatically."
+tags: "WordPress, PHP, Paddle, Bootstrap"
+metrics: "Payment Plugin"
+year: "2018"
+category: "Plugin Development"
+liveUrl: ""
+author: "Kishor Kumar Mahato"
+featured: "false"
+status: "published"
+---
+
 # EDD Paddle Integration: WordPress Payment Plugin
 
 ![EDD Paddle Integration](images/paddle.png)

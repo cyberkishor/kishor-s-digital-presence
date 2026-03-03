@@ -1,3 +1,16 @@
+---
+title: "Install mod_wsgi on Mac"
+slug: "install-mod-wsgi-mac"
+date: "2015-07-04"
+excerpt: "Quick guide to installing mod_wsgi on macOS for running Django with Apache."
+cover: "/blog/images/deployment-cover.jpg"
+readTime: "3 min read"
+category: "Django"
+author: "Kishor Kumar Mahato"
+status: "published"
+featured: "false"
+---
+
 A quick guide to installing mod_wsgi on macOS for running Django applications with Apache.
 
 ## Prerequisites

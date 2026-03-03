@@ -1,3 +1,17 @@
+---
+title: "Vital Origin – Premium Shopify Store"
+slug: "vital-origin-shopify-store"
+description: "Set up the entire Shopify store for an Australian wellness brand. Premium theme customization to match their clean, natural branding, full product/collection setup, mobile optimization, and SEO."
+tags: "Shopify, Liquid, JavaScript, SEO"
+metrics: "Premium Store"
+year: "2025"
+category: "E-Commerce"
+liveUrl: "https://vitalorigin.com.au/"
+author: "Kishor Kumar Mahato"
+featured: "false"
+status: "published"
+---
+
 # Vital Origin: Premium Shopify Store for a Wellness Brand
 
 ![Vital Origin Store](images/vital-home.png)

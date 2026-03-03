@@ -1,3 +1,16 @@
+---
+title: "JavaScript Email Validation"
+slug: "javascript-email-validation"
+date: "2014-02-07"
+excerpt: "Validate email addresses using JavaScript with regular expressions."
+cover: "/blog/images/javascript-cover.jpg"
+readTime: "4 min read"
+category: "JavaScript"
+author: "Kishor Kumar Mahato"
+status: "published"
+featured: "false"
+---
+
 Learn how to validate email addresses using JavaScript with regular expressions.
 
 ## Overview

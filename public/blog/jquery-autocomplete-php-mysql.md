@@ -1,3 +1,16 @@
+---
+title: "jQuery Autocomplete with PHP and MySQL"
+slug: "jquery-autocomplete-php-mysql"
+date: "2013-04-12"
+excerpt: "Build an autocomplete search feature using jQuery, AJAX, PHP, and MySQL."
+cover: "/blog/images/javascript-cover.jpg"
+readTime: "6 min read"
+category: "JavaScript"
+author: "Kishor Kumar Mahato"
+status: "published"
+featured: "false"
+---
+
 Build an autocomplete search feature using jQuery, AJAX, PHP, and MySQL.
 
 ## Overview

@@ -1,3 +1,17 @@
+---
+title: "Prezlock – Custom Shopify Theme for Smart Padlock Brand"
+slug: "prezlock-shopify-store"
+description: "Custom Shopify theme for a smart fingerprint padlock brand. Modified Dawn theme with interactive product pages, multi-currency support (5 currencies), custom slideshow sections, and custom Liquid for the checkout flow."
+tags: "Shopify, Liquid, Theme Customization, Ecommerce"
+metrics: "Multi-Currency Store"
+year: "2019"
+category: "E-Commerce"
+liveUrl: "https://www.prezlock.com/"
+author: "Kishor Kumar Mahato"
+featured: "false"
+status: "published"
+---
+
 # Prezlock: Custom Shopify Theme for a Smart Padlock Brand
 
 ![Prezlock Store](images/prezlock.webp)

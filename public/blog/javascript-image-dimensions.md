@@ -1,3 +1,16 @@
+---
+title: "Get Image Dimensions with JavaScript"
+slug: "javascript-image-dimensions"
+date: "2014-06-05"
+excerpt: "Multiple methods to get image width and height dynamically using JavaScript."
+cover: "/blog/images/javascript-cover.jpg"
+readTime: "6 min read"
+category: "JavaScript"
+author: "Kishor Kumar Mahato"
+status: "published"
+featured: "false"
+---
+
 Learn how to get image dimensions (width and height) dynamically using JavaScript.
 
 ## Overview

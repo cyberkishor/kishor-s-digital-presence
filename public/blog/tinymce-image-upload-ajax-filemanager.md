@@ -1,3 +1,16 @@
+---
+title: "TinyMCE Image Upload with Ajax File Manager"
+slug: "tinymce-image-upload-ajax-filemanager"
+date: "2013-06-05"
+excerpt: "Add image upload functionality to TinyMCE editor using Ajax File Manager plugin."
+cover: "/blog/images/javascript-cover.jpg"
+readTime: "5 min read"
+category: "JavaScript"
+author: "Kishor Kumar Mahato"
+status: "published"
+featured: "false"
+---
+
 Learn how to add image upload functionality to TinyMCE editor using Ajax File Manager plugin.
 
 ## Overview

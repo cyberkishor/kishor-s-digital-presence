@@ -1,3 +1,16 @@
+---
+title: "Django Admin get_list_display_links"
+slug: "django-admin-list-display-links"
+date: "2015-06-05"
+excerpt: "Dynamically control clickable columns in Django admin based on user permissions."
+cover: "/blog/images/django-cover.jpg"
+readTime: "4 min read"
+category: "Django"
+author: "Kishor Kumar Mahato"
+status: "published"
+featured: "false"
+---
+
 Learn how to dynamically control which columns are clickable links in Django's admin list view based on user permissions.
 
 ## Overview

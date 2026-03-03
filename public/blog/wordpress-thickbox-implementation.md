@@ -1,3 +1,16 @@
+---
+title: "WordPress ThickBox Implementation"
+slug: "wordpress-thickbox-implementation"
+date: "2014-12-15"
+excerpt: "Implement WordPress's native ThickBox modal functionality without additional plugins."
+cover: "/blog/images/wordpress-cover.jpg"
+readTime: "5 min read"
+category: "WordPress"
+author: "Kishor Kumar Mahato"
+status: "published"
+featured: "false"
+---
+
 Learn how to implement WordPress's native ThickBox modal functionality without requiring additional plugins.
 
 ## Overview

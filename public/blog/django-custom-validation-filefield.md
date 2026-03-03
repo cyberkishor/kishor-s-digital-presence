@@ -1,3 +1,16 @@
+---
+title: "Django Custom Validation for FileField"
+slug: "django-custom-validation-filefield"
+date: "2015-07-09"
+excerpt: "Restrict file uploads to specific formats using custom validators."
+cover: "/blog/images/django-cover.jpg"
+readTime: "4 min read"
+category: "Django"
+author: "Kishor Kumar Mahato"
+status: "published"
+featured: "false"
+---
+
 Learn how to implement custom validation rules for Django's FileField to restrict uploads to specific file types.
 
 ## Overview

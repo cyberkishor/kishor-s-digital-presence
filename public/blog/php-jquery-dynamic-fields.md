@@ -1,3 +1,16 @@
+---
+title: "Dynamic Form Fields with PHP and jQuery"
+slug: "php-jquery-dynamic-fields"
+date: "2014-11-20"
+excerpt: "Create repeatable form fields that users can add and remove dynamically."
+cover: "/blog/images/php-cover.jpg"
+readTime: "6 min read"
+category: "PHP"
+author: "Kishor Kumar Mahato"
+status: "published"
+featured: "false"
+---
+
 Learn how to create dynamic repeater fields in HTML forms using PHP and jQuery, allowing users to add and remove field sets on the fly.
 
 ## Overview

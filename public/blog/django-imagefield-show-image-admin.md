@@ -1,3 +1,16 @@
+---
+title: "Django ImageField Show Image in Admin"
+slug: "django-imagefield-show-image-admin"
+date: "2015-03-30"
+excerpt: "Display ImageField as actual image thumbnails in Django admin."
+cover: "/blog/images/django-cover.jpg"
+readTime: "5 min read"
+category: "Django"
+author: "Kishor Kumar Mahato"
+status: "published"
+featured: "false"
+---
+
 Learn how to display ImageField as actual image thumbnails in Django admin instead of just showing file paths.
 
 ## The Problem

@@ -1,3 +1,16 @@
+---
+title: "Django dumpdata and loaddata"
+slug: "django-dumpdata-loaddata"
+date: "2015-08-06"
+excerpt: "Master Django's database backup and restoration commands for data migration."
+cover: "/blog/images/django-cover.jpg"
+readTime: "5 min read"
+category: "Django"
+author: "Kishor Kumar Mahato"
+status: "published"
+featured: "false"
+---
+
 Django's `dumpdata` and `loaddata` management commands are essential tools for database backup, data migration, and fixture management. This guide covers practical usage patterns.
 
 ## dumpdata Command

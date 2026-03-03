@@ -1,3 +1,16 @@
+---
+title: "The Art of Client Communication"
+slug: "client-communication"
+date: "2024-10-05"
+excerpt: "How clear communication leads to successful project outcomes."
+cover: "/blog/images/communication-cover.jpg"
+readTime: "5 min read"
+category: "Engineering"
+author: "Kishor Kumar Mahato"
+status: "published"
+featured: "true"
+---
+
 After working with clients across 15+ countries, I've learned that clear communication is often more important than technical skills. Here's what I've learned about keeping clients happy.
 
 ## Set Expectations Early

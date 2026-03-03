@@ -1,3 +1,16 @@
+---
+title: "Upload Image with Resize in PHP"
+slug: "upload-image-with-resize-php"
+date: "2015-11-24"
+excerpt: "Handle image uploads with automatic resizing using PHP's GD library."
+cover: "/blog/images/php-image-cover.jpg"
+readTime: "5 min read"
+category: "PHP"
+author: "Kishor Kumar Mahato"
+status: "published"
+featured: "false"
+---
+
 This tutorial demonstrates how to handle image uploads with automatic resizing functionality in PHP using the GD library.
 
 ## Overview

@@ -1,3 +1,16 @@
+---
+title: "Check User Group in Django Templates"
+slug: "django-check-user-group-templatetags"
+date: "2015-06-05"
+excerpt: "Create a template filter to check if a user belongs to a specific group."
+cover: "/blog/images/django-cover.jpg"
+readTime: "4 min read"
+category: "Django"
+author: "Kishor Kumar Mahato"
+status: "published"
+featured: "false"
+---
+
 Learn how to check if a user belongs to a specific group directly in Django templates using a custom template filter.
 
 ## The Problem

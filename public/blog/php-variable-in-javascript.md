@@ -1,3 +1,16 @@
+---
+title: "Assigning PHP Variables to JavaScript"
+slug: "php-variable-in-javascript"
+date: "2013-05-22"
+excerpt: "Properly pass PHP data to JavaScript using json_encode for safe data transfer."
+cover: "/blog/images/php-cover.jpg"
+readTime: "3 min read"
+category: "PHP"
+author: "Kishor Kumar Mahato"
+status: "published"
+featured: "false"
+---
+
 Learn how to properly pass PHP variables to JavaScript using json_encode.
 
 ## Overview

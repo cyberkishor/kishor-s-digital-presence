@@ -1,3 +1,17 @@
+---
+title: "Himalayan Travels – WordPress Platform"
+slug: "himalayan-travels-wordpress"
+description: "Custom WordPress site for a travel company. Built the whole thing: custom theme, booking system with search/filtering, payment integration, and a blog. Optimized for speed and SEO."
+tags: "WordPress, PHP, Custom Theme, SEO"
+metrics: "Booking Platform"
+year: "2025"
+category: "Travel & Tourism"
+liveUrl: "https://himalayantravels.com/"
+author: "Kishor Kumar Mahato"
+featured: "false"
+status: "published"
+---
+
 # Himalayan Travels: WordPress Booking Platform
 
 ![Himalayan Travels](images/himalayan.avif)

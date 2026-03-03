@@ -1,3 +1,16 @@
+---
+title: "jQuery Text Separator Plugin"
+slug: "jquery-text-separator-plugin"
+date: "2013-09-14"
+excerpt: "Create a custom jQuery plugin to format text with separators for voucher codes and numbers."
+cover: "/blog/images/javascript-cover.jpg"
+readTime: "5 min read"
+category: "JavaScript"
+author: "Kishor Kumar Mahato"
+status: "published"
+featured: "false"
+---
+
 Create a custom jQuery plugin to separate text or numbers into groups with hyphens.
 
 ## Overview

@@ -1,3 +1,17 @@
+---
+title: "Gamer Gear Direct – Shopify Customization & Support"
+slug: "gamer-gear-direct"
+description: "Long-term Shopify developer for Australia's biggest racing simulator hardware store. I handle theme updates, custom features, performance work, bug fixes, and app integrations. The store serves 20,000+ customers."
+tags: "Shopify, Liquid, JavaScript, Theme Customization"
+metrics: "20,000+ customers"
+year: "2020"
+category: "E-Commerce"
+liveUrl: "https://gamergeardirect.com.au/"
+author: "Kishor Kumar Mahato"
+featured: "false"
+status: "published"
+---
+
 # Gamer Gear Direct: Ongoing Shopify Development
 
 ![Gamer Gear Direct Store](images/ggd.png)

@@ -1,3 +1,16 @@
+---
+title: "Validate Email Format with PHP"
+slug: "php-email-validation"
+date: "2013-06-06"
+excerpt: "Use PHP's built-in filter_var function for simple and reliable email validation."
+cover: "/blog/images/php-cover.jpg"
+readTime: "3 min read"
+category: "PHP"
+author: "Kishor Kumar Mahato"
+status: "published"
+featured: "false"
+---
+
 Learn how to validate email addresses in PHP using built-in filter functions.
 
 ## Overview

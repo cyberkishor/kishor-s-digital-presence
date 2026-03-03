@@ -7,6 +7,7 @@ metrics: "1,000+ UI components"
 year: "2025"
 category: "SaaS Platform"
 liveUrl: "https://library.clonify.io/"
+author: "Kishor Kumar Mahato"
 featured: "true"
 status: "published"
 ---

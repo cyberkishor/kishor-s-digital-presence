@@ -5,12 +5,13 @@ date: "2025-02-11"
 excerpt: "From tinkering with Python in 2009 to founding OctSpace, contributing WordPress plugins, speaking at WordCamps, and serving clients across 15+ countries — a look back at my journey."
 cover: "/blog/images/journey-cover.svg"
 readTime: "7 min read"
-category: "Engineering"
+category: "Career"
+author: "Kishor Kumar Mahato"
 status: "draft"
 featured: "true"
 ---
 
-More than fifteen years have passed since I initially wrote a line of code; what began in 2009 as simply being curious – playing around with Python and making bespoke CMSs – has become a career which has covered more than fifteen nations, over a hundred projects, and a path I never would have anticipated. Here’s a recall of how everything came about.
+More than fifteen years have passed since I initially wrote a line of code; what began in 2009 as simply being curious – playing around with Python and making bespoke CMSs – has become a career which has covered more than fifteen nations, over a hundred projects, and a path I never would have anticipated. Here's a recall of how everything came about.
 
 ![My Journey - From Nepal to Global Tech](images/journey-cover.svg)
 
@@ -60,7 +61,7 @@ The tech community in Nepal has given me a lot, and I believe in giving back. My
 - [WordCamp Kathmandu 2023](https://kathmandu.wordcamp.org/2023/organizer/kishor-kumar-mahato/) – I continued to help organise, assisting in bringing the community together.
 - [WordCamp Nepal 2025](https://nepal.wordcamp.org/2025/organizer/kishor-kumar-mahato/) – I am currently the AV Team Lead, working to ensure the event has a good audio-visual experience.
 
-As I stated in [an interview with DevotePress](https://devotepress.com/wordpress-news/wcktm-2016-stars-interview-kishor-kumar-mahato/) in 2016, the most valuable thing about WordCamps, for me, is “the exchange of knowledge” – people with a range of abilities meeting to share what they know. This has not changed. 
+As I stated in [an interview with DevotePress](https://devotepress.com/wordpress-news/wcktm-2016-stars-interview-kishor-kumar-mahato/) in 2016, the most valuable thing about WordCamps, for me, is "the exchange of knowledge" – people with a range of abilities meeting to share what they know. This has not changed.
 
 I also feel very strongly about making the WordPress community more welcoming to all. In the Nepal WordPress community, less than 15% of participants are women, and I have consistently supported increasing this figure. Every person is a valuable part of this community.
 
@@ -102,7 +103,7 @@ With over fifteen years of experience and more than fifty satisfied clients, I h
 
 3. Technology is a means to an end, not the end itself. I have experience with Django, Laravel, React, Shopify, WordPress, and other systems. The best technology is the one which suits the problem; do not become too attached to any one framework.
 
-4. Deliver things which function. My slogan is “Building products that solve real problems” and I intend this. Elegant code is important, but less so than a product which works for users, consistently.
+4. Deliver things which function. My slogan is "Building products that solve real problems" and I intend this. Elegant code is important, but less so than a product which works for users, consistently.
 
 5. Remain inquisitive. The technology world moves quickly. What has kept me current over fifteen years was not a single skill – it was a willingness to continue to study.
 
@@ -132,12 +133,12 @@ If you're a developer just starting out in Nepal, or anywhere else – know that
 *Would you like to collaborate or simply say hello? [Get in touch](/contact).*
 
 
-                                                                                                                                    
+
   6 SVG placeholder images in public/blog/images/
 
-  ┌─────────────────────────────┬─────────────────────────────────┬────────────────────────────────────────────────────┐        │            Image            │             Section             │               Suggested replacement             │                        
-  ├─────────────────────────────┼─────────────────────────────────┼────────────────────────────────────────────────────┤          
-  │ journey-cover.svg           │ Blog cover/hero                 │ Your professional headshot or a scenic Nepal photo    │                         
+  ┌─────────────────────────────┬─────────────────────────────────┬────────────────────────────────────────────────────┐        │            Image            │             Section             │               Suggested replacement             │
+  ├─────────────────────────────┼─────────────────────────────────┼────────────────────────────────────────────────────┤
+  │ journey-cover.svg           │ Blog cover/hero                 │ Your professional headshot or a scenic Nepal photo    │
   ├─────────────────────────────┼─────────────────────────────────┼────────────────────────────────────────────────────┤
   │ early-days.svg              │ The Early Days                  │ A throwback photo from your early coding days      │
   ├─────────────────────────────┼─────────────────────────────────┼────────────────────────────────────────────────────┤

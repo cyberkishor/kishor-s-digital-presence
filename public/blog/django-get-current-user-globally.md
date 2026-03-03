@@ -1,3 +1,16 @@
+---
+title: "Django Get Current User Globally"
+slug: "django-get-current-user-globally"
+date: "2015-07-07"
+excerpt: "Access the authenticated user from anywhere in your Django project using middleware."
+cover: "/blog/images/django-cover.jpg"
+readTime: "5 min read"
+category: "Django"
+author: "Kishor Kumar Mahato"
+status: "published"
+featured: "false"
+---
+
 Sometimes you need to access the current authenticated user from places where the request object isn't available, like models or utility functions. This tutorial shows how to create middleware that makes the current user accessible globally.
 
 ## The Problem

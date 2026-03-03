@@ -1,3 +1,17 @@
+---
+title: "Spin2Win – WooCommerce Wheel of Fortune Plugin"
+slug: "spin2win-wordpress-plugin"
+description: "WordPress plugin that adds a spin-the-wheel popup to WooCommerce stores. Store owners set the prizes and probabilities, customize the look with CSS, preview it live in the admin, and capture emails through MailChimp."
+tags: "WordPress, WooCommerce, PHP, JavaScript"
+metrics: "WordPress Plugin"
+year: "2018"
+category: "Plugin Development"
+liveUrl: ""
+author: "Kishor Kumar Mahato"
+featured: "false"
+status: "published"
+---
+
 # Spin2Win: WooCommerce Wheel of Fortune Plugin
 
 ![Spin2Win Plugin](images/spin2win.png)

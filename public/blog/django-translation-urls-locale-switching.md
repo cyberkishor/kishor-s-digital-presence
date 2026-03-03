@@ -1,3 +1,16 @@
+---
+title: "Django Translation URLs with Locale Switching"
+slug: "django-translation-urls-locale-switching"
+date: "2015-01-18"
+excerpt: "Implement internationalized URLs with language switching in Django applications."
+cover: "/blog/images/django-cover.jpg"
+readTime: "6 min read"
+category: "Django"
+author: "Kishor Kumar Mahato"
+status: "published"
+featured: "false"
+---
+
 Learn how to implement language locale switching in Django applications with translated URLs, allowing users to navigate between language versions seamlessly.
 
 ## Overview

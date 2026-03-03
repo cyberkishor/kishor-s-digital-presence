@@ -1,3 +1,16 @@
+---
+title: "Install .sh Files on Linux"
+slug: "install-sh-files-linux"
+date: "2013-05-22"
+excerpt: "Quick guide to installing shell script files on Linux systems."
+cover: "/blog/images/deployment-cover.jpg"
+readTime: "2 min read"
+category: "DevOps"
+author: "Kishor Kumar Mahato"
+status: "published"
+featured: "false"
+---
+
 A quick guide to installing shell script (.sh) files on Linux.
 
 ## Overview

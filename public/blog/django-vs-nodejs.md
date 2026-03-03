@@ -1,3 +1,16 @@
+---
+title: "Why I Prefer Django Over Node.js"
+slug: "django-vs-nodejs"
+date: "2024-11-20"
+excerpt: "A practical comparison for building production-grade APIs."
+cover: "/blog/images/django-vs-node-cover.jpg"
+readTime: "6 min read"
+category: "Django"
+author: "Kishor Kumar Mahato"
+status: "published"
+featured: "true"
+---
+
 After years of building production APIs with both Django and Node.js, I've developed a clear preference. Here's my practical comparison.
 
 ## The Case for Django

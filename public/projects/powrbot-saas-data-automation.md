@@ -1,3 +1,17 @@
+---
+title: "Powrbot – SaaS Data Automation"
+slug: "powrbot-saas-data-automation"
+description: "SaaS platform that automates company data lookup and enrichment. Upload a list of companies, get structured data back. I led the full-stack build: Django backend, Stripe billing, bulk processing with Celery, and role-based permissions."
+tags: "Django, Python, Stripe, REST API"
+metrics: "Production SaaS"
+year: "2018"
+category: "SaaS Platform"
+liveUrl: "https://powrbot.com/"
+author: "Kishor Kumar Mahato"
+featured: "true"
+status: "published"
+---
+
 # Powrbot: SaaS Platform for Company Data Automation
 
 ![Powrbot](https://media.contra.com/image/upload/w_1100,q_auto/jdscjp7vkymzqqt3byzm.avif)

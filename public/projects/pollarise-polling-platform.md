@@ -1,3 +1,17 @@
+---
+title: "Pollarise – Interactive Polling & Survey Platform"
+slug: "pollarise-polling-platform"
+description: "Polling and survey platform I built from scratch. Create polls, collect votes in real-time, and see results update live. Next.js on the frontend, FastAPI on the backend, PostgreSQL for storage, all deployed with CI/CD."
+tags: "Next.js, FastAPI, PostgreSQL, CI/CD"
+metrics: "Full-Stack SaaS"
+year: "2026"
+category: "Web Application"
+liveUrl: ""
+author: "Kishor Kumar Mahato"
+featured: "true"
+status: "published"
+---
+
 # Pollarise: Interactive Polling & Survey Platform
 
 ![Pollarise Screenshot](images/pollarise.png)

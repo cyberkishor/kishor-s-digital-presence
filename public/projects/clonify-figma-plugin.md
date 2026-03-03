@@ -1,3 +1,17 @@
+---
+title: "Clonify Figma Plugin"
+slug: "clonify-figma-plugin"
+description: "Figma plugin that lets designers browse the Clonify library and drop components straight into their canvas. One click to import, layouts stay intact, and premium content is gated by subscription tier."
+tags: "TypeScript, Figma API, JavaScript"
+metrics: "Figma Community"
+year: "2025"
+category: "Plugin Development"
+liveUrl: "https://www.figma.com/community/plugin/1282271698729766959/clonify-library"
+author: "Kishor Kumar Mahato"
+featured: "false"
+status: "published"
+---
+
 # Clonify Figma Plugin
 
 ![Clonify Figma Plugin](images/clonify-figma.png)

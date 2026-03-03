@@ -1,3 +1,16 @@
+---
+title: "Django Real-Time Notifications with SwampDragon"
+slug: "django-realtime-notifications-swampdragon"
+date: "2015-09-06"
+excerpt: "Implementing real-time notifications in Django applications using SwampDragon and WebSockets."
+cover: "/blog/images/django-swampdragon-cover.jpg"
+readTime: "10 min read"
+category: "Django"
+author: "Kishor Kumar Mahato"
+status: "published"
+featured: "false"
+---
+
 This tutorial demonstrates how to implement real-time notifications in Django applications using SwampDragon. The solution supports browser notifications and persistent message display across multiple browsers simultaneously.
 
 ## Overview

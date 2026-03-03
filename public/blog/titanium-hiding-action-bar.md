@@ -1,3 +1,16 @@
+---
+title: "Hiding Action Bar in Titanium"
+slug: "titanium-hiding-action-bar"
+date: "2015-01-10"
+excerpt: "Hide the Action Bar in Titanium mobile applications using JavaScript and theme modifications."
+cover: "/blog/images/mobile-cover.jpg"
+readTime: "4 min read"
+category: "Mobile"
+author: "Kishor Kumar Mahato"
+status: "published"
+featured: "false"
+---
+
 Learn how to hide the Action Bar in Titanium mobile applications using JavaScript and theme modifications.
 
 ## Overview

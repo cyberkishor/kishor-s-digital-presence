@@ -1,3 +1,16 @@
+---
+title: "Building Scalable Shopify Apps"
+slug: "building-scalable-shopify-apps"
+date: "2024-12-15"
+excerpt: "Lessons learned from building apps that serve thousands of stores."
+cover: "/blog/images/shopify-apps-cover.jpg"
+readTime: "8 min read"
+category: "Shopify"
+author: "Kishor Kumar Mahato"
+status: "published"
+featured: "true"
+---
+
 Building scalable Shopify apps requires careful planning and architecture decisions from the start. After building apps that serve thousands of stores, here are the key lessons I've learned.
 
 ## Start with the Right Architecture

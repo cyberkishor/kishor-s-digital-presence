@@ -1,3 +1,16 @@
+---
+title: "Custom Upload Image in WordPress"
+slug: "custom-upload-image-wordpress"
+date: "2015-11-24"
+excerpt: "Implement custom image uploads in WordPress with user authentication and file validation."
+cover: "/blog/images/wordpress-cover.jpg"
+readTime: "6 min read"
+category: "WordPress"
+author: "Kishor Kumar Mahato"
+status: "published"
+featured: "false"
+---
+
 This tutorial demonstrates how to implement custom image uploads in WordPress with user authentication, file validation, and organized directory structure.
 
 ## Overview
