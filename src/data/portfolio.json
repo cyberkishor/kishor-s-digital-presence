@@ -179,7 +179,8 @@
         "slug": "powrbot-saas-data-automation",
         "year": "2018",
         "category": "SaaS Platform",
-        "liveUrl": "https://powrbot.com/"
+        "liveUrl": "https://powrbot.com/",
+        "featured": true
       },
       {
         "title": "Pollarise – Interactive Polling & Survey Platform",
