@@ -8,7 +8,7 @@ year: "2025"
 category: "SaaS Platform"
 liveUrl: "https://library.clonify.io/"
 featured: "false"
-status: "draft"
+status: "published"
 ---
 
 # Clonify: UI Library Platform for Framer & Figma
