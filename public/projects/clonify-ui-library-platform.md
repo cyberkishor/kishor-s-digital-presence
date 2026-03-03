@@ -1,3 +1,16 @@
+---
+title: "Clonify – UI Library Platform"
+slug: "clonify-ui-library-platform"
+description: "SaaS platform with 1,000+ UI components for Framer and Figma. I built the whole thing: Next.js frontend, PayloadCMS backend, Paddle billing, and a browsing experience that stays fast with thousands of assets."
+tags: "Next.js, PayloadCMS, MongoDB, Paddle"
+metrics: "1,000+ UI components"
+year: "2025"
+category: "SaaS Platform"
+liveUrl: "https://library.clonify.io/"
+featured: "false"
+status: "draft"
+---
+
 # Clonify: UI Library Platform for Framer & Figma
 
 ![Clonify Platform Screenshot](images/clonify-library.png)
@@ -206,3 +219,4 @@ Key indexes I set up:
 - API layer that powers both the website and the Figma/Framer plugins
 - Clean, documented codebase another developer can pick up
 - The client provided the designs and the product vision. I designed the system and built it with one teammate.
+
