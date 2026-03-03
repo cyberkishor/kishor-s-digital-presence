@@ -7,7 +7,7 @@ metrics: "1,000+ UI components"
 year: "2025"
 category: "SaaS Platform"
 liveUrl: "https://library.clonify.io/"
-featured: "false"
+featured: "true"
 status: "published"
 ---
 
