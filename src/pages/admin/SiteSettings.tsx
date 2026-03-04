@@ -141,6 +141,39 @@ export default function SiteSettings() {
             {tab === 'general' && (
               <div className="space-y-5">
                 <Section title="Branding">
+                  <div className="grid grid-cols-2 gap-4">
+                    <Field label="Default Theme">
+                      <select
+                        value={settings.defaultTheme}
+                        onChange={(e) => setField('defaultTheme', e.target.value as SiteSettings['defaultTheme'])}
+                        className="w-full h-9 rounded-md border border-input bg-background px-3 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                      >
+                        <option value="dark">Dark</option>
+                        <option value="light">Light</option>
+                        <option value="system">System</option>
+                      </select>
+                    </Field>
+                    <Field label="Accent Color" hint="Brand color used across the site and OG images">
+                      <div className="flex items-center gap-3">
+                        <input
+                          type="color"
+                          value={settings.accentColor || '#6366f1'}
+                          onChange={(e) => setField('accentColor', e.target.value)}
+                          className="h-9 w-14 rounded-md border border-input bg-background cursor-pointer p-1"
+                        />
+                        <Input
+                          value={settings.accentColor || ''}
+                          onChange={(e) => setField('accentColor', e.target.value)}
+                          placeholder="#6366f1"
+                          className="flex-1 font-mono"
+                        />
+                        <div
+                          className="w-8 h-8 rounded-full shrink-0 border border-border"
+                          style={{ backgroundColor: settings.accentColor || '#6366f1' }}
+                        />
+                      </div>
+                    </Field>
+                  </div>
                   <Field label="Site Name">
                     <Input value={settings.siteName} onChange={(e) => setField('siteName', e.target.value)} />
                   </Field>

@@ -21,13 +21,16 @@ import ProjectList from "./pages/admin/ProjectList";
 import ProjectEditor from "./pages/admin/ProjectEditor";
 import SiteSettingsPage from "./pages/admin/SiteSettings";
 import { ProtectedRoute } from "./components/admin/ProtectedRoute";
+import { ThemeConfig } from "./components/ThemeConfig";
+import { siteSettings } from "@/lib/siteSettings";
 
 const queryClient = new QueryClient();
 
 const App = () => (
   <HelmetProvider>
     <QueryClientProvider client={queryClient}>
-      <ThemeProvider attribute="class" defaultTheme="dark">
+      <ThemeProvider attribute="class" defaultTheme={siteSettings.defaultTheme}>
+        <ThemeConfig />
         <TooltipProvider>
         <Toaster />
         <Sonner />

@@ -92,6 +92,7 @@ function ogImagePlugin(): Plugin {
         const title = url.searchParams.get("title") || "Kishor Kumar Mahato";
         const description = url.searchParams.get("description") || "Senior Full-Stack Developer";
         const type = url.searchParams.get("type") || "website";
+        const accent = url.searchParams.get("accent") || "#6366f1";
         const authorName = url.searchParams.get("name") || "Kishor Kumar Mahato";
         const authorRole = url.searchParams.get("role") || "Senior Full-Stack Developer";
         const siteHost = url.searchParams.get("site") || "kishorkumarmahato.com.np";
@@ -117,17 +118,17 @@ function ogImagePlugin(): Plugin {
       <stop offset="100%" stop-color="#1a1a2e"/>
     </linearGradient>
     <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#6366f1"/>
-      <stop offset="100%" stop-color="#8b5cf6"/>
+      <stop offset="0%" stop-color="${accent}"/>
+      <stop offset="100%" stop-color="${accent}"/>
     </linearGradient>
   </defs>
   <rect width="1200" height="630" fill="url(#bg)"/>
-  <circle cx="1050" cy="100" r="220" fill="#6366f1" opacity="0.07"/>
-  <circle cx="150" cy="530" r="180" fill="#8b5cf6" opacity="0.06"/>
+  <circle cx="1050" cy="100" r="220" fill="${accent}" opacity="0.07"/>
+  <circle cx="150" cy="530" r="180" fill="${accent}" opacity="0.06"/>
   ${typeLabel ? `
-  <rect x="72" y="90" width="${typeLabel.length * 11}" height="36" rx="18" fill="#6366f120"/>
-  <rect x="72" y="90" width="${typeLabel.length * 11}" height="36" rx="18" fill="none" stroke="#6366f140" stroke-width="1"/>
-  <text x="${72 + (typeLabel.length * 11) / 2}" y="114" font-family="system-ui,sans-serif" font-size="16" font-weight="500" fill="#a5b4fc" text-anchor="middle">${typeLabel}</text>
+  <rect x="72" y="90" width="${typeLabel.length * 11}" height="36" rx="18" fill="${accent}20"/>
+  <rect x="72" y="90" width="${typeLabel.length * 11}" height="36" rx="18" fill="none" stroke="${accent}40" stroke-width="1"/>
+  <text x="${72 + (typeLabel.length * 11) / 2}" y="114" font-family="system-ui,sans-serif" font-size="16" font-weight="500" fill="${accent}" text-anchor="middle">${typeLabel}</text>
   ` : ""}
   <text x="72" y="${typeLabel ? 210 : 180}" font-family="system-ui,sans-serif" font-size="${titleFontSize}" font-weight="700" fill="#ffffff" letter-spacing="-1">${escXml(title.substring(0, 50))}${title.length > 50 ? "…" : ""}</text>
   <text x="72" y="${typeLabel ? 260 : 230}" font-family="system-ui,sans-serif" font-size="22" fill="#94a3b8">${escXml(description.substring(0, 80))}${description.length > 80 ? "…" : ""}</text>

@@ -1,5 +1,7 @@
 {
   "siteName": "Kishor Kumar Mahato",
+  "defaultTheme": "dark",
+  "accentColor": "#fbbf24",
   "siteUrl": "https://kishorkumarmahato.com.np",
   "siteDescription": "Senior Full-Stack Developer specializing in Shopify, SaaS, and custom web applications. Building products that solve real problems.",
   "logo": "/logo.jpg",

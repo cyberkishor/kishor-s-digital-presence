@@ -36,6 +36,7 @@ export function SEO({
     name: siteName,
     role: portfolioData.personal.title,
     site: siteUrl.replace(/^https?:\/\//, ''),
+    accent: siteSettings.accentColor || '#6366f1',
   });
   const dynamicOg = `${siteUrl}/api/og?${ogParams.toString()}`;
   const fullImage = resolvedImage
