@@ -1,14 +1,44 @@
 import type { IncomingMessage, ServerResponse } from 'http';
-import { Resvg } from '@resvg/resvg-js';
-import { readFileSync } from 'fs';
-import { join, dirname } from 'path';
-import { fileURLToPath } from 'url';
+import sharp from 'sharp';
+import { readFileSync, existsSync } from 'fs';
+import { join } from 'path';
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
+// Embed fonts as base64 in the SVG so librsvg (used by sharp) renders text correctly.
+// Try multiple path strategies to work both locally and on Vercel.
+function loadFont(filename: string): string {
+  const candidates = [
+    join(process.cwd(), 'api', 'fonts', filename),
+    join(process.cwd(), 'fonts', filename),
+    join(__dirname, 'fonts', filename),
+    join(__dirname, filename),
+  ];
+  for (const p of candidates) {
+    if (existsSync(p)) return readFileSync(p).toString('base64');
+  }
+  return '';
+}
 
-// Load fonts once at cold start from bundled files
-const fontRegular = readFileSync(join(__dirname, 'fonts', 'inter-400.ttf'));
-const fontBold    = readFileSync(join(__dirname, 'fonts', 'inter-700.ttf'));
+const fontRegularB64 = loadFont('inter-400.ttf');
+const fontBoldB64    = loadFont('inter-700.ttf');
+
+const fontStyle = fontRegularB64 ? `
+  <style>
+    @font-face {
+      font-family: 'Inter';
+      font-weight: 400;
+      src: url('data:font/truetype;base64,${fontRegularB64}') format('truetype');
+    }
+    @font-face {
+      font-family: 'Inter';
+      font-weight: 600;
+      src: url('data:font/truetype;base64,${fontBoldB64}') format('truetype');
+    }
+    @font-face {
+      font-family: 'Inter';
+      font-weight: 700;
+      src: url('data:font/truetype;base64,${fontBoldB64}') format('truetype');
+    }
+  </style>` : '';
 
 function escXml(str: string): string {
   return str
@@ -52,10 +82,11 @@ export default async function handler(req: IncomingMessage, res: ServerResponse)
     ? `<clipPath id="lc"><circle cx="96" cy="${avatarY}" r="24"/></clipPath>
        <image href="${logoDataUrl}" x="72" y="${avatarY - 24}" width="48" height="48" clip-path="url(#lc)" preserveAspectRatio="xMidYMid slice"/>`
     : `<circle cx="96" cy="${avatarY}" r="24" fill="url(#accent)"/>
-       <text x="96" y="${avatarY + 8}" font-family="Inter" font-size="20" font-weight="700" fill="#fff" text-anchor="middle">${escXml(authorName[0] || 'A')}</text>`;
+       <text x="96" y="${avatarY + 8}" font-family="Inter,sans-serif" font-size="20" font-weight="700" fill="#fff" text-anchor="middle">${escXml(authorName[0] || 'A')}</text>`;
 
   const svg = `<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <defs>
+    ${fontStyle}
     <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#0f0f0f"/>
       <stop offset="100%" stop-color="#1a1a2e"/>
@@ -71,14 +102,14 @@ export default async function handler(req: IncomingMessage, res: ServerResponse)
   ${typeLabel ? `
   <rect x="72" y="90" width="${typeLabel.length * 11}" height="36" rx="18" fill="${accent}20"/>
   <rect x="72" y="90" width="${typeLabel.length * 11}" height="36" rx="18" fill="none" stroke="${accent}40" stroke-width="1"/>
-  <text x="${72 + (typeLabel.length * 11) / 2}" y="114" font-family="Inter" font-size="16" font-weight="500" fill="${accent}" text-anchor="middle">${typeLabel}</text>
+  <text x="${72 + (typeLabel.length * 11) / 2}" y="114" font-family="Inter,sans-serif" font-size="16" font-weight="500" fill="${accent}" text-anchor="middle">${typeLabel}</text>
   ` : ''}
-  <text x="72" y="${typeLabel ? 210 : 180}" font-family="Inter" font-size="${titleFontSize}" font-weight="700" fill="#ffffff" letter-spacing="-1">${escXml(title.substring(0, 50))}${title.length > 50 ? '…' : ''}</text>
-  <text x="72" y="${typeLabel ? 260 : 230}" font-family="Inter" font-size="22" fill="#94a3b8">${escXml(description.substring(0, 80))}${description.length > 80 ? '…' : ''}</text>
+  <text x="72" y="${typeLabel ? 210 : 180}" font-family="Inter,sans-serif" font-size="${titleFontSize}" font-weight="700" fill="#ffffff" letter-spacing="-1">${escXml(title.substring(0, 50))}${title.length > 50 ? '…' : ''}</text>
+  <text x="72" y="${typeLabel ? 260 : 230}" font-family="Inter,sans-serif" font-size="22" fill="#94a3b8">${escXml(description.substring(0, 80))}${description.length > 80 ? '…' : ''}</text>
   <rect x="72" y="${typeLabel ? 296 : 266}" width="60" height="3" rx="2" fill="url(#accent)"/>
   ${avatarSvg}
-  <text x="132" y="${avatarY - 6}" font-family="Inter" font-size="16" font-weight="600" fill="#e2e8f0">${escXml(authorName)}</text>
-  <text x="132" y="${avatarY + 15}" font-family="Inter" font-size="14" fill="#64748b">${escXml(authorRole)}</text>
+  <text x="132" y="${avatarY - 6}" font-family="Inter,sans-serif" font-size="16" font-weight="600" fill="#e2e8f0">${escXml(authorName)}</text>
+  <text x="132" y="${avatarY + 15}" font-family="Inter,sans-serif" font-size="14" fill="#64748b">${escXml(authorRole)}</text>
   <rect x="760" y="140" width="370" height="330" rx="14" fill="#ffffff07" stroke="#ffffff10" stroke-width="1"/>
   <circle cx="790" cy="168" r="7" fill="#ff5f57"/>
   <circle cx="812" cy="168" r="7" fill="#ffbd2e"/>
@@ -96,15 +127,11 @@ export default async function handler(req: IncomingMessage, res: ServerResponse)
   <rect x="780" y="392" width="160" height="8" rx="4" fill="${accent}55"/>
   <rect x="780" y="412" width="220" height="8" rx="4" fill="#ffffff18"/>
   <line x1="0" y1="590" x2="1200" y2="590" stroke="#ffffff10" stroke-width="1"/>
-  <text x="72" y="614" font-family="Inter" font-size="16" fill="#475569">${escXml(siteHost)}</text>
+  <text x="72" y="614" font-family="Inter,sans-serif" font-size="16" fill="#475569">${escXml(siteHost)}</text>
   <rect x="0" y="626" width="1200" height="4" fill="url(#accent)"/>
 </svg>`;
 
-  const resvg = new Resvg(svg, {
-    fitTo: { mode: 'width', value: 1200 },
-    font: { fontBuffers: [fontRegular, fontBold], defaultFontFamily: 'Inter' },
-  });
-  const png = resvg.render().asPng();
+  const png = await sharp(Buffer.from(svg)).png().toBuffer();
 
   res.setHeader('Content-Type', 'image/png');
   res.setHeader('Cache-Control', 'public, max-age=3600, s-maxage=86400');
