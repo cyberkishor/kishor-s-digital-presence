@@ -256,16 +256,6 @@
     "subtitle": "Thoughts on engineering and building products",
     "posts": [
       {
-        "title": "My Journey: From Nepal to Global Tech",
-        "excerpt": "From tinkering with Python in 2009 to founding OctSpace, contributing WordPress plugins, speaking at WordCamps, and serving clients across 15+ countries — a look back at my journey.",
-        "date": "2025-02-11",
-        "readTime": "7 min read",
-        "slug": "my-journey-from-nepal-to-global-tech",
-        "cover": "/blog/images/journey-cover.svg",
-        "status": "draft",
-        "featured": true
-      },
-      {
         "title": "Building Scalable Shopify Apps",
         "excerpt": "Lessons learned from building apps that serve thousands of stores.",
         "date": "2024-12-15",
