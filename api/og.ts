@@ -2,7 +2,9 @@ import type { IncomingMessage, ServerResponse } from 'http';
 import { createElement } from 'react';
 import satori from 'satori';
 import sharp from 'sharp';
-import { INTER_400, INTER_700 } from './font-data';
+// JSON import — no TS compilation issues with large data files.
+// eslint-disable-next-line @typescript-eslint/no-require-imports
+const { regular: INTER_400, bold: INTER_700 } = require('./font-data.json');
 
 // Decode inlined base64 fonts to ArrayBuffer (no file system access needed).
 const interRegular = Buffer.from(INTER_400, 'base64').buffer as ArrayBuffer;
