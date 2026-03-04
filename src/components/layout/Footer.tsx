@@ -1,6 +1,7 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Github, Linkedin, Mail, MapPin, Phone } from 'lucide-react';
 import portfolioData from '@/data/portfolio.json';
+import { siteSettings } from '@/lib/siteSettings';
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
@@ -8,19 +9,23 @@ export function Footer() {
   const navigate = useNavigate();
   const isHomePage = location.pathname === '/';
 
-  const handleHashClick = (e: React.MouseEvent<HTMLAnchorElement>, hash: string) => {
-    if (isHomePage) {
-      // On homepage, just scroll to the section
-      e.preventDefault();
-      const element = document.querySelector(hash);
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
+  const handleHashClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (href.startsWith('/#')) {
+      const hash = href.substring(1);
+      if (isHomePage) {
+        e.preventDefault();
+        const element = document.querySelector(hash);
+        if (element) element.scrollIntoView({ behavior: 'smooth' });
+      } else {
+        e.preventDefault();
+        navigate('/' + hash);
       }
-    } else {
-      // On other pages, navigate to homepage with hash
-      e.preventDefault();
-      navigate('/' + hash);
     }
+  };
+
+  const getDisplayHref = (href: string) => {
+    if (href.startsWith('/#') && isHomePage) return href.substring(1);
+    return href;
   };
 
   return (
@@ -31,19 +36,16 @@ export function Footer() {
           <div className="space-y-4">
             <Link to="/" className="flex items-center gap-2">
               <img
-                src="/logo.jpg"
-                alt={portfolioData.personal.name}
+                src={siteSettings.logo}
+                alt={siteSettings.siteName}
                 className="w-10 h-10 rounded-full object-cover"
               />
               <span className="font-semibold text-foreground">
-                {portfolioData.personal.name}
+                {siteSettings.siteName}
               </span>
             </Link>
             <p className="text-muted-foreground text-sm max-w-xs">
-              {portfolioData.personal.tagline}
-            </p>
-            <p className="text-muted-foreground text-sm max-w-xs">
-              Full-stack developer with 15+ years of experience building Shopify stores, SaaS platforms, and custom web solutions for clients across 15+ countries.
+              {siteSettings.footer.description}
             </p>
             {/* Social Links */}
             <div className="flex gap-3 pt-1">
@@ -76,43 +78,23 @@ export function Footer() {
           <div className="space-y-4">
             <h4 className="font-semibold text-foreground">Quick Links</h4>
             <ul className="space-y-2 text-sm">
-              <li>
-                <a
-                  href="#about"
-                  onClick={(e) => handleHashClick(e, '#about')}
-                  className="text-muted-foreground hover:text-primary transition-colors"
-                >
-                  About
-                </a>
-              </li>
-              <li>
-                <Link to="/projects" className="text-muted-foreground hover:text-primary transition-colors">
-                  Projects
-                </Link>
-              </li>
-              <li>
-                <a
-                  href="#services"
-                  onClick={(e) => handleHashClick(e, '#services')}
-                  className="text-muted-foreground hover:text-primary transition-colors"
-                >
-                  Services
-                </a>
-              </li>
-              <li>
-                <Link to="/blog" className="text-muted-foreground hover:text-primary transition-colors">
-                  Blog
-                </Link>
-              </li>
-              <li>
-                <a
-                  href="#contact"
-                  onClick={(e) => handleHashClick(e, '#contact')}
-                  className="text-muted-foreground hover:text-primary transition-colors"
-                >
-                  Contact
-                </a>
-              </li>
+              {siteSettings.footer.quickLinks.map((link) => (
+                <li key={link.href}>
+                  {link.href.startsWith('/') && !link.href.startsWith('/#') ? (
+                    <Link to={link.href} className="text-muted-foreground hover:text-primary transition-colors">
+                      {link.label}
+                    </Link>
+                  ) : (
+                    <a
+                      href={getDisplayHref(link.href)}
+                      onClick={(e) => handleHashClick(e, link.href)}
+                      className="text-muted-foreground hover:text-primary transition-colors"
+                    >
+                      {link.label}
+                    </a>
+                  )}
+                </li>
+              ))}
             </ul>
           </div>
 
@@ -126,12 +108,14 @@ export function Footer() {
                   {portfolioData.personal.email}
                 </a>
               </li>
-              <li className="flex items-center gap-2 text-muted-foreground">
-                <Phone size={16} className="text-primary" />
-                <a href="tel:+9779802075711" className="hover:text-primary transition-colors">
-                  +977 980-2075711
-                </a>
-              </li>
+              {portfolioData.personal.phone && (
+                <li className="flex items-center gap-2 text-muted-foreground">
+                  <Phone size={16} className="text-primary" />
+                  <a href={`tel:${portfolioData.personal.phone.replace(/\D/g, '')}`} className="hover:text-primary transition-colors">
+                    {portfolioData.personal.phone}
+                  </a>
+                </li>
+              )}
               <li className="flex items-center gap-2 text-muted-foreground">
                 <MapPin size={16} className="text-primary" />
                 {portfolioData.personal.location}
@@ -142,7 +126,7 @@ export function Footer() {
 
         {/* Bottom Bar */}
         <div className="border-t border-border mt-8 pt-8 text-center text-sm text-muted-foreground">
-          <p>&copy; {currentYear} {portfolioData.personal.name}. All rights reserved.</p>
+          <p>&copy; {currentYear} {siteSettings.siteName}. {siteSettings.footer.copyrightText}</p>
         </div>
       </div>
     </footer>

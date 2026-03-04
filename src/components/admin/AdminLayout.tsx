@@ -16,6 +16,7 @@ import {
   ChevronDown,
   Rocket,
   Loader2,
+  Settings,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { toast } from 'sonner';
@@ -173,6 +174,19 @@ export function AdminLayout({ children }: AdminLayoutProps) {
               : <Rocket className="w-4 h-4 shrink-0" />}
             {deploying ? 'Deploying...' : 'Deploy'}
           </Button>
+          <NavLink
+            to="/admin/settings"
+            className={({ isActive }) =>
+              `flex items-center gap-2.5 px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                isActive
+                  ? 'bg-primary text-primary-foreground'
+                  : 'text-muted-foreground hover:text-foreground hover:bg-accent'
+              }`
+            }
+          >
+            <Settings className="w-4 h-4 shrink-0" />
+            Site Settings
+          </NavLink>
           <a
             href="/"
             target="_blank"

@@ -3,16 +3,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { ThemeToggle } from '@/components/ThemeToggle';
-import portfolioData from '@/data/portfolio.json';
-
-const navLinks = [
-  { label: 'About', href: '/#about' },
-  { label: 'Skills', href: '/#skills' },
-  { label: 'Projects', href: '/projects' },
-  { label: 'Services', href: '/#services' },
-  { label: 'Blog', href: '/blog' },
-  { label: 'Contact', href: '/#contact' },
-];
+import { siteSettings } from '@/lib/siteSettings';
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -31,16 +22,12 @@ export function Header() {
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     if (href.startsWith('/#')) {
-      const hash = href.substring(1); // e.g. '#about'
+      const hash = href.substring(1);
       if (isHomePage) {
-        // On homepage, just scroll to the section
         e.preventDefault();
         const element = document.querySelector(hash);
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth' });
-        }
+        if (element) element.scrollIntoView({ behavior: 'smooth' });
       } else {
-        // On other pages, navigate to homepage with hash
         e.preventDefault();
         navigate('/' + hash);
       }
@@ -48,9 +35,7 @@ export function Header() {
   };
 
   const getDisplayHref = (href: string) => {
-    if (href.startsWith('/#') && isHomePage) {
-      return href.substring(1);
-    }
+    if (href.startsWith('/#') && isHomePage) return href.substring(1);
     return href;
   };
 
@@ -65,18 +50,18 @@ export function Header() {
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2 group">
             <img
-              src="/logo.jpg"
-              alt={portfolioData.personal.name}
+              src={siteSettings.logo}
+              alt={siteSettings.siteName}
               className="w-10 h-10 rounded-full object-cover"
             />
             <span className="font-semibold text-foreground hidden sm:block group-hover:text-primary transition-colors">
-              {portfolioData.personal.name.split(' ')[0]}
+              {siteSettings.siteName.split(' ')[0]}
             </span>
           </Link>
 
           {/* Desktop Navigation */}
           <ul className="hidden md:flex items-center gap-8">
-            {navLinks.map((link) => (
+            {siteSettings.nav.map((link) => (
               <li key={link.href}>
                 <a
                   href={getDisplayHref(link.href)}
@@ -89,15 +74,15 @@ export function Header() {
             ))}
           </ul>
 
-          {/* Theme Toggle & CTA Button */}
+          {/* Theme Toggle & CTA */}
           <div className="hidden md:flex items-center gap-2">
             <ThemeToggle />
             <Button asChild>
               <a
-                href={getDisplayHref('/#contact')}
-                onClick={(e) => handleNavClick(e, '/#contact')}
+                href={getDisplayHref(siteSettings.ctaHref)}
+                onClick={(e) => handleNavClick(e, siteSettings.ctaHref)}
               >
-                Let's Talk
+                {siteSettings.ctaText}
               </a>
             </Button>
           </div>
@@ -118,7 +103,7 @@ export function Header() {
         <div className="md:hidden glass border-t border-border animate-fade-in">
           <nav className="container-wide py-6">
             <ul className="flex flex-col gap-4">
-              {navLinks.map((link) => (
+              {siteSettings.nav.map((link) => (
                 <li key={link.href}>
                   <a
                     href={getDisplayHref(link.href)}
@@ -135,13 +120,13 @@ export function Header() {
               <li className="pt-4">
                 <Button asChild className="w-full">
                   <a
-                    href={getDisplayHref('/#contact')}
+                    href={getDisplayHref(siteSettings.ctaHref)}
                     onClick={(e) => {
-                      handleNavClick(e, '/#contact');
+                      handleNavClick(e, siteSettings.ctaHref);
                       setIsMobileMenuOpen(false);
                     }}
                   >
-                    Let's Talk
+                    {siteSettings.ctaText}
                   </a>
                 </Button>
               </li>

@@ -9,6 +9,7 @@ import { SEO } from '@/components/SEO';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import portfolioData from '@/data/portfolio.json';
+import { siteSettings } from '@/lib/siteSettings';
 
 interface BlogPostMeta {
   title: string;
@@ -211,8 +212,8 @@ export default function BlogPost() {
           <footer className="mt-16 pt-8 border-t border-border">
             <div className="flex items-center gap-4">
               <img
-                src="/logo.jpg"
-                alt={portfolioData.personal.name}
+                src={siteSettings.logo}
+                alt={siteSettings.siteName}
                 className="w-12 h-12 rounded-full object-cover"
               />
               <div>

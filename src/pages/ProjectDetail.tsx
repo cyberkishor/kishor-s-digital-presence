@@ -9,6 +9,7 @@ import { SEO } from '@/components/SEO';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import portfolioData from '@/data/portfolio.json';
+import { siteSettings } from '@/lib/siteSettings';
 
 interface ProjectMeta {
   title: string;
@@ -226,8 +227,8 @@ export default function ProjectDetail() {
             <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
               <div className="flex items-center gap-4">
                 <img
-                  src="/logo.jpg"
-                  alt={portfolioData.personal.name}
+                  src={siteSettings.logo}
+                  alt={siteSettings.siteName}
                   className="w-12 h-12 rounded-full object-cover"
                 />
                 <div>

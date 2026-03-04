@@ -1,0 +1,64 @@
+{
+  "siteName": "Kishor Kumar Mahato",
+  "siteUrl": "https://kishorkumarmahato.com.np",
+  "siteDescription": "Senior Full-Stack Developer specializing in Shopify, SaaS, and custom web applications. Building products that solve real problems.",
+  "logo": "/logo.jpg",
+  "favicon": "/logo.jpg",
+  "ogImage": "",
+  "keywords": "Full-Stack Developer, Shopify Expert, Web Developer, React, Laravel, Django, Nepal",
+  "googleAnalyticsId": "G-V2NQG6Q1S8",
+  "ctaText": "Let's Talk",
+  "ctaHref": "/#contact",
+  "nav": [
+    {
+      "label": "About",
+      "href": "/#about"
+    },
+    {
+      "label": "Skills",
+      "href": "/#skills"
+    },
+    {
+      "label": "Projects",
+      "href": "/projects"
+    },
+    {
+      "label": "Services",
+      "href": "/#services"
+    },
+    {
+      "label": "Blog",
+      "href": "/blog"
+    },
+    {
+      "label": "Contact",
+      "href": "/#contact"
+    }
+  ],
+  "footer": {
+    "description": "Full-stack developer with 15+ years of experience building Shopify stores, SaaS platforms, and custom web solutions for clients across 15+ countries.",
+    "quickLinks": [
+      {
+        "label": "About",
+        "href": "/#about"
+      },
+      {
+        "label": "Projects",
+        "href": "/projects"
+      },
+      {
+        "label": "Services",
+        "href": "/#services"
+      },
+      {
+        "label": "Blog",
+        "href": "/blog"
+      },
+      {
+        "label": "Contact",
+        "href": "/#contact"
+      }
+    ],
+    "copyrightText": "All rights reserved."
+  }
+}

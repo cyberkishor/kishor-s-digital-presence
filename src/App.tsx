@@ -19,6 +19,7 @@ import BlogEditor from "./pages/admin/BlogEditor";
 import PortfolioEditor from "./pages/admin/PortfolioEditor";
 import ProjectList from "./pages/admin/ProjectList";
 import ProjectEditor from "./pages/admin/ProjectEditor";
+import SiteSettingsPage from "./pages/admin/SiteSettings";
 import { ProtectedRoute } from "./components/admin/ProtectedRoute";
 
 const queryClient = new QueryClient();
@@ -49,6 +50,7 @@ const App = () => (
             <Route path="/admin/projects" element={<ProtectedRoute><ProjectList /></ProtectedRoute>} />
             <Route path="/admin/projects/new" element={<ProtectedRoute><ProjectEditor /></ProtectedRoute>} />
             <Route path="/admin/projects/:slug" element={<ProtectedRoute><ProjectEditor /></ProtectedRoute>} />
+            <Route path="/admin/settings" element={<ProtectedRoute><SiteSettingsPage /></ProtectedRoute>} />
             <Route path="/admin/portfolio" element={<Navigate to="/admin/portfolio/personal" replace />} />
             <Route path="/admin/portfolio/:section" element={<ProtectedRoute><PortfolioEditor /></ProtectedRoute>} />
 
