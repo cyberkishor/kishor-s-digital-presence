@@ -177,6 +177,7 @@ function ogImagePlugin(): Plugin {
   <rect x="0" y="626" width="1200" height="4" fill="url(#accent)"/>
 </svg>`;
 
+        // Return SVG in dev (no resvg dependency needed locally)
         res.setHeader("Content-Type", "image/svg+xml");
         res.setHeader("Cache-Control", "public, max-age=3600");
         res.end(svg);

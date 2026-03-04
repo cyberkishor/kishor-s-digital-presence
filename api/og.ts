@@ -1,4 +1,5 @@
 import type { IncomingMessage, ServerResponse } from 'http';
+import { Resvg } from '@resvg/resvg-js';
 
 function escXml(str: string): string {
   return str
@@ -90,7 +91,10 @@ export default async function handler(req: IncomingMessage, res: ServerResponse)
   <rect x="0" y="626" width="1200" height="4" fill="url(#accent)"/>
 </svg>`;
 
-  res.setHeader('Content-Type', 'image/svg+xml');
+  const resvg = new Resvg(svg, { fitTo: { mode: 'width', value: 1200 } });
+  const png = resvg.render().asPng();
+
+  res.setHeader('Content-Type', 'image/png');
   res.setHeader('Cache-Control', 'public, max-age=3600, s-maxage=86400');
-  res.end(svg);
+  res.end(png);
 }
