@@ -26,7 +26,10 @@ function localFileApiPlugin(): Plugin {
         const absPath = path.join(__dirname, filePath);
 
         // Security: only allow paths inside the project root
-        if (!absPath.startsWith(__dirname + path.sep) && absPath !== __dirname) {
+        if (
+          !absPath.startsWith(__dirname + path.sep) &&
+          absPath !== __dirname
+        ) {
           res.statusCode = 403;
           res.end(JSON.stringify({ error: "path outside project root" }));
           return;
@@ -44,7 +47,9 @@ function localFileApiPlugin(): Plugin {
           }
         } else if (req.method === "PUT") {
           let body = "";
-          req.on("data", (chunk) => { body += chunk; });
+          req.on("data", (chunk) => {
+            body += chunk;
+          });
           req.on("end", () => {
             try {
               const { content } = JSON.parse(body);
@@ -75,11 +80,16 @@ function localFileApiPlugin(): Plugin {
 
 // Plugin: serves /api/og?title=&description=&type= as SVG in local dev
 function ogImagePlugin(): Plugin {
-  // Load logo once as base64 when plugin initialises
+  // Load logo once as base64 when plugin initialises (tries .svg then .jpg)
   let logoDataUrl = "";
-  const logoPath = path.join(__dirname, "public", "logo.jpg");
+  const svgPath = path.join(__dirname, "public", "logo.svg");
+  const jpgPath = path.join(__dirname, "public", "logo.jpg");
   try {
-    logoDataUrl = `data:image/jpeg;base64,${fs.readFileSync(logoPath).toString("base64")}`;
+    if (fs.existsSync(svgPath)) {
+      logoDataUrl = `data:image/svg+xml;base64,${fs.readFileSync(svgPath).toString("base64")}`;
+    } else if (fs.existsSync(jpgPath)) {
+      logoDataUrl = `data:image/jpeg;base64,${fs.readFileSync(jpgPath).toString("base64")}`;
+    }
   } catch {
     // logo missing — fall back to gradient initial
   }
@@ -89,17 +99,23 @@ function ogImagePlugin(): Plugin {
     configureServer(server) {
       server.middlewares.use("/api/og", (req, res) => {
         const url = new URL(req.url!, "http://localhost");
-        const title = url.searchParams.get("title") || "Kishor Kumar Mahato";
-        const description = url.searchParams.get("description") || "Senior Full-Stack Developer";
+        const title = url.searchParams.get("title") || "Portfolio";
+        const description =
+          url.searchParams.get("description") ||
+          "Full-Stack Developer Portfolio";
         const type = url.searchParams.get("type") || "website";
         const accent = url.searchParams.get("accent") || "#6366f1";
-        const authorName = url.searchParams.get("name") || "Kishor Kumar Mahato";
-        const authorRole = url.searchParams.get("role") || "Senior Full-Stack Developer";
-        const siteHost = url.searchParams.get("site") || "kishorkumarmahato.com.np";
+        const authorName = url.searchParams.get("name") || "Alex Johnson";
+        const authorRole =
+          url.searchParams.get("role") || "Full-Stack Developer";
+        const siteHost = url.searchParams.get("site") || "yourportfolio.com";
 
         const typeLabel =
-          type === "article" ? "✍ Blog Post" :
-          type === "project" ? "⚡ Project" : null;
+          type === "article"
+            ? "✍ Blog Post"
+            : type === "project"
+              ? "⚡ Project"
+              : null;
 
         const titleFontSize = title.length > 40 ? 44 : 56;
         const avatarY = typeLabel ? 360 : 330;
@@ -109,7 +125,7 @@ function ogImagePlugin(): Plugin {
           ? `<defs><clipPath id="logoClip"><circle cx="96" cy="${avatarY}" r="24"/></clipPath></defs>
              <image href="${logoDataUrl}" x="72" y="${avatarY - 24}" width="48" height="48" clip-path="url(#logoClip)" preserveAspectRatio="xMidYMid slice"/>`
           : `<circle cx="96" cy="${avatarY}" r="24" fill="url(#accent)"/>
-             <text x="96" y="${avatarY + 8}" font-family="system-ui,sans-serif" font-size="20" font-weight="700" fill="#fff" text-anchor="middle">K</text>`;
+             <text x="96" y="${avatarY + 8}" font-family="system-ui,sans-serif" font-size="20" font-weight="700" fill="#fff" text-anchor="middle">${authorName[0] || "A"}</text>`;
 
         const svg = `<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <defs>
@@ -125,11 +141,15 @@ function ogImagePlugin(): Plugin {
   <rect width="1200" height="630" fill="url(#bg)"/>
   <circle cx="1050" cy="100" r="220" fill="${accent}" opacity="0.07"/>
   <circle cx="150" cy="530" r="180" fill="${accent}" opacity="0.06"/>
-  ${typeLabel ? `
+  ${
+    typeLabel
+      ? `
   <rect x="72" y="90" width="${typeLabel.length * 11}" height="36" rx="18" fill="${accent}20"/>
   <rect x="72" y="90" width="${typeLabel.length * 11}" height="36" rx="18" fill="none" stroke="${accent}40" stroke-width="1"/>
   <text x="${72 + (typeLabel.length * 11) / 2}" y="114" font-family="system-ui,sans-serif" font-size="16" font-weight="500" fill="${accent}" text-anchor="middle">${typeLabel}</text>
-  ` : ""}
+  `
+      : ""
+  }
   <text x="72" y="${typeLabel ? 210 : 180}" font-family="system-ui,sans-serif" font-size="${titleFontSize}" font-weight="700" fill="#ffffff" letter-spacing="-1">${escXml(title.substring(0, 50))}${title.length > 50 ? "…" : ""}</text>
   <text x="72" y="${typeLabel ? 260 : 230}" font-family="system-ui,sans-serif" font-size="22" fill="#94a3b8">${escXml(description.substring(0, 80))}${description.length > 80 ? "…" : ""}</text>
   <rect x="72" y="${typeLabel ? 296 : 266}" width="60" height="3" rx="2" fill="url(#accent)"/>
@@ -174,6 +194,114 @@ function escXml(str: string) {
     .replace(/'/g, "&apos;");
 }
 
+// Plugin: injects static OG/meta tags into index.html at build time
+// so social media crawlers (which don't run JS) can read them.
+function injectMetaPlugin(): Plugin {
+  return {
+    name: "inject-meta",
+    transformIndexHtml() {
+      const settingsPath = path.join(
+        __dirname,
+        "src",
+        "data",
+        "site-settings.json",
+      );
+      const portfolioPath = path.join(
+        __dirname,
+        "src",
+        "data",
+        "portfolio.json",
+      );
+      let s: Record<string, string> = {};
+      let role = "Full-Stack Developer";
+      try {
+        s = JSON.parse(fs.readFileSync(settingsPath, "utf-8"));
+        const p = JSON.parse(fs.readFileSync(portfolioPath, "utf-8"));
+        role = p?.personal?.title || role;
+      } catch {
+        /* use defaults */
+      }
+
+      const siteName = s.siteName || "Portfolio";
+      const siteUrl = (s.siteUrl || "").replace(/\/$/, "");
+      const description = s.siteDescription || "";
+      const favicon = s.favicon || "/logo.svg";
+      const accent = s.accentColor || "#6366f1";
+      const host = siteUrl.replace(/^https?:\/\//, "");
+
+      const ogParams = new URLSearchParams({
+        title: siteName,
+        description,
+        name: siteName,
+        role,
+        site: host,
+        accent,
+      });
+      const ogImage =
+        s.ogImage || (siteUrl ? `${siteUrl}/api/og?${ogParams}` : "");
+
+      return [
+        { tag: "title", children: siteName, injectTo: "head" },
+        {
+          tag: "meta",
+          attrs: { name: "description", content: description },
+          injectTo: "head",
+        },
+        {
+          tag: "link",
+          attrs: { rel: "icon", href: favicon },
+          injectTo: "head",
+        },
+        {
+          tag: "meta",
+          attrs: { property: "og:type", content: "website" },
+          injectTo: "head",
+        },
+        {
+          tag: "meta",
+          attrs: { property: "og:url", content: siteUrl },
+          injectTo: "head",
+        },
+        {
+          tag: "meta",
+          attrs: { property: "og:title", content: siteName },
+          injectTo: "head",
+        },
+        {
+          tag: "meta",
+          attrs: { property: "og:description", content: description },
+          injectTo: "head",
+        },
+        {
+          tag: "meta",
+          attrs: { property: "og:image", content: ogImage },
+          injectTo: "head",
+        },
+        {
+          tag: "meta",
+          attrs: { name: "twitter:card", content: "summary_large_image" },
+          injectTo: "head",
+        },
+        {
+          tag: "meta",
+          attrs: { name: "twitter:title", content: siteName },
+          injectTo: "head",
+        },
+        {
+          tag: "meta",
+          attrs: { name: "twitter:description", content: description },
+          injectTo: "head",
+        },
+        {
+          tag: "meta",
+          attrs: { name: "twitter:image", content: ogImage },
+          injectTo: "head",
+        },
+      ];
+    },
+  };
+}
+
 export default defineConfig(() => ({
   server: {
     host: "::",
@@ -182,7 +310,7 @@ export default defineConfig(() => ({
       overlay: false,
     },
   },
-  plugins: [react(), localFileApiPlugin(), ogImagePlugin()],
+  plugins: [react(), localFileApiPlugin(), ogImagePlugin(), injectMetaPlugin()],
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
