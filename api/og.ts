@@ -1,13 +1,18 @@
 import type { IncomingMessage, ServerResponse } from 'http';
+import { createElement } from 'react';
+import satori from 'satori';
 import sharp from 'sharp';
 import { readFileSync } from 'fs';
 import { join } from 'path';
 
-// Lazy-loaded, cached after first request so module init never throws.
-let fontStyle = '';
-let fontsReady = false;
+// Load font once, lazily.
+let interRegular: ArrayBuffer | null = null;
+let interBold: ArrayBuffer | null = null;
+let fontsLoaded = false;
 
-function buildFontStyle(): string {
+function loadFonts() {
+  if (fontsLoaded) return;
+  fontsLoaded = true;
   const dirs = [
     join(process.cwd(), 'api', 'fonts'),
     join(process.cwd(), 'fonts'),
@@ -16,37 +21,19 @@ function buildFontStyle(): string {
   ];
   for (const dir of dirs) {
     try {
-      const r = readFileSync(join(dir, 'inter-400.ttf')).toString('base64');
-      const b = readFileSync(join(dir, 'inter-700.ttf')).toString('base64');
-      return `
-  <style>
-    @font-face { font-family:'Inter'; font-weight:400; src:url('data:font/truetype;base64,${r}') format('truetype'); }
-    @font-face { font-family:'Inter'; font-weight:600; src:url('data:font/truetype;base64,${b}') format('truetype'); }
-    @font-face { font-family:'Inter'; font-weight:700; src:url('data:font/truetype;base64,${b}') format('truetype'); }
-  </style>`;
+      const r = readFileSync(join(dir, 'inter-400.ttf'));
+      const b = readFileSync(join(dir, 'inter-700.ttf'));
+      interRegular = r.buffer.slice(r.byteOffset, r.byteOffset + r.byteLength) as ArrayBuffer;
+      interBold    = b.buffer.slice(b.byteOffset, b.byteOffset + b.byteLength) as ArrayBuffer;
+      return;
     } catch { /* try next dir */ }
   }
-  return '';
-}
-
-function escXml(str: string): string {
-  return str
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&apos;');
 }
 
 export default async function handler(req: IncomingMessage, res: ServerResponse) {
-  // Load fonts once on first request, never at module init time.
-  if (!fontsReady) {
-    try { fontStyle = buildFontStyle(); } catch { fontStyle = ''; }
-    fontsReady = true;
-  }
+  loadFonts();
 
   const url = new URL(req.url!, `https://${req.headers.host}`);
-
   const title       = url.searchParams.get('title')       || 'Portfolio';
   const description = url.searchParams.get('description') || 'Developer Portfolio';
   const type        = url.searchParams.get('type')        || 'website';
@@ -56,75 +43,178 @@ export default async function handler(req: IncomingMessage, res: ServerResponse)
   const accent      = url.searchParams.get('accent')      || '#6366f1';
 
   const typeLabel =
-    type === 'article' ? '✍ Blog Post' :
-    type === 'project' ? '⚡ Project'   : null;
+    type === 'article' ? '✍  Blog Post' :
+    type === 'project' ? '⚡  Project'   : null;
 
   const titleFontSize = title.length > 40 ? 44 : 56;
-  const avatarY = typeLabel ? 360 : 330;
 
-  // Fetch logo from same origin and embed as base64
-  let logoDataUrl = '';
+  // Fetch logo from same origin
+  let logoUrl = '';
   try {
     const origin = `https://${req.headers.host}`;
     const logoRes = await fetch(`${origin}/logo.jpg`);
     if (logoRes.ok) {
       const buf = await logoRes.arrayBuffer();
-      logoDataUrl = `data:image/jpeg;base64,${Buffer.from(buf).toString('base64')}`;
+      logoUrl = `data:image/jpeg;base64,${Buffer.from(buf).toString('base64')}`;
     }
-  } catch { /* fall back to initial */ }
+  } catch { /* no logo */ }
 
-  const avatarSvg = logoDataUrl
-    ? `<clipPath id="lc"><circle cx="96" cy="${avatarY}" r="24"/></clipPath>
-       <image href="${logoDataUrl}" x="72" y="${avatarY - 24}" width="48" height="48" clip-path="url(#lc)" preserveAspectRatio="xMidYMid slice"/>`
-    : `<circle cx="96" cy="${avatarY}" r="24" fill="url(#accent)"/>
-       <text x="96" y="${avatarY + 8}" font-family="Inter,sans-serif" font-size="20" font-weight="700" fill="#fff" text-anchor="middle">${escXml(authorName[0] || 'A')}</text>`;
+  const fonts = [];
+  if (interRegular) fonts.push({ name: 'Inter', data: interRegular, weight: 400 as const, style: 'normal' as const });
+  if (interBold)    fonts.push({ name: 'Inter', data: interBold,    weight: 700 as const, style: 'normal' as const });
+  const fontFamily = fonts.length ? 'Inter' : 'sans-serif';
 
-  const svg = `<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-  <defs>
-    ${fontStyle}
-    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#0f0f0f"/>
-      <stop offset="100%" stop-color="#1a1a2e"/>
-    </linearGradient>
-    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="${accent}"/>
-      <stop offset="100%" stop-color="${accent}"/>
-    </linearGradient>
-  </defs>
-  <rect width="1200" height="630" fill="url(#bg)"/>
-  <circle cx="1050" cy="100" r="220" fill="${accent}" opacity="0.07"/>
-  <circle cx="150" cy="530" r="180" fill="${accent}" opacity="0.06"/>
-  ${typeLabel ? `
-  <rect x="72" y="90" width="${typeLabel.length * 11}" height="36" rx="18" fill="${accent}20"/>
-  <rect x="72" y="90" width="${typeLabel.length * 11}" height="36" rx="18" fill="none" stroke="${accent}40" stroke-width="1"/>
-  <text x="${72 + (typeLabel.length * 11) / 2}" y="114" font-family="Inter,sans-serif" font-size="16" font-weight="500" fill="${accent}" text-anchor="middle">${typeLabel}</text>
-  ` : ''}
-  <text x="72" y="${typeLabel ? 210 : 180}" font-family="Inter,sans-serif" font-size="${titleFontSize}" font-weight="700" fill="#ffffff" letter-spacing="-1">${escXml(title.substring(0, 50))}${title.length > 50 ? '…' : ''}</text>
-  <text x="72" y="${typeLabel ? 260 : 230}" font-family="Inter,sans-serif" font-size="22" fill="#94a3b8">${escXml(description.substring(0, 80))}${description.length > 80 ? '…' : ''}</text>
-  <rect x="72" y="${typeLabel ? 296 : 266}" width="60" height="3" rx="2" fill="url(#accent)"/>
-  ${avatarSvg}
-  <text x="132" y="${avatarY - 6}" font-family="Inter,sans-serif" font-size="16" font-weight="600" fill="#e2e8f0">${escXml(authorName)}</text>
-  <text x="132" y="${avatarY + 15}" font-family="Inter,sans-serif" font-size="14" fill="#64748b">${escXml(authorRole)}</text>
-  <rect x="760" y="140" width="370" height="330" rx="14" fill="#ffffff07" stroke="#ffffff10" stroke-width="1"/>
-  <circle cx="790" cy="168" r="7" fill="#ff5f57"/>
-  <circle cx="812" cy="168" r="7" fill="#ffbd2e"/>
-  <circle cx="834" cy="168" r="7" fill="#28ca41"/>
-  <rect x="780" y="192" width="200" height="8" rx="4" fill="${accent}65"/>
-  <rect x="780" y="212" width="280" height="8" rx="4" fill="#ffffff22"/>
-  <rect x="800" y="232" width="240" height="8" rx="4" fill="${accent}55"/>
-  <rect x="800" y="252" width="260" height="8" rx="4" fill="#ffffff18"/>
-  <rect x="800" y="272" width="200" height="8" rx="4" fill="${accent}50"/>
-  <rect x="780" y="292" width="220" height="8" rx="4" fill="#ffffff20"/>
-  <rect x="780" y="312" width="300" height="8" rx="4" fill="${accent}45"/>
-  <rect x="800" y="332" width="240" height="8" rx="4" fill="#ffffff15"/>
-  <rect x="800" y="352" width="180" height="8" rx="4" fill="${accent}65"/>
-  <rect x="780" y="372" width="260" height="8" rx="4" fill="#ffffff20"/>
-  <rect x="780" y="392" width="160" height="8" rx="4" fill="${accent}55"/>
-  <rect x="780" y="412" width="220" height="8" rx="4" fill="#ffffff18"/>
-  <line x1="0" y1="590" x2="1200" y2="590" stroke="#ffffff10" stroke-width="1"/>
-  <text x="72" y="614" font-family="Inter,sans-serif" font-size="16" fill="#475569">${escXml(siteHost)}</text>
-  <rect x="0" y="626" width="1200" height="4" fill="url(#accent)"/>
-</svg>`;
+  const el = createElement('div', {
+    style: {
+      width: '1200px',
+      height: '630px',
+      display: 'flex',
+      flexDirection: 'column',
+      background: 'linear-gradient(135deg, #0f0f0f 0%, #1a1a2e 100%)',
+      padding: '72px',
+      fontFamily,
+      position: 'relative',
+    },
+  },
+    // Decorative circles
+    createElement('div', { style: { position: 'absolute', right: '-60px', top: '-60px', width: '440px', height: '440px', borderRadius: '50%', background: accent, opacity: 0.07 } }),
+    createElement('div', { style: { position: 'absolute', left: '-30px', bottom: '-30px', width: '360px', height: '360px', borderRadius: '50%', background: accent, opacity: 0.06 } }),
+
+    // Type badge
+    typeLabel && createElement('div', {
+      style: {
+        display: 'flex',
+        alignSelf: 'flex-start',
+        background: accent + '20',
+        border: `1px solid ${accent}40`,
+        borderRadius: '18px',
+        padding: '6px 20px',
+        marginBottom: '24px',
+        color: accent,
+        fontSize: '16px',
+        fontWeight: 500,
+      },
+    }, typeLabel),
+
+    // Title
+    createElement('div', {
+      style: {
+        color: '#ffffff',
+        fontSize: `${titleFontSize}px`,
+        fontWeight: 700,
+        lineHeight: 1.15,
+        letterSpacing: '-1px',
+        marginBottom: '16px',
+        maxWidth: '680px',
+      },
+    }, title.length > 50 ? title.substring(0, 50) + '…' : title),
+
+    // Description
+    createElement('div', {
+      style: {
+        color: '#94a3b8',
+        fontSize: '22px',
+        lineHeight: 1.5,
+        marginBottom: '28px',
+        maxWidth: '680px',
+      },
+    }, description.length > 80 ? description.substring(0, 80) + '…' : description),
+
+    // Accent line
+    createElement('div', { style: { width: '60px', height: '3px', background: accent, borderRadius: '2px', marginBottom: '32px' } }),
+
+    // Author row
+    createElement('div', { style: { display: 'flex', alignItems: 'center', gap: '12px' } },
+      logoUrl
+        ? createElement('img', { src: logoUrl, width: 48, height: 48, style: { borderRadius: '50%', objectFit: 'cover' } })
+        : createElement('div', {
+            style: { width: '48px', height: '48px', borderRadius: '50%', background: accent, display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontSize: '20px', fontWeight: 700 },
+          }, authorName[0] || 'A'),
+      createElement('div', { style: { display: 'flex', flexDirection: 'column' } },
+        createElement('div', { style: { color: '#e2e8f0', fontSize: '16px', fontWeight: 600 } }, authorName),
+        createElement('div', { style: { color: '#64748b', fontSize: '14px' } }, authorRole),
+      ),
+    ),
+
+    // Code window (right side, absolute)
+    createElement('div', {
+      style: {
+        position: 'absolute',
+        right: '72px',
+        top: '140px',
+        width: '370px',
+        height: '330px',
+        background: 'rgba(255,255,255,0.027)',
+        border: '1px solid rgba(255,255,255,0.063)',
+        borderRadius: '14px',
+        display: 'flex',
+        flexDirection: 'column',
+        padding: '20px',
+      },
+    },
+      // Window dots
+      createElement('div', { style: { display: 'flex', gap: '8px', marginBottom: '24px' } },
+        createElement('div', { style: { width: '14px', height: '14px', borderRadius: '50%', background: '#ff5f57' } }),
+        createElement('div', { style: { width: '14px', height: '14px', borderRadius: '50%', background: '#ffbd2e' } }),
+        createElement('div', { style: { width: '14px', height: '14px', borderRadius: '50%', background: '#28ca41' } }),
+      ),
+      // Code lines
+      ...[
+        [200, accent + '65'], [280, 'rgba(255,255,255,0.133)'],
+        [240, accent + '55'], [260, 'rgba(255,255,255,0.094)'],
+        [200, accent + '50'], [220, 'rgba(255,255,255,0.125)'],
+        [300, accent + '45'], [240, 'rgba(255,255,255,0.082)'],
+        [180, accent + '65'], [260, 'rgba(255,255,255,0.125)'],
+        [160, accent + '55'], [220, 'rgba(255,255,255,0.094)'],
+      ].map(([w, bg], i) =>
+        createElement('div', {
+          key: String(i),
+          style: {
+            width: `${w}px`,
+            height: '8px',
+            background: String(bg),
+            borderRadius: '4px',
+            marginBottom: '12px',
+            marginLeft: i % 2 === 1 ? '20px' : '0',
+          },
+        }),
+      ),
+    ),
+
+    // Footer separator + host
+    createElement('div', {
+      style: {
+        position: 'absolute',
+        bottom: '40px',
+        left: '72px',
+        right: '72px',
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '0',
+      },
+    },
+      createElement('div', { style: { height: '1px', background: 'rgba(255,255,255,0.063)', marginBottom: '16px' } }),
+      createElement('div', { style: { color: '#475569', fontSize: '16px' } }, siteHost),
+    ),
+
+    // Bottom accent bar
+    createElement('div', {
+      style: {
+        position: 'absolute',
+        bottom: '0',
+        left: '0',
+        right: '0',
+        height: '4px',
+        background: accent,
+      },
+    }),
+  );
+
+  const svg = await satori(el, {
+    width: 1200,
+    height: 630,
+    fonts,
+  });
 
   const png = await sharp(Buffer.from(svg)).png().toBuffer();
 
