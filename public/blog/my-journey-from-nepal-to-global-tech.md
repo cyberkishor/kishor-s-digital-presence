@@ -6,9 +6,8 @@ excerpt: "From tinkering with Python in 2009 to founding OctSpace, contributing 
 cover: "/blog/images/journey-cover.svg"
 readTime: "7 min read"
 category: "Career"
-author: "Kishor Kumar Mahato"
 status: "draft"
-featured: "true"
+featured: "false"
 ---
 
 More than fifteen years have passed since I initially wrote a line of code; what began in 2009 as simply being curious – playing around with Python and making bespoke CMSs – has become a career which has covered more than fifteen nations, over a hundred projects, and a path I never would have anticipated. Here's a recall of how everything came about.
