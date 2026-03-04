@@ -1,28 +1,14 @@
 import type { IncomingMessage, ServerResponse } from 'http';
 import { Resvg } from '@resvg/resvg-js';
+import { readFileSync } from 'fs';
+import { join, dirname } from 'path';
+import { fileURLToPath } from 'url';
 
-// Cache font buffer across warm invocations
-let _fontBuffer: Buffer | undefined;
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
-async function loadFont(): Promise<Buffer | undefined> {
-  if (_fontBuffer) return _fontBuffer;
-  try {
-    // Old Firefox UA → Google Fonts returns TTF (not woff2), which resvg supports
-    const css = await fetch(
-      'https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700',
-      { headers: { 'User-Agent': 'Mozilla/5.0 (Windows NT 5.1; rv:31.0) Gecko/20100101 Firefox/31.0' } }
-    ).then(r => r.text());
-
-    const urls = [...css.matchAll(/url\(([^)]+)\)/g)].map(m => m[1]);
-    if (!urls.length) return undefined;
-
-    const buf = await fetch(urls[0]).then(r => r.arrayBuffer());
-    _fontBuffer = Buffer.from(buf);
-    return _fontBuffer;
-  } catch {
-    return undefined;
-  }
-}
+// Load fonts once at cold start from bundled files
+const fontRegular = readFileSync(join(__dirname, 'fonts', 'inter-400.ttf'));
+const fontBold    = readFileSync(join(__dirname, 'fonts', 'inter-700.ttf'));
 
 function escXml(str: string): string {
   return str
@@ -34,7 +20,6 @@ function escXml(str: string): string {
 }
 
 export default async function handler(req: IncomingMessage, res: ServerResponse) {
-  const font = await loadFont();
   const url = new URL(req.url!, `https://${req.headers.host}`);
 
   const title       = url.searchParams.get('title')       || 'Portfolio';
@@ -117,7 +102,7 @@ export default async function handler(req: IncomingMessage, res: ServerResponse)
 
   const resvg = new Resvg(svg, {
     fitTo: { mode: 'width', value: 1200 },
-    font: font ? { fontBuffers: [font], defaultFontFamily: 'Inter' } : undefined,
+    font: { fontBuffers: [fontRegular, fontBold], defaultFontFamily: 'Inter' },
   });
   const png = resvg.render().asPng();
 
