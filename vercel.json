@@ -1,9 +1,4 @@
 {
-  "functions": {
-    "api/og.ts": {
-      "includeFiles": "api/fonts/**"
-    }
-  },
   "rewrites": [
     { "source": "/api/(.*)", "destination": "/api/$1" },
     { "source": "/(.*)", "destination": "/index.html" }
