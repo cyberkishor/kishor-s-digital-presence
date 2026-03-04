@@ -303,6 +303,68 @@ function injectMetaPlugin(): Plugin {
   };
 }
 
+// Plugin: generates /sitemap.xml at build time from blog posts + projects.
+function sitemapPlugin(): Plugin {
+  return {
+    name: "sitemap",
+    closeBundle() {
+      const settingsPath = path.join(__dirname, "src", "data", "site-settings.json");
+      const blogPath     = path.join(__dirname, "public", "blog-index.json");
+      const projectsPath = path.join(__dirname, "public", "projects-index.json");
+
+      let siteUrl = "";
+      let blog: { slug: string; date?: string; status?: string }[] = [];
+      let projects: { slug: string; status?: string }[] = [];
+
+      try { siteUrl = (JSON.parse(fs.readFileSync(settingsPath, "utf-8")).siteUrl || "").replace(/\/$/, ""); } catch {}
+      try { blog     = JSON.parse(fs.readFileSync(blogPath,     "utf-8")); } catch {}
+      try { projects = JSON.parse(fs.readFileSync(projectsPath, "utf-8")); } catch {}
+
+      if (!siteUrl) { console.warn("sitemap: siteUrl not set, skipping"); return; }
+
+      const today = new Date().toISOString().split("T")[0];
+
+      const urls = [
+        { loc: "/",         priority: "1.0", changefreq: "weekly",  lastmod: today },
+        { loc: "/blog",     priority: "0.8", changefreq: "weekly",  lastmod: today },
+        { loc: "/projects", priority: "0.8", changefreq: "monthly", lastmod: today },
+        ...blog
+          .filter((p) => p.status === "published")
+          .map((p) => ({ loc: `/blog/${p.slug}`, priority: "0.7", changefreq: "monthly", lastmod: p.date || today })),
+        ...projects
+          .filter((p) => p.status === "published")
+          .map((p) => ({ loc: `/projects/${p.slug}`, priority: "0.6", changefreq: "monthly", lastmod: today })),
+      ];
+
+      const xml = [
+        `<?xml version="1.0" encoding="UTF-8"?>`,
+        `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">`,
+        ...urls.map(
+          (u) =>
+            `  <url>\n    <loc>${siteUrl}${u.loc}</loc>\n    <lastmod>${u.lastmod}</lastmod>\n    <changefreq>${u.changefreq}</changefreq>\n    <priority>${u.priority}</priority>\n  </url>`,
+        ),
+        `</urlset>`,
+      ].join("\n");
+
+      const outDir = path.join(__dirname, "dist");
+      fs.mkdirSync(outDir, { recursive: true });
+      fs.writeFileSync(path.join(outDir, "sitemap.xml"), xml);
+      console.log(`✓ sitemap.xml — ${urls.length} URLs`);
+
+      // Inject Sitemap directive into robots.txt
+      const robotsSrc  = path.join(__dirname, "public", "robots.txt");
+      const robotsDest = path.join(outDir, "robots.txt");
+      try {
+        let robots = fs.existsSync(robotsSrc) ? fs.readFileSync(robotsSrc, "utf-8") : "User-agent: *\nAllow: /\n";
+        if (!robots.includes("Sitemap:")) robots += `\nSitemap: ${siteUrl}/sitemap.xml\n`;
+        else robots = robots.replace(/Sitemap:.*$/m, `Sitemap: ${siteUrl}/sitemap.xml`);
+        fs.writeFileSync(robotsDest, robots);
+        console.log("✓ robots.txt updated with Sitemap URL");
+      } catch { /* non-fatal */ }
+    },
+  };
+}
+
 export default defineConfig(() => ({
   server: {
     host: "::",
@@ -311,7 +373,7 @@ export default defineConfig(() => ({
       overlay: false,
     },
   },
-  plugins: [react(), localFileApiPlugin(), ogImagePlugin(), injectMetaPlugin()],
+  plugins: [react(), localFileApiPlugin(), ogImagePlugin(), injectMetaPlugin(), sitemapPlugin()],
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
