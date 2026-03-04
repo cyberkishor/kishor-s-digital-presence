@@ -2,37 +2,13 @@ import type { IncomingMessage, ServerResponse } from 'http';
 import { createElement } from 'react';
 import satori from 'satori';
 import sharp from 'sharp';
-import { readFileSync } from 'fs';
-import { join } from 'path';
+import { INTER_400, INTER_700 } from './font-data';
 
-// Load font once, lazily.
-let interRegular: ArrayBuffer | null = null;
-let interBold: ArrayBuffer | null = null;
-let fontsLoaded = false;
-
-function loadFonts() {
-  if (fontsLoaded) return;
-  fontsLoaded = true;
-  const dirs = [
-    join(process.cwd(), 'api', 'fonts'),
-    join(process.cwd(), 'fonts'),
-    join(__dirname, 'fonts'),
-    __dirname,
-  ];
-  for (const dir of dirs) {
-    try {
-      const r = readFileSync(join(dir, 'inter-400.ttf'));
-      const b = readFileSync(join(dir, 'inter-700.ttf'));
-      interRegular = r.buffer.slice(r.byteOffset, r.byteOffset + r.byteLength) as ArrayBuffer;
-      interBold    = b.buffer.slice(b.byteOffset, b.byteOffset + b.byteLength) as ArrayBuffer;
-      return;
-    } catch { /* try next dir */ }
-  }
-}
+// Decode inlined base64 fonts to ArrayBuffer (no file system access needed).
+const interRegular = Buffer.from(INTER_400, 'base64').buffer as ArrayBuffer;
+const interBold    = Buffer.from(INTER_700, 'base64').buffer as ArrayBuffer;
 
 export default async function handler(req: IncomingMessage, res: ServerResponse) {
-  loadFonts();
-
   const url = new URL(req.url!, `https://${req.headers.host}`);
   const title       = url.searchParams.get('title')       || 'Portfolio';
   const description = url.searchParams.get('description') || 'Developer Portfolio';
@@ -59,10 +35,11 @@ export default async function handler(req: IncomingMessage, res: ServerResponse)
     }
   } catch { /* no logo */ }
 
-  const fonts = [];
-  if (interRegular) fonts.push({ name: 'Inter', data: interRegular, weight: 400 as const, style: 'normal' as const });
-  if (interBold)    fonts.push({ name: 'Inter', data: interBold,    weight: 700 as const, style: 'normal' as const });
-  const fontFamily = fonts.length ? 'Inter' : 'sans-serif';
+  const fonts = [
+    { name: 'Inter', data: interRegular, weight: 400 as const, style: 'normal' as const },
+    { name: 'Inter', data: interBold,    weight: 700 as const, style: 'normal' as const },
+  ];
+  const fontFamily = 'Inter';
 
   const el = createElement('div', {
     style: {
