@@ -1,44 +1,33 @@
 import type { IncomingMessage, ServerResponse } from 'http';
 import sharp from 'sharp';
-import { readFileSync, existsSync } from 'fs';
+import { readFileSync } from 'fs';
 import { join } from 'path';
 
-// Embed fonts as base64 in the SVG so librsvg (used by sharp) renders text correctly.
-// Try multiple path strategies to work both locally and on Vercel.
-function loadFont(filename: string): string {
-  const candidates = [
-    join(process.cwd(), 'api', 'fonts', filename),
-    join(process.cwd(), 'fonts', filename),
-    join(__dirname, 'fonts', filename),
-    join(__dirname, filename),
+// Lazy-loaded, cached after first request so module init never throws.
+let fontStyle = '';
+let fontsReady = false;
+
+function buildFontStyle(): string {
+  const dirs = [
+    join(process.cwd(), 'api', 'fonts'),
+    join(process.cwd(), 'fonts'),
+    join(__dirname, 'fonts'),
+    __dirname,
   ];
-  for (const p of candidates) {
-    if (existsSync(p)) return readFileSync(p).toString('base64');
+  for (const dir of dirs) {
+    try {
+      const r = readFileSync(join(dir, 'inter-400.ttf')).toString('base64');
+      const b = readFileSync(join(dir, 'inter-700.ttf')).toString('base64');
+      return `
+  <style>
+    @font-face { font-family:'Inter'; font-weight:400; src:url('data:font/truetype;base64,${r}') format('truetype'); }
+    @font-face { font-family:'Inter'; font-weight:600; src:url('data:font/truetype;base64,${b}') format('truetype'); }
+    @font-face { font-family:'Inter'; font-weight:700; src:url('data:font/truetype;base64,${b}') format('truetype'); }
+  </style>`;
+    } catch { /* try next dir */ }
   }
   return '';
 }
-
-const fontRegularB64 = loadFont('inter-400.ttf');
-const fontBoldB64    = loadFont('inter-700.ttf');
-
-const fontStyle = fontRegularB64 ? `
-  <style>
-    @font-face {
-      font-family: 'Inter';
-      font-weight: 400;
-      src: url('data:font/truetype;base64,${fontRegularB64}') format('truetype');
-    }
-    @font-face {
-      font-family: 'Inter';
-      font-weight: 600;
-      src: url('data:font/truetype;base64,${fontBoldB64}') format('truetype');
-    }
-    @font-face {
-      font-family: 'Inter';
-      font-weight: 700;
-      src: url('data:font/truetype;base64,${fontBoldB64}') format('truetype');
-    }
-  </style>` : '';
 
 function escXml(str: string): string {
   return str
@@ -50,6 +39,12 @@ function escXml(str: string): string {
 }
 
 export default async function handler(req: IncomingMessage, res: ServerResponse) {
+  // Load fonts once on first request, never at module init time.
+  if (!fontsReady) {
+    try { fontStyle = buildFontStyle(); } catch { fontStyle = ''; }
+    fontsReady = true;
+  }
+
   const url = new URL(req.url!, `https://${req.headers.host}`);
 
   const title       = url.searchParams.get('title')       || 'Portfolio';
