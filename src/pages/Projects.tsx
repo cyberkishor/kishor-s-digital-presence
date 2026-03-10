@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Search, ChevronLeft, ChevronRight } from 'lucide-react';
 import { SEO } from '@/components/SEO';
@@ -8,22 +8,43 @@ import portfolioData from '@/data/portfolio.json';
 
 const PROJECTS_PER_PAGE = 6;
 
+interface ProjectItem {
+  title: string;
+  slug: string;
+  description: string;
+  tags: string[];
+  metrics: string;
+  year: string;
+  category?: string;
+  liveUrl?: string;
+  featured?: boolean;
+  status?: string;
+}
+
 export default function Projects() {
   const { projects } = portfolioData;
+  const [allProjects, setAllProjects] = useState<ProjectItem[]>(projects.items as ProjectItem[]);
   const [searchQuery, setSearchQuery] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
 
+  useEffect(() => {
+    fetch('/projects-index.json')
+      .then((r) => r.json())
+      .then((data: ProjectItem[]) => setAllProjects(data))
+      .catch(() => { /* fall back to portfolio.json items */ });
+  }, []);
+
   // Filter projects based on search query
   const filteredProjects = useMemo(() => {
-    if (!searchQuery.trim()) return projects.items;
+    if (!searchQuery.trim()) return allProjects;
     const query = searchQuery.toLowerCase();
-    return projects.items.filter(
+    return allProjects.filter(
       (project) =>
         project.title.toLowerCase().includes(query) ||
         project.description.toLowerCase().includes(query) ||
         project.tags.some((tag) => tag.toLowerCase().includes(query))
     );
-  }, [projects.items, searchQuery]);
+  }, [allProjects, searchQuery]);
 
   // Calculate pagination
   const totalPages = Math.ceil(filteredProjects.length / PROJECTS_PER_PAGE);
