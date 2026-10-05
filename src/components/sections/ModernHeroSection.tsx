@@ -187,26 +187,26 @@ export function ModernHeroSection() {
             transition={{ duration: 0.6, ease: 'easeOut' }}
             className="lg:col-span-7 flex flex-col items-start space-y-6 lg:pr-6"
           >
-            {/* Top Status Badge (Exact from User Screenshot) */}
+            {/* Top Status Badge (Royal Electric Indigo & Emerald pulse) */}
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.1, duration: 0.4 }}
-              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-xs sm:text-sm font-medium text-foreground backdrop-blur-sm"
+              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-xs sm:text-sm font-medium text-foreground backdrop-blur-sm shadow-2xs"
             >
               <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-              <span className="text-primary font-semibold">15+ Years Experience</span>
+              <span className="text-indigo-600 dark:text-indigo-400 font-semibold">15+ Years Experience</span>
               <span className="text-muted-foreground">•</span>
               <span className="text-muted-foreground hidden sm:inline">Senior Full-Stack & SaaS Engineer</span>
               <span className="text-muted-foreground sm:hidden">Full-Stack Engineer</span>
             </motion.div>
 
-            {/* Main Headline (Exact Typography with Editorial Serif) */}
+            {/* Main Headline (Editorial Serif with Royal Electric Indigo) */}
             <div className="space-y-1">
               <h1 className="text-4xl sm:text-5xl md:text-6xl xl:text-7xl font-bold tracking-tight text-foreground leading-[1.08]">
                 <span>I build software that </span>
                 <br />
-                <span className="font-serif italic font-normal text-primary underline decoration-primary/40 underline-offset-8">
+                <span className="font-serif italic font-normal text-indigo-600 dark:text-indigo-400 underline decoration-indigo-500/40 underline-offset-8">
                   actually works.
                 </span>
               </h1>
@@ -367,7 +367,7 @@ export function ModernHeroSection() {
               {/* Hand-drawn arrow & "Team working" script */}
               <div className="flex items-center gap-1.5 text-muted-foreground">
                 <svg 
-                  className="w-7 h-5 text-primary/80 transform -rotate-12" 
+                  className="w-7 h-5 text-indigo-600/80 dark:text-indigo-400/80 transform -rotate-12" 
                   viewBox="0 0 48 32" 
                   fill="none" 
                   stroke="currentColor" 
@@ -379,7 +379,7 @@ export function ModernHeroSection() {
                   <path d="M13 24 L 6 24 L 8 17" />
                 </svg>
                 <div className="relative">
-                  <span className="font-serif italic text-xs sm:text-sm text-primary font-medium tracking-wide">
+                  <span className="font-serif italic text-xs sm:text-sm text-indigo-600 dark:text-indigo-400 font-medium tracking-wide">
                     Team working
                   </span>
                 </div>
@@ -390,11 +390,11 @@ export function ModernHeroSection() {
             <div 
               onMouseEnter={() => setIsPaused(true)}
               onMouseLeave={() => setIsPaused(false)}
-              className="relative rounded-3xl bg-card border border-border/80 shadow-2xl p-6 sm:p-7 backdrop-blur-md overflow-hidden transition-all duration-300 hover:border-primary/40 group"
+              className="relative rounded-3xl bg-card border border-border/80 shadow-2xl p-6 sm:p-7 backdrop-blur-md overflow-hidden transition-all duration-300 hover:border-indigo-500/40 group"
             >
               
-              {/* Top Accent Gradient Bar */}
-              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary via-primary/80 to-accent" />
+              {/* Top Accent Gradient Bar (Royal Indigo to Violet) */}
+              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-indigo-500 via-indigo-400 to-purple-400" />
 
               {/* Card Header: Project Switcher Tabs & Status */}
               <div className="flex items-center justify-between gap-3 mb-5 pb-4 border-b border-border/60">
@@ -402,7 +402,7 @@ export function ModernHeroSection() {
                   onClick={() => setActiveProjectIdx((prev) => (prev + 1) % featuredProjects.length)}
                   className="flex items-center gap-2 group/title text-left"
                 >
-                  <div className="w-9 h-9 rounded-xl bg-primary/10 flex items-center justify-center text-primary border border-primary/20">
+                  <div className="w-9 h-9 rounded-xl bg-indigo-500/10 flex items-center justify-center text-indigo-600 dark:text-indigo-400 border border-indigo-500/20">
                     <Code2 className="w-5 h-5" />
                   </div>
                   <div>
@@ -410,7 +410,7 @@ export function ModernHeroSection() {
                       Featured Project
                     </span>
                     <div className="flex items-center gap-1">
-                      <h3 className="font-semibold text-foreground text-sm sm:text-base leading-tight group-hover/title:text-primary transition-colors">
+                      <h3 className="font-semibold text-foreground text-sm sm:text-base leading-tight group-hover/title:text-indigo-600 dark:group-hover/title:text-indigo-400 transition-colors">
                         {activeProject.title.split('–')[0].trim()}
                       </h3>
                       <ChevronDown className="w-3.5 h-3.5 text-muted-foreground group-hover/title:translate-y-0.5 transition-transform" />
@@ -473,7 +473,7 @@ export function ModernHeroSection() {
                           aria-label={`View ${p.title}`}
                           className={`relative h-2 rounded-full overflow-hidden transition-all ${
                             idx === activeProjectIdx 
-                              ? 'w-7 bg-primary' 
+                              ? 'w-7 bg-[#1e1b4b] dark:bg-white' 
                               : 'w-2 bg-muted hover:bg-muted-foreground/40'
                           }`}
                         >
@@ -483,18 +483,18 @@ export function ModernHeroSection() {
                               initial={{ width: '0%' }}
                               animate={{ width: '100%' }}
                               transition={{ duration: 6, ease: 'linear' }}
-                              className="absolute inset-0 bg-white/35 rounded-full"
+                              className="absolute inset-0 bg-white/40 dark:bg-black/30 rounded-full"
                             />
                           )}
                         </button>
                       ))}
                     </div>
 
-                    {/* Action Button */}
+                    {/* Action Button (Everly Deep Navy pill style) */}
                     <Button 
                       size="sm" 
                       asChild
-                      className="rounded-full px-4 h-9 text-xs font-medium group/btn"
+                      className="rounded-full px-5 h-9 text-xs font-semibold bg-[#1e1b4b] hover:bg-[#2d2868] text-white dark:bg-white dark:text-[#0f172a] dark:hover:bg-slate-100 shadow-sm transition-all group/btn"
                     >
                       <a 
                         href={activeProject.liveUrl || `/project/${activeProject.slug}`} 
@@ -519,9 +519,9 @@ export function ModernHeroSection() {
                   <a
                     key={tile.id}
                     href={tile.href}
-                    className="flex flex-col items-center justify-center text-center p-3 rounded-2xl bg-card/80 border border-border/70 shadow-sm backdrop-blur-sm hover:border-primary/40 hover:bg-card hover:-translate-y-0.5 transition-all group"
+                    className="flex flex-col items-center justify-center text-center p-3 rounded-2xl bg-card/80 border border-border/70 shadow-sm backdrop-blur-sm hover:border-indigo-500/40 hover:bg-card hover:-translate-y-0.5 transition-all group"
                   >
-                    <div className="w-8 h-8 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-1.5 group-hover:scale-110 transition-transform">
+                    <div className="w-8 h-8 rounded-xl bg-indigo-500/10 flex items-center justify-center text-indigo-600 dark:text-indigo-400 mb-1.5 group-hover:scale-110 transition-transform">
                       <Icon className="w-4 h-4" />
                     </div>
                     <span className="text-xs font-semibold text-foreground leading-tight">
