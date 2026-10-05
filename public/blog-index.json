@@ -1,5 +1,15 @@
 [
   {
+    "title": "Requirements",
+    "excerpt": "",
+    "date": "2026-10-05",
+    "readTime": "5 min read",
+    "slug": "requirements",
+    "cover": "",
+    "status": "published",
+    "featured": false
+  },
+  {
     "title": "My Journey: From Nepal to Global Tech",
     "excerpt": "From tinkering with Python in 2009 to founding OctSpace, contributing WordPress plugins, speaking at WordCamps, and serving clients across 15+ countries — a look back at my journey.",
     "date": "2025-02-11",
