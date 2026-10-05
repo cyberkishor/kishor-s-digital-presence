@@ -1,58 +1,70 @@
 import { Link } from 'react-router-dom';
-import { ArrowUpRight, ArrowRight } from 'lucide-react';
+import { ArrowUpRight, ArrowRight, FolderGit2, Sparkles } from 'lucide-react';
 import portfolioData from '@/data/portfolio.json';
 
 export function ProjectsSection() {
   const { projects } = portfolioData;
 
   return (
-    <section id="projects" className="section-padding bg-card">
+    <section id="projects" className="section-padding relative overflow-hidden bg-background/50">
       <div className="container-wide">
-        <div className="text-center mb-12">
-          <p className="text-primary font-mono text-sm mb-2">// Work</p>
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+        
+        {/* Section Header */}
+        <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-12">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-xs sm:text-sm font-medium text-indigo-600 dark:text-indigo-400 mb-3">
+            <FolderGit2 className="w-3.5 h-3.5" />
+            <span>Featured Case Studies</span>
+          </div>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-foreground">
             {projects.title}
           </h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+          <p className="text-muted-foreground text-base sm:text-lg mt-3 text-balance">
             {projects.subtitle}
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-6">
+        {/* Projects Grid */}
+        <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
           {projects.items.map((project, index) => (
             <Link
               key={index}
               to={`/projects/${project.slug}`}
-              className="group p-6 md:p-8 rounded-2xl bg-background border border-border card-shadow hover:border-primary/50 transition-all"
+              className="group p-7 sm:p-8 rounded-3xl bg-card border border-border/80 shadow-xs hover:border-indigo-500/40 hover:shadow-lg hover:shadow-indigo-500/5 hover:-translate-y-1 transition-all flex flex-col justify-between relative overflow-hidden"
             >
-              {/* Project Header */}
-              <div className="flex items-start justify-between mb-4">
-                <div>
-                  <h3 className="text-xl font-semibold text-foreground group-hover:text-primary transition-colors">
-                    {project.title}
-                  </h3>
-                  {project.metrics && (
-                    <span className="inline-block mt-2 px-3 py-1 text-xs font-medium rounded-full bg-primary/10 text-primary">
-                      {project.metrics}
-                    </span>
-                  )}
+              {/* Top Accent Gradient Bar on Hover */}
+              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-indigo-500 to-purple-500 opacity-0 group-hover:opacity-100 transition-opacity" />
+
+              <div>
+                {/* Project Header */}
+                <div className="flex items-start justify-between gap-4 mb-4">
+                  <div>
+                    <h3 className="text-xl sm:text-2xl font-bold text-foreground group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+                      {project.title}
+                    </h3>
+                    {project.metrics && (
+                      <span className="inline-flex items-center gap-1.5 mt-2.5 px-3 py-1 text-xs font-semibold rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-600 dark:text-indigo-400">
+                        <Sparkles className="w-3 h-3" />
+                        {project.metrics}
+                      </span>
+                    )}
+                  </div>
+                  <span className="w-10 h-10 rounded-2xl bg-secondary/80 flex items-center justify-center text-muted-foreground group-hover:bg-indigo-600 group-hover:text-white transition-all shrink-0">
+                    <ArrowUpRight className="h-5 w-5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  </span>
                 </div>
-                <span className="p-2 rounded-lg bg-muted opacity-0 group-hover:opacity-100 transition-opacity">
-                  <ArrowUpRight className="h-5 w-5 text-primary" />
-                </span>
+
+                {/* Description */}
+                <p className="text-muted-foreground text-sm sm:text-base leading-relaxed mb-6">
+                  {project.description}
+                </p>
               </div>
 
-              {/* Description */}
-              <p className="text-muted-foreground mb-6">
-                {project.description}
-              </p>
-
               {/* Tags */}
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-2 pt-2 border-t border-border/60">
                 {project.tags.map((tag, tagIndex) => (
                   <span
                     key={tagIndex}
-                    className="px-3 py-1 text-xs font-mono rounded-md bg-secondary text-secondary-foreground"
+                    className="px-3 py-1 text-xs font-mono rounded-full bg-secondary/60 text-muted-foreground group-hover:text-foreground transition-colors"
                   >
                     {tag}
                   </span>
@@ -62,13 +74,13 @@ export function ProjectsSection() {
           ))}
         </div>
 
-        {/* See More Link */}
-        <div className="text-center mt-10">
+        {/* See More Link / Pill CTA */}
+        <div className="text-center mt-8 sm:mt-10">
           <Link
             to="/projects"
-            className="inline-flex items-center gap-2 text-primary hover:text-primary/80 font-medium transition-colors group"
+            className="inline-flex items-center gap-2.5 px-7 py-3 rounded-full bg-[#1e1b4b] hover:bg-[#2d2868] text-white dark:bg-white dark:text-[#0f172a] dark:hover:bg-slate-100 text-sm font-semibold shadow-md shadow-indigo-950/10 transition-all group"
           >
-            See all projects
+            <span>Explore All Projects</span>
             <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
           </Link>
         </div>

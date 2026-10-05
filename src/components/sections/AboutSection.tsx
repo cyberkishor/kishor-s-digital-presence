@@ -189,10 +189,10 @@ export function AboutSection() {
         </div>
 
         {/* WORK PROCESS ROADMAP (My Way of Working) */}
-        <div className="mt-24 sm:mt-32">
+        <div className="mt-14 sm:mt-18">
           
           {/* Section Heading */}
-          <div className="text-center max-w-2xl mx-auto mb-14 sm:mb-16">
+          <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-10">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-xs sm:text-sm font-medium text-indigo-600 dark:text-indigo-400 mb-3">
               <Briefcase className="w-3.5 h-3.5" />
               <span>Methodology</span>

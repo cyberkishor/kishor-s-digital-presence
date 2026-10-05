@@ -206,7 +206,7 @@ export function ModernHeroSection() {
               <h1 className="text-4xl sm:text-5xl md:text-6xl xl:text-7xl font-bold tracking-tight text-foreground leading-[1.08]">
                 <span>I build software that </span>
                 <br />
-                <span className="font-serif italic font-normal text-indigo-600 dark:text-indigo-400 underline decoration-indigo-500/40 underline-offset-8">
+                <span className="font-serif italic text-indigo-600 dark:text-indigo-400 underline decoration-indigo-500/40 underline-offset-8">
                   actually works.
                 </span>
               </h1>

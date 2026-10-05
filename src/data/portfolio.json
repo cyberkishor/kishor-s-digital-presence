@@ -107,6 +107,18 @@
           "Git",
           "CI/CD"
         ]
+      },
+      {
+        "name": "Architecture & APIs",
+        "icon": "Cpu",
+        "items": [
+          "REST APIs",
+          "GraphQL",
+          "Webhooks",
+          "Stripe & Payments",
+          "Shopify Storefront",
+          "Microservices"
+        ]
       }
     ]
   },

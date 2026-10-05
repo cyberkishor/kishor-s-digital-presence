@@ -170,24 +170,24 @@ export default function Blog() {
 
           {/* Pagination */}
           {totalPages > 1 && (
-            <div className="flex items-center justify-center gap-2 mt-12">
+            <div className="flex items-center justify-center gap-2.5 mt-12 sm:mt-14">
               <button
                 onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
                 disabled={currentPage === 1}
-                className="p-2 rounded-lg border border-border hover:bg-card hover:border-primary/50 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+                className="p-2.5 rounded-full border border-border/80 hover:bg-card hover:border-indigo-500/40 disabled:opacity-30 disabled:cursor-not-allowed transition-all"
                 aria-label="Previous page"
               >
-                <ChevronLeft className="w-5 h-5" />
+                <ChevronLeft className="w-4 h-4" />
               </button>
 
               {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
                 <button
                   key={page}
                   onClick={() => setCurrentPage(page)}
-                  className={`w-10 h-10 rounded-lg border transition-all ${
+                  className={`w-10 h-10 rounded-full text-xs font-bold transition-all ${
                     currentPage === page
-                      ? 'bg-primary text-primary-foreground border-primary'
-                      : 'border-border hover:bg-card hover:border-primary/50'
+                      ? 'bg-[#1e1b4b] text-white dark:bg-white dark:text-[#0f172a] shadow-sm'
+                      : 'border border-border/80 hover:bg-card hover:border-indigo-500/40 text-foreground'
                   }`}
                 >
                   {page}
@@ -197,10 +197,10 @@ export default function Blog() {
               <button
                 onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
                 disabled={currentPage === totalPages}
-                className="p-2 rounded-lg border border-border hover:bg-card hover:border-primary/50 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+                className="p-2.5 rounded-full border border-border/80 hover:bg-card hover:border-indigo-500/40 disabled:opacity-30 disabled:cursor-not-allowed transition-all"
                 aria-label="Next page"
               >
-                <ChevronRight className="w-5 h-5" />
+                <ChevronRight className="w-4 h-4" />
               </button>
             </div>
           )}
