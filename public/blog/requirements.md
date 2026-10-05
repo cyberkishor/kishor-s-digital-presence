@@ -8,6 +8,7 @@ readTime: "5 min read"
 category: "Engineering"
 status: "published"
 featured: "false"
+width: "90%"
 ---
 
 # SUPPLY HANDLERS™ — NEXT-GENERATION GLOBAL SOURCING & ECOMMERCE FULFILLMENT PLATFORM

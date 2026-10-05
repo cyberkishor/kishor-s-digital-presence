@@ -118,7 +118,7 @@ export default function BlogPost() {
 
       {/* Content */}
       <main className="pt-32 pb-20">
-        <article className="container-wide max-w-3xl mx-auto px-4">
+        <article className={`container-wide max-w-3xl mx-auto px-4 ${post.slug.includes('requirements') ? 'max-w-[90%]' : ''}`}>
           {/* Back Link */}
           <Link
             to="/blog"
