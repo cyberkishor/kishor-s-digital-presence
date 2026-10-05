@@ -2,7 +2,6 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Github, Linkedin, Mail, MapPin, Phone } from 'lucide-react';
 import portfolioData from '@/data/portfolio.json';
 import { siteSettings } from '@/lib/siteSettings';
-import { UpworkIcon } from '@/components/sections/ModernHeroSection';
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
@@ -59,17 +58,6 @@ export function Footer() {
                   aria-label="LinkedIn"
                 >
                   <Linkedin size={18} />
-                </a>
-              )}
-              {portfolioData.personal.social.upwork && (
-                <a
-                  href={portfolioData.personal.social.upwork}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-muted-foreground hover:text-[#14a800] transition-colors"
-                  aria-label="Upwork Profile"
-                >
-                  <UpworkIcon className="w-[18px] h-[18px] fill-current" />
                 </a>
               )}
               {portfolioData.personal.social.github && (

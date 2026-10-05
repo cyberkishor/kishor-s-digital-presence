@@ -1,7 +1,8 @@
 import { SEO } from '@/components/SEO';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
-import { HeroSection } from '@/components/sections/HeroSection';
+import { ModernHeroSection } from '@/components/sections/ModernHeroSection';
+// Note: Classic terminal hero is preserved in '@/components_backup/sections/HeroSection.tsx' and '@/components/sections/HeroSection.tsx'
 import { AboutSection } from '@/components/sections/AboutSection';
 import { SkillsSection } from '@/components/sections/SkillsSection';
 import { ProjectsSection } from '@/components/sections/ProjectsSection';
@@ -16,7 +17,7 @@ const Index = () => {
       <SEO url="/" />
       <Header />
       <main>
-        <HeroSection />
+        <ModernHeroSection />
         <AboutSection />
         <SkillsSection />
         <ProjectsSection />

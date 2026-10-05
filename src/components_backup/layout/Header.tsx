@@ -4,8 +4,6 @@ import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { ThemeToggle } from '@/components/ThemeToggle';
 import { siteSettings } from '@/lib/siteSettings';
-import portfolioData from '@/data/portfolio.json';
-import { UpworkIcon } from '@/components/sections/ModernHeroSection';
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -48,27 +46,27 @@ export function Header() {
       }`}
     >
       <div className="container-wide">
-        <nav className="flex items-center justify-between h-20 relative">
+        <nav className="flex items-center justify-between h-20">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2.5 group shrink-0">
+          <Link to="/" className="flex items-center gap-2 group">
             <img
               src={siteSettings.logo}
               alt={siteSettings.siteName}
-              className="w-9 h-9 rounded-full object-cover ring-2 ring-border/50 group-hover:ring-primary/50 transition-all"
+              className="w-10 h-10 rounded-full object-cover"
             />
-            <span className="font-semibold text-foreground text-sm tracking-tight group-hover:text-primary transition-colors">
+            <span className="font-semibold text-foreground hidden sm:block group-hover:text-primary transition-colors">
               {siteSettings.siteName.split(' ')[0]}
             </span>
           </Link>
 
-          {/* Desktop Navigation - Centered */}
-          <ul className="hidden md:flex items-center gap-7 lg:gap-9 absolute left-1/2 -translate-x-1/2">
+          {/* Desktop Navigation */}
+          <ul className="hidden md:flex items-center gap-8">
             {siteSettings.nav.map((link) => (
               <li key={link.href}>
                 <a
                   href={getDisplayHref(link.href)}
                   onClick={(e) => handleNavClick(e, link.href)}
-                  className="text-xs lg:text-sm font-medium text-muted-foreground hover:text-foreground transition-colors tracking-wide py-1"
+                  className="text-muted-foreground hover:text-foreground transition-colors link-underline py-1"
                 >
                   {link.label}
                 </a>
@@ -76,30 +74,10 @@ export function Header() {
             ))}
           </ul>
 
-          {/* Right Actions: Upwork + Divider + CTA Pill + Theme Toggle */}
-          <div className="hidden md:flex items-center gap-3 shrink-0">
-            {portfolioData.personal.social.upwork && (
-              <a
-                href={portfolioData.personal.social.upwork}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-xs font-semibold text-muted-foreground hover:text-[#14a800] transition-colors flex items-center gap-1.5 px-2 py-1"
-                aria-label="Upwork Profile"
-              >
-                <UpworkIcon className="w-4 h-4 fill-current" />
-                <span>Upwork</span>
-              </a>
-            )}
-
-            <span className="w-px h-4 bg-border/80" />
-
+          {/* Theme Toggle & CTA */}
+          <div className="hidden md:flex items-center gap-2">
             <ThemeToggle />
-
-            <Button 
-              size="sm"
-              asChild
-              className="rounded-full px-5 h-9 text-xs font-semibold shadow-sm hover:shadow transition-all bg-foreground text-background hover:bg-foreground/90"
-            >
+            <Button asChild>
               <a
                 href={getDisplayHref(siteSettings.ctaHref)}
                 onClick={(e) => handleNavClick(e, siteSettings.ctaHref)}

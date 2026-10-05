@@ -1,6 +1,5 @@
 import { Mail, MapPin, Linkedin, Github, Phone, MessageCircle } from 'lucide-react';
 import portfolioData from '@/data/portfolio.json';
-import { UpworkIcon } from '@/components/sections/ModernHeroSection';
 
 export function ContactSection() {
   const { contact, personal } = portfolioData;
@@ -89,17 +88,6 @@ export function ContactSection() {
                   aria-label="LinkedIn"
                 >
                   <Linkedin className="w-5 h-5" />
-                </a>
-              )}
-              {personal.social.upwork && (
-                <a
-                  href={personal.social.upwork}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-3 rounded-lg bg-background border border-border hover:border-[#14a800]/50 hover:text-[#14a800] transition-colors"
-                  aria-label="Upwork Profile"
-                >
-                  <UpworkIcon className="w-5 h-5 fill-current" />
                 </a>
               )}
               {personal.social.github && (
