@@ -1,6 +1,6 @@
 ---
 title: "Requirements"
-slug: "requirements"
+slug: "requirements-154"
 date: "2026-10-05"
 excerpt: ""
 cover: ""
