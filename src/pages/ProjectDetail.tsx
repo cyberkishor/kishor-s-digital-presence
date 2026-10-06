@@ -71,9 +71,10 @@ export default function ProjectDetail() {
   // Still fetching metadata for non-featured projects
   if (!project && loading) {
     return (
-      <div className="min-h-screen bg-background">
+      <div className="min-h-screen bg-background relative">
         <Header />
-        <main className="pt-32 pb-20">
+        <main className="pt-32 pb-20 relative">
+          <EverlyBackground />
           <div className="container-wide max-w-4xl mx-auto px-4 animate-pulse space-y-4">
             <div className="h-6 bg-muted rounded w-32" />
             <div className="h-10 bg-muted rounded w-3/4" />
@@ -120,7 +121,8 @@ export default function ProjectDetail() {
       <Header />
 
       {/* Content */}
-      <main className="pt-32 pb-20">
+      <main className="pt-32 pb-20 relative">
+        <EverlyBackground />
         <article className="container-wide max-w-4xl mx-auto px-4">
           {/* Back Link */}
           <Link
