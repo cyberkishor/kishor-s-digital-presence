@@ -115,8 +115,8 @@ export function ModernHeroSection() {
               <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
               <span className="text-indigo-600 dark:text-indigo-400 font-semibold">15+ Years Experience</span>
               <span className="text-muted-foreground">•</span>
-              <span className="text-muted-foreground hidden sm:inline">Senior Full-Stack & SaaS Engineer</span>
-              <span className="text-muted-foreground sm:hidden">Full-Stack Engineer</span>
+              <span className="text-foreground/80 dark:text-muted-foreground hidden sm:inline font-medium">Senior Full-Stack & SaaS Engineer</span>
+              <span className="text-foreground/80 dark:text-muted-foreground sm:hidden font-medium">Full-Stack Engineer</span>
             </motion.div>
 
             {/* Main Headline (Editorial Serif with Royal Electric Indigo) */}
@@ -195,8 +195,8 @@ export function ModernHeroSection() {
                   <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
                     <span className="font-semibold text-foreground/90">Upwork Top Rated</span>
                     <span>•</span>
-                    <span className="text-amber-500 flex items-center gap-0.5 font-medium">
-                      <Star className="w-3 h-3 fill-amber-500" /> 5.0
+                    <span className="text-amber-700 dark:text-amber-400 flex items-center gap-0.5 font-semibold">
+                      <Star className="w-3 h-3 fill-amber-500 text-amber-500" /> 5.0
                     </span>
                     <ExternalLink className="w-3 h-3 text-muted-foreground group-hover/upwork:text-blue-500 transition-colors ml-0.5 opacity-60 group-hover/upwork:opacity-100" />
                   </div>
@@ -336,7 +336,7 @@ export function ModernHeroSection() {
                   </div>
                 </button>
 
-                <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-500 text-[11px] font-medium">
+                <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-700 dark:text-emerald-400 text-[11px] font-semibold">
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
                   <span>Production</span>
                 </div>

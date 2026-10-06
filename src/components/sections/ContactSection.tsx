@@ -137,7 +137,7 @@ export function ContactSection() {
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2.5 px-8 py-3.5 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-sm shadow-lg shadow-emerald-600/20 hover:shadow-emerald-600/30 transition-all hover:scale-102"
+              className="inline-flex items-center gap-2.5 px-8 py-3.5 rounded-full bg-emerald-700 hover:bg-emerald-600 text-white font-semibold text-sm shadow-lg shadow-emerald-700/20 hover:shadow-emerald-700/30 transition-all hover:scale-102"
             >
               <MessageCircle className="w-5 h-5" />
               <span>Chat on WhatsApp</span>

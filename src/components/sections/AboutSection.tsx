@@ -221,7 +221,7 @@ export function AboutSection() {
                   className="p-6 rounded-3xl bg-card border border-border/80 shadow-xs hover:border-indigo-500/40 hover:shadow-md hover:shadow-indigo-500/5 transition-all flex flex-col justify-between group relative overflow-hidden"
                 >
                   {/* Subtle Step Number Background Watermark */}
-                  <span className="absolute -bottom-4 -right-2 text-7xl font-bold font-mono text-muted/30 dark:text-muted/10 select-none pointer-events-none group-hover:text-indigo-500/10 transition-colors">
+                  <span aria-hidden="true" className="absolute -bottom-4 -right-2 text-7xl font-bold font-mono text-muted/30 dark:text-muted/10 select-none pointer-events-none group-hover:text-indigo-500/10 transition-colors">
                     {step.number}
                   </span>
 
