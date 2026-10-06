@@ -4,6 +4,7 @@ import { ArrowRight, Clock, Search, ChevronLeft, ChevronRight } from 'lucide-rea
 import { SEO } from '@/components/SEO';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
+import { EverlyBackground } from '@/components/ui/EverlyBackground';
 import portfolioData from '@/data/portfolio.json';
 
 interface BlogPost {
@@ -75,7 +76,9 @@ export default function Blog() {
       <Header />
 
       {/* Content */}
-      <main className="pt-32 pb-20">
+      <main className="pt-32 pb-20 relative">
+        <EverlyBackground/>
+
         <div className="container-wide">
           {/* Page Header */}
           <div className="mb-12">

@@ -1,6 +1,7 @@
 import { SEO } from '@/components/SEO';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
+import { EverlyBackground } from '@/components/ui/EverlyBackground';
 import { ModernHeroSection } from '@/components/sections/ModernHeroSection';
 // Note: Classic terminal hero is preserved in '@/components_backup/sections/HeroSection.tsx' and '@/components/sections/HeroSection.tsx'
 import { AboutSection } from '@/components/sections/AboutSection';
@@ -16,7 +17,9 @@ const Index = () => {
     <div className="min-h-screen bg-background">
       <SEO url="/" />
       <Header />
-      <main>
+      <main className='relative'>
+        <EverlyBackground className="fixed z-[999]" />
+
         <ModernHeroSection />
         <AboutSection />
         <SkillsSection />

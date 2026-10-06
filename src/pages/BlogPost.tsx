@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/button';
 import { SEO } from '@/components/SEO';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
+import { EverlyBackground } from '@/components/ui/EverlyBackground';
 import portfolioData from '@/data/portfolio.json';
 import { siteSettings } from '@/lib/siteSettings';
 
@@ -117,7 +118,8 @@ export default function BlogPost() {
       <Header />
 
       {/* Content */}
-      <main className="pt-32 pb-20">
+      <main className="pt-32 pb-20 relative">
+        <EverlyBackground />
         <article className={`container-wide max-w-3xl mx-auto px-4 ${post.slug.includes('requirements') ? 'max-w-[90%]' : ''}`}>
           {/* Back Link */}
           <Link
