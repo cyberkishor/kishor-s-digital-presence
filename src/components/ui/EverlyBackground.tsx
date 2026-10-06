@@ -6,7 +6,7 @@ interface EverlyBackgroundProps {
 
 export function EverlyBackground({ className }: EverlyBackgroundProps) {
   return (
-    <div className={cn("fixed inset-0 overflow-hidden pointer-events-none z-[999]", className)}>
+    <div className={cn("fixed inset-0 overflow-hidden pointer-events-none z-1", className)}>
       {/* Soft Ambient Radial Glows (Diffuses behind the curves like the original mockup) */}
       <div className="absolute -top-24 -right-24 w-[650px] h-[650px] rounded-full bg-gradient-to-br from-indigo-200/50 via-purple-100/30 to-transparent dark:from-indigo-900/20 dark:via-purple-900/10 dark:to-transparent blur-3xl" />
       <div className="absolute -bottom-24 -left-24 w-[600px] h-[600px] rounded-full bg-gradient-to-tr from-indigo-200/40 via-blue-100/25 to-transparent dark:from-indigo-950/25 dark:via-purple-950/15 dark:to-transparent blur-3xl" />

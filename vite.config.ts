@@ -224,6 +224,7 @@ function injectMetaPlugin(): Plugin {
       }
 
       const siteName = s.siteName || "Portfolio";
+      const pageTitle = s.siteTitle || (s.siteName ? `${s.siteName} | Senior Full-Stack & Shopify Developer` : "Portfolio");
       const siteUrl = (s.siteUrl || "").replace(/\/$/, "");
       const description = s.siteDescription || "";
       const favicon = s.favicon || "/logo.svg";
@@ -231,7 +232,7 @@ function injectMetaPlugin(): Plugin {
       const host = siteUrl.replace(/^https?:\/\//, "");
 
       const ogParams = new URLSearchParams({
-        title: siteName,
+        title: pageTitle,
         description,
         name: siteName,
         role,
@@ -242,10 +243,20 @@ function injectMetaPlugin(): Plugin {
         s.ogImage || (siteUrl ? `${siteUrl}/api/og?${ogParams}` : "");
 
       return [
-        { tag: "title", children: siteName, injectTo: "head" },
+        { tag: "title", children: pageTitle, injectTo: "head" },
         {
           tag: "meta",
           attrs: { name: "description", content: description },
+          injectTo: "head",
+        },
+        {
+          tag: "meta",
+          attrs: { name: "robots", content: "index, follow" },
+          injectTo: "head",
+        },
+        {
+          tag: "meta",
+          attrs: { name: "publisher", content: siteName },
           injectTo: "head",
         },
         {
@@ -265,7 +276,7 @@ function injectMetaPlugin(): Plugin {
         },
         {
           tag: "meta",
-          attrs: { property: "og:title", content: siteName },
+          attrs: { property: "og:title", content: pageTitle },
           injectTo: "head",
         },
         {
@@ -285,7 +296,7 @@ function injectMetaPlugin(): Plugin {
         },
         {
           tag: "meta",
-          attrs: { name: "twitter:title", content: siteName },
+          attrs: { name: "twitter:title", content: pageTitle },
           injectTo: "head",
         },
         {

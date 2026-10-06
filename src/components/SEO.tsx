@@ -21,9 +21,10 @@ export function SEO({
   publishedTime,
   author = siteSettings.siteName,
 }: SEOProps) {
-  const { siteName, siteUrl, siteDescription, ogImage, favicon, keywords, googleAnalyticsId } = siteSettings;
+  const { siteName, siteTitle, siteUrl, siteDescription, ogImage, favicon, keywords, googleAnalyticsId } = siteSettings;
 
-  const fullTitle = title ? `${title} | ${siteName}` : siteName;
+  const defaultTitle = siteTitle || `${siteName} | Senior Full-Stack & Shopify Developer`;
+  const fullTitle = title ? `${title} | ${siteName}` : defaultTitle;
   const fullDescription = description || siteDescription;
   const fullUrl = `${siteUrl}${url}`;
 
@@ -49,6 +50,8 @@ export function SEO({
       <title>{fullTitle}</title>
       <meta name="description" content={fullDescription} />
       <meta name="author" content={author} />
+      <meta name="publisher" content={siteName} />
+      <meta name="robots" content="index, follow" />
       <meta name="keywords" content={keywords} />
       <link rel="canonical" href={fullUrl} />
 

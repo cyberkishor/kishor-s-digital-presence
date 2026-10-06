@@ -10,6 +10,7 @@ import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import portfolioData from '@/data/portfolio.json';
 import { siteSettings } from '@/lib/siteSettings';
+import EverlyBackground from '@/components/ui/EverlyBackground';
 
 interface ProjectMeta {
   title: string;
@@ -88,10 +89,11 @@ export default function ProjectDetail() {
   // Show "not found" only after content fetch is done and project is still null
   if (!project && !loading) {
     return (
-      <div className="min-h-screen bg-background">
+      <div className="min-h-screen bg-background relative">
         <SEO title="Project Not Found" url={`/projects/${slug}`} />
         <Header />
-        <main className="pt-32 pb-20">
+        <main className="pt-32 pb-20 relative">
+          <EverlyBackground />
           <div className="container-wide text-center">
             <h1 className="text-4xl font-bold text-foreground mb-4">Project Not Found</h1>
             <p className="text-muted-foreground mb-8">

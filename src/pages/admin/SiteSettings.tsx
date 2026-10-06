@@ -207,7 +207,14 @@ export default function SiteSettings() {
                 </Section>
 
                 <Section title="SEO Defaults">
-                  <Field label="Default Description">
+                  <Field label="Homepage / Default SEO Title" hint="Optimal length: 50–60 characters (e.g. Kishor Kumar Mahato | Senior Full-Stack & Shopify Developer)">
+                    <Input
+                      value={settings.siteTitle || ''}
+                      onChange={(e) => setField('siteTitle', e.target.value)}
+                      placeholder="e.g. Kishor Kumar Mahato | Senior Full-Stack & Shopify Developer"
+                    />
+                  </Field>
+                  <Field label="Default Description" hint="Optimal length: 150–160 characters for search engines">
                     <textarea
                       value={settings.siteDescription}
                       onChange={(e) => setField('siteDescription', e.target.value)}

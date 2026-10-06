@@ -7,6 +7,7 @@ export interface NavLink {
 
 export interface SiteSettings {
   siteName: string;
+  siteTitle?: string;
   defaultTheme: 'dark' | 'light' | 'system';
   accentColor: string;
   siteUrl: string;

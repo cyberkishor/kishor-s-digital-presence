@@ -5,6 +5,7 @@ import { SEO } from '@/components/SEO';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import portfolioData from '@/data/portfolio.json';
+import EverlyBackground from '@/components/ui/EverlyBackground';
 
 const PROJECTS_PER_PAGE = 6;
 
@@ -67,7 +68,8 @@ export default function Projects() {
       <Header />
 
       {/* Content */}
-      <main className="pt-28 pb-16">
+      <main className="pt-28 pb-16 relative">
+        <EverlyBackground />
         <div className="container-wide">
           {/* Page Header */}
           <div className="mb-10 sm:mb-12">
