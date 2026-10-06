@@ -48,13 +48,13 @@ export function Header() {
       }`}
     >
       <div className="container-wide">
-        <nav className="flex items-center justify-between h-20 relative">
+        <nav className="flex items-center justify-between h-14 sm:h-16 md:h-20 relative">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2.5 group shrink-0">
+          <Link to="/" className="flex items-center gap-2 sm:gap-2.5 group shrink-0">
             <img
               src={siteSettings.logo}
               alt={siteSettings.siteName}
-              className="w-9 h-9 rounded-full object-cover ring-2 ring-border/50 group-hover:ring-primary/50 transition-all"
+              className="w-8 h-8 sm:w-9 sm:h-9 rounded-full object-cover ring-2 ring-border/50 group-hover:ring-primary/50 transition-all"
             />
             <span className="font-semibold text-foreground text-sm tracking-tight group-hover:text-primary transition-colors">
               {siteSettings.siteName.split(' ')[0]}
@@ -110,14 +110,14 @@ export function Header() {
           </div>
 
           {/* Mobile Right Actions: Theme Toggle + Menu Button */}
-          <div className="flex md:hidden items-center gap-1.5">
-            <ThemeToggle />
+          <div className="flex md:hidden items-center gap-1">
+            <ThemeToggle className="h-8 w-8" />
             <button
-              className="p-2 text-foreground rounded-md hover:bg-secondary/60 transition-colors"
+              className="w-8 h-8 flex items-center justify-center text-foreground rounded-lg hover:bg-secondary/60 transition-colors"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               aria-label="Toggle menu"
             >
-              {isMobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
+              {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
             </button>
           </div>
         </nav>

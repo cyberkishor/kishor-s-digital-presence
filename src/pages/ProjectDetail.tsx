@@ -121,7 +121,7 @@ export default function ProjectDetail() {
       <Header />
 
       {/* Content */}
-      <main className="pt-32 pb-20 relative">
+      <main className="pt-20 sm:pt-24 md:pt-32 pb-20 relative">
         <EverlyBackground />
         <article className="container-wide max-w-4xl mx-auto px-4">
           {/* Back Link */}

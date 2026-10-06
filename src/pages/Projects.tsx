@@ -68,7 +68,7 @@ export default function Projects() {
       <Header />
 
       {/* Content */}
-      <main className="pt-28 pb-16 relative">
+      <main className="pt-20 sm:pt-24 md:pt-28 pb-16 relative">
         <EverlyBackground />
         <div className="container-wide">
           {/* Page Header */}

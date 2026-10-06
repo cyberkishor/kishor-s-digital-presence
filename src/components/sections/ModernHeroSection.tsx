@@ -92,7 +92,7 @@ export function ModernHeroSection() {
   const activeProject = featuredProjects[activeProjectIdx] || featuredProjects[0];
 
   return (
-    <section className="relative min-h-[92vh] flex flex-col justify-between overflow-hidden pt-28 pb-12 sm:pt-32 sm:pb-16 bg-background isolate">
+    <section className="relative min-h-[92vh] flex flex-col justify-between overflow-hidden pt-20 sm:pt-24 md:pt-32 pb-12 sm:pb-16 bg-background isolate">
       
       {/* Main Container */}
       <div className="container-wide w-full flex-1 flex flex-col justify-center relative z-10">

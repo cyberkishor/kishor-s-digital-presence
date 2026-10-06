@@ -76,7 +76,7 @@ export default function Blog() {
       <Header />
 
       {/* Content */}
-      <main className="pt-32 pb-20 relative">
+      <main className="pt-20 sm:pt-24 md:pt-32 pb-20 relative">
         <EverlyBackground/>
 
         <div className="container-wide">
