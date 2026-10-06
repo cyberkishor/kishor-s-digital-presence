@@ -109,14 +109,17 @@ export function Header() {
             </Button>
           </div>
 
-          {/* Mobile Menu Button */}
-          <button
-            className="md:hidden p-2 text-foreground"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            aria-label="Toggle menu"
-          >
-            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+          {/* Mobile Right Actions: Theme Toggle + Menu Button */}
+          <div className="flex md:hidden items-center gap-1.5">
+            <ThemeToggle />
+            <button
+              className="p-2 text-foreground rounded-md hover:bg-secondary/60 transition-colors"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              aria-label="Toggle menu"
+            >
+              {isMobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
+            </button>
+          </div>
         </nav>
       </div>
 
@@ -129,7 +132,7 @@ export function Header() {
                 <li key={link.href}>
                   <a
                     href={getDisplayHref(link.href)}
-                    className="block py-2 text-foreground hover:text-primary transition-colors"
+                    className="block py-2 text-foreground hover:text-primary transition-colors font-medium"
                     onClick={(e) => {
                       handleNavClick(e, link.href);
                       setIsMobileMenuOpen(false);
@@ -139,8 +142,22 @@ export function Header() {
                   </a>
                 </li>
               ))}
+              {portfolioData.personal.social.upwork && (
+                <li>
+                  <a
+                    href={portfolioData.personal.social.upwork}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 py-2 text-muted-foreground hover:text-[#14a800] transition-colors font-medium"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    <UpworkIcon className="w-4 h-4 fill-current" />
+                    <span>Upwork Profile</span>
+                  </a>
+                </li>
+              )}
               <li className="pt-4">
-                <Button asChild className="w-full">
+                <Button asChild className="w-full rounded-full">
                   <a
                     href={getDisplayHref(siteSettings.ctaHref)}
                     onClick={(e) => {
