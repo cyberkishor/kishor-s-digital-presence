@@ -211,7 +211,7 @@ export default function BlogPost() {
           )}
 
           {/* Post Footer */}
-          <footer className="mt-16 pt-8 border-t border-border">
+          {/* <footer className="mt-16 pt-8 border-t border-border">
             <div className="flex items-center gap-4">
               <img
                 src={siteSettings.logo}
@@ -227,7 +227,7 @@ export default function BlogPost() {
                 </p>
               </div>
             </div>
-          </footer>
+          </footer> */}
         </article>
       </main>
 
