@@ -18,7 +18,7 @@ const Index = () => {
       <SEO url="/" />
       <Header />
       <main className='relative'>
-        <EverlyBackground className="fixed z-[999]" />
+        <EverlyBackground />
 
         <ModernHeroSection />
         <AboutSection />
